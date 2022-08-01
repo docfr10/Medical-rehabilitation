@@ -3,4 +3,6 @@
     <string name="start">Начать тренировку</string>
     <string name="about">О приложении</string>
     <string name="about_app">Приложение разработано с целью помощи людям в получении реабилитации в домашних условиях после получения травм</string>
+    <string name="pause">Пауза</string>
+    <string name="next">Далее</string>
 </resources>

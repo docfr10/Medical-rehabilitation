@@ -3,4 +3,6 @@
     <string name="start">Start training</string>
     <string name="about">About</string>
     <string name="about_app">The application is designed to help people get rehabilitation at home after injury</string>
+    <string name="pause">Pause</string>
+    <string name="next">Next</string>
 </resources>
