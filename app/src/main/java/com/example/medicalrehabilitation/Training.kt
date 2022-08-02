@@ -2,27 +2,32 @@ package com.example.medicalrehabilitation
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Debug
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.MediaController
 import android.widget.VideoView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 
 class Training : AppCompatActivity() {
+
+    private lateinit var myVideoUri: Uri
+    private lateinit var videoView: VideoView
+    private lateinit var abouttrainimageButton: ImageButton
+    private lateinit var nextbutton: Button
+    private var numberoftraining: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_training)
 
-        var myVideoUri: Uri = Uri.parse("android.resource://$packageName/" + R.raw.video)
-        val videoView: VideoView = findViewById(R.id.training_videoView)
         val mediaController = MediaController(this)
-        val abouttrainimageButton: ImageButton = findViewById(R.id.abouttrain_imageButton)
-        val nextbutton: Button = findViewById(R.id.next_button)
+        myVideoUri = Uri.parse("android.resource://$packageName/" + R.raw.video)
+        videoView = findViewById(R.id.training_videoView)
+        abouttrainimageButton = findViewById(R.id.abouttrain_imageButton)
+        nextbutton = findViewById(R.id.next_button)
 
         play(videoView, myVideoUri, mediaController)
 
@@ -30,15 +35,14 @@ class Training : AppCompatActivity() {
         nextbutton.setOnClickListener {
             if (myVideoUri == Uri.parse("android.resource://$packageName/" + R.raw.video)) {
                 myVideoUri = Uri.parse("android.resource://$packageName/" + R.raw.video1)
-                play(videoView, myVideoUri, mediaController)
+                numberoftraining = 1
             }
+            play(videoView, myVideoUri, mediaController)
         }
 
         //Переход с помощью кнопки к информации об упражнении
         abouttrainimageButton.setOnClickListener {
-            val myDialogFragment = MyDialogFragment()
-            val manager = supportFragmentManager
-            myDialogFragment.show(manager, "myDialog")
+            window()
         }
     }
 
@@ -49,18 +53,19 @@ class Training : AppCompatActivity() {
         videoView.start()
         videoView.setOnPreparedListener { it.isLooping = true }
     }
-}
 
-class MyDialogFragment : DialogFragment() {
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return activity?.let {
-            val builder = AlertDialog.Builder(it)
-            builder.setTitle(getString(R.string.about_exercise))
-                .setMessage("!!!Описание упражнения!!!")
-                .setPositiveButton(getString(R.string.clear)) { dialog, id ->
-                    dialog.cancel()
-                }
-            builder.create()
-        } ?: throw IllegalStateException("Activity cannot be null")
+    private fun window() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(getString(R.string.about_exercise))
+        if (numberoftraining == 0) {
+            builder.setMessage(R.string.description0)
+        } else if (numberoftraining == 1) {
+            builder.setMessage("!!!Описание упражнения!!!")
+        }
+        builder.setPositiveButton(getString(R.string.clear)) { dialog, id ->
+            dialog.cancel()
+        }
+        builder.create()
+        builder.show()
     }
 }
