@@ -2,6 +2,7 @@ package com.example.medicalrehabilitation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 
 class About : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

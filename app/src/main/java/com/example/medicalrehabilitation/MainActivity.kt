@@ -11,11 +11,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val startbutton: ImageButton = findViewById(R.id.begin_imagebutton)
+        val beginimagebutton: ImageButton = findViewById(R.id.begin_imagebutton)
         val aboutbutton: Button = findViewById(R.id.about_button)
 
         //Переход с помощью кнопки к тренировке
-        startbutton.setOnClickListener {
+        beginimagebutton.setOnClickListener {
             val intent = Intent(this@MainActivity, Training::class.java)
             startActivity(intent)
         }

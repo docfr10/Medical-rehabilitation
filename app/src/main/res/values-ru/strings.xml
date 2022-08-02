@@ -5,4 +5,6 @@
     <string name="about_app">Приложение разработано с целью помощи людям в получении реабилитации в домашних условиях после получения травм</string>
     <string name="pause">Пауза</string>
     <string name="next">Далее</string>
+    <string name="about_exercise">Об упражнении</string>
+    <string name="clear">Понятно</string>
 </resources>

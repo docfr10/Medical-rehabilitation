@@ -15,9 +15,10 @@
       app:layout_constraintTop_toTopOf="parent">
 
     <VideoView
-        android:id="@+id/videoView"
+        android:id="@+id/training_videoView"
         android:layout_width="match_parent"
         android:layout_height="362dp" />
+
   </FrameLayout>
 
   <TextView
@@ -54,5 +55,15 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/pause_button"
       app:layout_constraintVertical_bias="0.338" />
+
+  <ImageButton
+      android:id="@+id/abouttrain_imageButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:contentDescription="@string/about"
+      android:labelFor="@id/frameLayout"
+      app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+      app:layout_constraintTop_toTopOf="@+id/frameLayout"
+      app:srcCompat="@android:drawable/ic_dialog_info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
