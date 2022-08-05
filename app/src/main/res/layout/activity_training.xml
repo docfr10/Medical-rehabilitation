@@ -23,26 +23,31 @@
 
   <TextView
       android:id="@+id/timer_textView"
-      android:layout_width="139dp"
-      android:layout_height="41dp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
       android:text="timer"
+      android:textColor="@color/black"
       android:textSize="34sp"
+      android:textStyle="bold"
+      app:autoSizeTextType="uniform"
       app:layout_constraintBottom_toTopOf="@+id/pause_button"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-      app:layout_constraintVertical_bias="0.594" />
+      app:layout_constraintVertical_bias="0.607" />
 
   <Button
       android:id="@+id/pause_button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="152dp"
+      android:layout_marginTop="148dp"
       android:text="@string/pause"
+      app:layout_constraintBottom_toTopOf="@+id/next_button"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+      app:layout_constraintTop_toBottomOf="@+id/timer_textView" />
 
   <Button
       android:id="@+id/next_button"
@@ -51,7 +56,7 @@
       android:text="@string/next"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/pause_button"
       app:layout_constraintVertical_bias="0.338" />
@@ -60,6 +65,7 @@
       android:id="@+id/abouttrain_imageButton"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:background="?attr/selectableItemBackground"
       android:contentDescription="@string/about"
       android:labelFor="@id/frameLayout"
       app:layout_constraintEnd_toEndOf="@+id/frameLayout"

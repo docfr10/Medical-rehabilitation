@@ -17,6 +17,7 @@
         <!-- Activity, отвечающая за главный экран -->
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +29,7 @@
         <!-- Activity, отвечающая за экран тренировок -->
         <activity
             android:name=".Training"
+            android:screenOrientation="portrait"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -38,6 +40,7 @@
         <!-- Activity, отвечающая за экран "О приложении" -->
         <activity
             android:name=".About"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:label="@string/about"
             android:theme="@style/Theme.AppCompat.Dialog">
