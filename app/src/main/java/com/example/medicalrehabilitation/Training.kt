@@ -1,15 +1,15 @@
 package com.example.medicalrehabilitation
 
 import android.app.AlertDialog
+import android.media.AudioManager
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import java.sql.Time
-import java.util.concurrent.CompletableFuture
-import java.util.concurrent.TimeUnit
+
 
 class Training : AppCompatActivity() {
 
@@ -19,34 +19,43 @@ class Training : AppCompatActivity() {
     private lateinit var nextbutton: Button
     private lateinit var pausebutton: Button
     private lateinit var timertextView: TextView
+    private lateinit var soundStop: MediaPlayer
+    private lateinit var mediaController: MediaController
     private var numberoftraining: Int = 0
     private var timer: CountDownTimer? = null
-    private var millisStart: Long = 120000;
+    private var millisStart: Long = 2000; //120000
     private var millisLeft: Long = millisStart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_training)
 
-        val mediaController = MediaController(this)
         myVideoUri = Uri.parse("android.resource://$packageName/" + R.raw.video)
         videoView = findViewById(R.id.training_videoView)
         abouttrainimageButton = findViewById(R.id.abouttrain_imageButton)
         pausebutton = findViewById(R.id.pause_button)
         nextbutton = findViewById(R.id.next_button)
         timertextView = findViewById(R.id.timer_textView)
+        soundStop = MediaPlayer.create(this, R.raw.sound_stop)
+        mediaController = MediaController(this)
 
-        play(mediaController)
+        playVideo(mediaController)
         timerStart(millisStart)
+        buttonClick()
+    }
 
+    private fun buttonClick() {
         //Переход с помощью кнопки к следующему упражнению
         nextbutton.setOnClickListener {
             if (myVideoUri == Uri.parse("android.resource://$packageName/" + R.raw.video)) {
                 myVideoUri = Uri.parse("android.resource://$packageName/" + R.raw.video1)
                 numberoftraining = 1
                 timertextView.visibility = View.GONE
+                pausebutton.visibility = View.GONE
+            } else if (myVideoUri == Uri.parse("android.resource://$packageName/" + R.raw.video1)) {
+                //videoView.pause()
             }
-            play(mediaController)
+            playVideo(mediaController)
         }
 
         //Переход с помощью кнопки к информации об упражнении
@@ -59,19 +68,19 @@ class Training : AppCompatActivity() {
         pausebutton.setOnClickListener {
             ispause = if (!ispause) {
                 timerPause()
-                pause(mediaController)
+                pauseVideo(mediaController)
                 pausebutton.setText(R.string.resume)
                 true
             } else {
                 timerResume()
-                //ДОБАВИТЬ ПРОДОЛЖЕНИЕ ВОСПРОИЗВЕДЕНИЯ ВИДЕО
+                playVideo(mediaController)
                 pausebutton.setText(R.string.pause)
                 false
             }
         }
     }
 
-    private fun play(mediaController: MediaController) {
+    private fun playVideo(mediaController: MediaController) {
         videoView.setVideoURI(myVideoUri)
         videoView.setMediaController(mediaController)
         mediaController.setAnchorView(videoView)
@@ -79,7 +88,7 @@ class Training : AppCompatActivity() {
         videoView.setOnPreparedListener { it.isLooping = true }
     }
 
-    private fun pause(mediaController: MediaController) {
+    private fun pauseVideo(mediaController: MediaController) {
         videoView.setVideoURI(myVideoUri)
         videoView.setMediaController(mediaController)
         mediaController.setAnchorView(videoView)
@@ -109,6 +118,8 @@ class Training : AppCompatActivity() {
 
             override fun onFinish() {
                 timertextView.text = "Закончили"
+                soundPlay(soundStop)
+                videoView.stopPlayback()
             }
         }
         (timer as CountDownTimer).start()
@@ -120,5 +131,9 @@ class Training : AppCompatActivity() {
 
     private fun timerResume() {
         timerStart(millisLeft);
+    }
+
+    private fun soundPlay(sound: MediaPlayer) {
+        sound.start()
     }
 }
