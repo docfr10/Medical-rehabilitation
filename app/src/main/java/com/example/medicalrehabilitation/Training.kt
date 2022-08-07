@@ -1,7 +1,6 @@
 package com.example.medicalrehabilitation
 
 import android.app.AlertDialog
-import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
@@ -12,24 +11,24 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class Training : AppCompatActivity() {
-
-    private lateinit var myVideoUri: Uri
-    private lateinit var videoView: VideoView
-    private lateinit var abouttrainimageButton: ImageButton
-    private lateinit var nextbutton: Button
-    private lateinit var pausebutton: Button
-    private lateinit var timertextView: TextView
-    private lateinit var soundStop: MediaPlayer
-    private lateinit var mediaController: MediaController
-    private var numberoftraining: Int = 0
-    private var timer: CountDownTimer? = null
-    private var millisStart: Long = 2000; //120000
-    private var millisLeft: Long = millisStart
+    private lateinit var myVideoUri: Uri //Ссылка на видео, которое будет проигрываться
+    private lateinit var videoView: VideoView //Отображение видеофайла, который выбран в Uri
+    private lateinit var abouttrainimageButton: ImageButton //Кнопка с изображением "Об упражнении"
+    private lateinit var nextbutton: Button //Кнопка "Следующее упражнение" переключает упражнение
+    private lateinit var pausebutton: Button //Кнопка "Пауза" ставит таймер и проигрываемое видео на паузу
+    private lateinit var timertextView: TextView //Текстовое поле, отображающее время на таймере
+    private lateinit var soundStop: MediaPlayer //Звук, оповещающий об окончании упражнения
+    private lateinit var mediaController: MediaController //Элементы управления видео(пауза, перемотка)
+    private var numberoftraining: Int = 0 //Номер упражнения
+    private var timer: CountDownTimer? = null //Таймер
+    private var millisStart: Long = 20000; //120000 //Время выполнения упражнения
+    private var millisLeft: Long = millisStart //Время, оставщееся до конца упражнения
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_training)
 
+        //Присваиваем значения в коде к значениям в разметке
         myVideoUri = Uri.parse("android.resource://$packageName/" + R.raw.video)
         videoView = findViewById(R.id.training_videoView)
         abouttrainimageButton = findViewById(R.id.abouttrain_imageButton)
@@ -38,12 +37,22 @@ class Training : AppCompatActivity() {
         timertextView = findViewById(R.id.timer_textView)
         soundStop = MediaPlayer.create(this, R.raw.sound_stop)
         mediaController = MediaController(this)
+    }
 
-        playVideo(mediaController)
-        timerStart(millisStart)
+    override fun onResume() {
+        super.onResume()
+        timerResume()
+        videoPlay(mediaController)
         buttonClick()
     }
 
+    override fun onPause() {
+        super.onPause()
+        timerPause()
+        videoPause(mediaController)
+    }
+
+    //Метод, с помошью которого можно взаимодействовать с кнопками
     private fun buttonClick() {
         //Переход с помощью кнопки к следующему упражнению
         nextbutton.setOnClickListener {
@@ -55,7 +64,7 @@ class Training : AppCompatActivity() {
             } else if (myVideoUri == Uri.parse("android.resource://$packageName/" + R.raw.video1)) {
                 //videoView.pause()
             }
-            playVideo(mediaController)
+            videoPlay(mediaController)
         }
 
         //Переход с помощью кнопки к информации об упражнении
@@ -68,19 +77,20 @@ class Training : AppCompatActivity() {
         pausebutton.setOnClickListener {
             ispause = if (!ispause) {
                 timerPause()
-                pauseVideo(mediaController)
+                videoPause(mediaController)
                 pausebutton.setText(R.string.resume)
                 true
             } else {
                 timerResume()
-                playVideo(mediaController)
+                videoPlay(mediaController)
                 pausebutton.setText(R.string.pause)
                 false
             }
         }
     }
 
-    private fun playVideo(mediaController: MediaController) {
+    //Воспроизведение видео
+    private fun videoPlay(mediaController: MediaController) {
         videoView.setVideoURI(myVideoUri)
         videoView.setMediaController(mediaController)
         mediaController.setAnchorView(videoView)
@@ -88,13 +98,15 @@ class Training : AppCompatActivity() {
         videoView.setOnPreparedListener { it.isLooping = true }
     }
 
-    private fun pauseVideo(mediaController: MediaController) {
+    //Остановка видео
+    private fun videoPause(mediaController: MediaController) {
         videoView.setVideoURI(myVideoUri)
         videoView.setMediaController(mediaController)
         mediaController.setAnchorView(videoView)
         videoView.pause()
     }
 
+    //Смена информации об упражнении, реализована в виде диалогового окна
     private fun aboutexercise() {
         val builder = AlertDialog.Builder(this)
         when (numberoftraining) {
@@ -107,6 +119,7 @@ class Training : AppCompatActivity() {
             .show()
     }
 
+    //Запуск и проверка таймера на окончание
     private fun timerStart(millisInFuture: Long) {
         timer = object : CountDownTimer(millisInFuture, 1) {
             override fun onTick(p0: Long) {
@@ -120,20 +133,29 @@ class Training : AppCompatActivity() {
                 timertextView.text = "Закончили"
                 soundPlay(soundStop)
                 videoView.stopPlayback()
+                pausebutton.visibility = View.GONE
             }
         }
         (timer as CountDownTimer).start()
     }
 
+    //Постановка таймера на паузу
     private fun timerPause() {
         timer?.cancel()
     }
 
+    //Воспроизведение таймера с того момента когда он остановился
     private fun timerResume() {
         timerStart(millisLeft);
     }
 
+    //Проигрывание звука
     private fun soundPlay(sound: MediaPlayer) {
         sound.start()
+    }
+
+    //Остановка звука
+    private fun soundPause(sound: MediaPlayer) {
+        sound.pause()
     }
 }

@@ -7,13 +7,25 @@ import android.widget.Button
 import android.widget.ImageButton
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var beginimagebutton: ImageButton //Кнопка с изображением "Начало тренировки"
+    private lateinit var aboutbutton: Button //Кнопка "О приложении"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val beginimagebutton: ImageButton = findViewById(R.id.begin_imagebutton)
-        val aboutbutton: Button = findViewById(R.id.about_button)
+        //Присваиваем значения в коде к значениям в разметке
+        beginimagebutton = findViewById(R.id.begin_imagebutton)
+        aboutbutton = findViewById(R.id.about_button)
+    }
 
+    override fun onResume() {
+        super.onResume()
+        buttonClick()
+    }
+
+    //Метод, с помошью которого можно взаимодействовать с кнопками
+    private fun buttonClick() {
         //Переход с помощью кнопки к тренировке
         beginimagebutton.setOnClickListener {
             val intent = Intent(this@MainActivity, Training::class.java)
