@@ -1,6 +1,7 @@
 package com.example.medicalrehabilitation
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
@@ -19,10 +20,13 @@ class Training : AppCompatActivity() {
     private lateinit var timertextView: TextView //Текстовое поле, отображающее время на таймере
     private lateinit var soundStop: MediaPlayer //Звук, оповещающий об окончании упражнения
     private lateinit var mediaController: MediaController //Элементы управления видео(пауза, перемотка)
+
     private var numberoftraining: Int = 0 //Номер упражнения
     private var timer: CountDownTimer? = null //Таймер
-    private var millisStart: Long = 20000; //120000 //Время выполнения упражнения
+    private var millisStart: Long = 2000; //120000 //Время выполнения упражнения
     private var millisLeft: Long = millisStart //Время, оставщееся до конца упражнения
+    private var end: Boolean = false //Параметр, определяюший завершился ли таймер,
+    // необходим для повторного невоспроизведения звука завершения упражнения
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,15 +60,14 @@ class Training : AppCompatActivity() {
     private fun buttonClick() {
         //Переход с помощью кнопки к следующему упражнению
         nextbutton.setOnClickListener {
-            if (myVideoUri == Uri.parse("android.resource://$packageName/" + R.raw.video)) {
-                myVideoUri = Uri.parse("android.resource://$packageName/" + R.raw.video1)
-                numberoftraining = 1
-                timertextView.visibility = View.GONE
-                pausebutton.visibility = View.GONE
-            } else if (myVideoUri == Uri.parse("android.resource://$packageName/" + R.raw.video1)) {
-                //videoView.pause()
-            }
-            videoPlay(mediaController)
+            onPause()
+            val builder = AlertDialog.Builder(this)
+                .setMessage("Хотите отдохнуть?")
+                .setTitle("Отдых")
+                .setNegativeButton(getString(R.string.positive)) { dialog, id -> rest() }
+                .setPositiveButton(getString(R.string.negative)) { dialog, id -> videoChange() }
+                .create()
+                .show()
         }
 
         //Переход с помощью кнопки к информации об упражнении
@@ -106,6 +109,19 @@ class Training : AppCompatActivity() {
         videoView.pause()
     }
 
+    //Смена видео
+    private fun videoChange() {
+        if (myVideoUri == Uri.parse("android.resource://$packageName/" + R.raw.video)) {
+            myVideoUri = Uri.parse("android.resource://$packageName/" + R.raw.video1)
+            numberoftraining = 1
+            timertextView.visibility = View.GONE
+            pausebutton.visibility = View.GONE
+        } else if (myVideoUri == Uri.parse("android.resource://$packageName/" + R.raw.video1)) {
+            //videoView.pause()
+        }
+        videoPlay(mediaController)
+    }
+
     //Смена информации об упражнении, реализована в виде диалогового окна
     private fun aboutexercise() {
         val builder = AlertDialog.Builder(this)
@@ -131,7 +147,10 @@ class Training : AppCompatActivity() {
 
             override fun onFinish() {
                 timertextView.text = "Закончили"
-                soundPlay(soundStop)
+                if (!end) {
+                    soundPlay(soundStop)
+                    end = true
+                }
                 videoView.stopPlayback()
                 pausebutton.visibility = View.GONE
             }
@@ -157,5 +176,11 @@ class Training : AppCompatActivity() {
     //Остановка звука
     private fun soundPause(sound: MediaPlayer) {
         sound.pause()
+    }
+
+    //Вызов activity отдыха
+    private fun rest() {
+        val intent = Intent(this@Training, Rest::class.java)
+        startActivity(intent)
     }
 }

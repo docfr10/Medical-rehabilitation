@@ -9,4 +9,6 @@
     <string name="clear">Clear</string>
     <string name="description0">Description of the initial exercise</string>
     <string name="resume">Resume</string>
+    <string name="positive">Yes</string>
+    <string name="negative">No</string>
 </resources>

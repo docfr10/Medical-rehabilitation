@@ -9,4 +9,6 @@
     <string name="clear">Понятно</string>
     <string name="description0">Описание начального упражнения</string>
     <string name="resume">Продолжить</string>
+    <string name="positive">Да</string>
+    <string name="negative">Нет</string>
 </resources>

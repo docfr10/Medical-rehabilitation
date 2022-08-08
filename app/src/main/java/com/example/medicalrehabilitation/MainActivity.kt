@@ -1,5 +1,6 @@
 package com.example.medicalrehabilitation
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -34,8 +35,12 @@ class MainActivity : AppCompatActivity() {
 
         //Переход с помощью кнопки к информации о приложении
         aboutbutton.setOnClickListener {
-            val intent = Intent(this@MainActivity, About::class.java)
-            startActivity(intent)
+            val builder = AlertDialog.Builder(this)
+                .setMessage(R.string.about_app)
+                .setTitle(getString(R.string.about))
+                .setPositiveButton(getString(R.string.clear)) { dialog, id -> dialog.cancel() }
+                .create()
+                .show()
         }
     }
 }

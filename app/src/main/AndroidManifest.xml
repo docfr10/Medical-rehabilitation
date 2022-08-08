@@ -37,12 +37,12 @@
             </meta-data>
         </activity>
 
-        <!-- Activity, отвечающая за экран "О приложении" -->
+        <!-- Activity, отвечающая за экран отдыха -->
         <activity
-            android:name=".About"
+            android:name=".Rest"
             android:screenOrientation="portrait"
             android:exported="false"
-            android:label="@string/about"
+            android:label="@string/pause"
             android:theme="@style/Theme.AppCompat.Dialog">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
