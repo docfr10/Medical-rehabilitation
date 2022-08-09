@@ -52,6 +52,7 @@ class Training : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         timerPause()
+        soundPause(soundOfStop)
         videoPause(mediaController)
     }
 
