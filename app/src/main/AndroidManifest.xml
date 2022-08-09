@@ -14,41 +14,40 @@
         android:theme="@style/Theme.MedicalRehabilitation"
         tools:targetApi="31">
 
+        <!-- Класс, отвечающий за отправку пользователю уведомлений -->
+        <receiver
+            android:name=".Notifications"
+            android:enabled="true"
+            android:exported="false" />
+
         <!-- Activity, отвечающая за главный экран -->
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Activity, отвечающая за экран тренировок -->
+        </activity> <!-- Activity, отвечающая за экран тренировок -->
         <activity
             android:name=".Training"
-            android:screenOrientation="portrait"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity">
-            </meta-data>
-        </activity>
-
-        <!-- Activity, отвечающая за экран отдыха -->
+                android:value=".MainActivity" />
+        </activity> <!-- Activity, отвечающая за экран отдыха -->
         <activity
             android:name=".Rest"
-            android:screenOrientation="portrait"
             android:exported="false"
             android:label="@string/pause"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Dialog">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity">
-            </meta-data>
+                android:value=".MainActivity" />
         </activity>
-
     </application>
+
 </manifest>

@@ -1,11 +1,12 @@
 package com.example.medicalrehabilitation
 
-import android.app.AlertDialog
+import android.app.*
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var beginimagebutton: ImageButton //Кнопка с изображением "Начало тренировки"

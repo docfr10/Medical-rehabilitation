@@ -10,7 +10,6 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
-
 class Training : AppCompatActivity() {
     private lateinit var myVideoUri: Uri //Ссылка на видео, которое будет проигрываться
     private lateinit var videoView: VideoView //Отображение видеофайла, который выбран в Uri
@@ -18,7 +17,7 @@ class Training : AppCompatActivity() {
     private lateinit var nextbutton: Button //Кнопка "Следующее упражнение" переключает упражнение
     private lateinit var pausebutton: Button //Кнопка "Пауза" ставит таймер и проигрываемое видео на паузу
     private lateinit var timertextView: TextView //Текстовое поле, отображающее время на таймере
-    private lateinit var soundStop: MediaPlayer //Звук, оповещающий об окончании упражнения
+    private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании упражнения
     private lateinit var mediaController: MediaController //Элементы управления видео(пауза, перемотка)
 
     private var numberoftraining: Int = 0 //Номер упражнения
@@ -39,7 +38,7 @@ class Training : AppCompatActivity() {
         pausebutton = findViewById(R.id.pause_button)
         nextbutton = findViewById(R.id.next_button)
         timertextView = findViewById(R.id.timer_textView)
-        soundStop = MediaPlayer.create(this, R.raw.sound_stop)
+        soundOfStop = MediaPlayer.create(this, R.raw.sound_stop)
         mediaController = MediaController(this)
     }
 
@@ -148,7 +147,7 @@ class Training : AppCompatActivity() {
             override fun onFinish() {
                 timertextView.text = "Закончили"
                 if (!end) {
-                    soundPlay(soundStop)
+                    soundPlay(soundOfStop)
                     end = true
                 }
                 videoView.stopPlayback()

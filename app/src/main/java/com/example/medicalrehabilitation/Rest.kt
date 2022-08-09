@@ -1,5 +1,6 @@
 package com.example.medicalrehabilitation
 
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -10,12 +11,14 @@ class Rest : AppCompatActivity() {
     private var timer: CountDownTimer? = null //Таймер
     private var millisStart: Long = 2000; //120000 //Время отдыха
     private var millisLeft: Long = millisStart //Время, оставщееся до конца отдыха
+    private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании отдыха
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rest)
 
         timertextView = findViewById(R.id.timer_textView_rest)
+        soundOfStop = MediaPlayer.create(this, R.raw.sound_stop)
     }
 
     override fun onResume() {
@@ -26,6 +29,7 @@ class Rest : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         timerPause()
+        soundPause(soundOfStop)
     }
 
     //Запуск и проверка таймера на окончание
@@ -40,6 +44,7 @@ class Rest : AppCompatActivity() {
 
             override fun onFinish() {
                 timertextView.text = "Закончили"
+                soundPlay(soundOfStop)
             }
         }
         (timer as CountDownTimer).start()
@@ -53,5 +58,15 @@ class Rest : AppCompatActivity() {
     //Воспроизведение таймера с того момента когда он остановился
     private fun timerResume() {
         timerStart(millisLeft);
+    }
+
+    //Проигрывание звука
+    private fun soundPlay(sound: MediaPlayer) {
+        sound.start()
+    }
+
+    //Остановка звука
+    private fun soundPause(sound: MediaPlayer) {
+        sound.pause()
     }
 }
