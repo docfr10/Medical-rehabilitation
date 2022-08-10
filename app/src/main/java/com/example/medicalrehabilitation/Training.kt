@@ -22,7 +22,7 @@ class Training : AppCompatActivity() {
 
     private var numberoftraining: Int = 0 //Номер упражнения
     private var timer: CountDownTimer? = null //Таймер
-    private var millisStart: Long = 2000; //120000 //Время выполнения упражнения
+    private var millisStart: Long = 20000; //120000 //Время выполнения упражнения
     private var millisLeft: Long = millisStart //Время, оставщееся до конца упражнения
     private var end: Boolean = false //Параметр, определяюший завершился ли таймер,
     // необходим для повторного невоспроизведения звука завершения упражнения
@@ -117,7 +117,7 @@ class Training : AppCompatActivity() {
             timertextView.visibility = View.GONE
             pausebutton.visibility = View.GONE
         } else if (myVideoUri == Uri.parse("android.resource://$packageName/" + R.raw.video1)) {
-            //videoView.pause()
+            nextTraining()
         }
         videoPlay(mediaController)
     }
@@ -181,6 +181,11 @@ class Training : AppCompatActivity() {
     //Вызов activity отдыха
     private fun rest() {
         val intent = Intent(this@Training, Rest::class.java)
+        startActivity(intent)
+    }
+
+    private fun nextTraining() {
+        val intent = Intent(this@Training, NextTraining::class.java)
         startActivity(intent)
     }
 }

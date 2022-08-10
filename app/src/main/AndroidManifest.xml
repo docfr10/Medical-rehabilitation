@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.medicalrehabilitation">
+
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -15,10 +16,13 @@
         android:theme="@style/Theme.MedicalRehabilitation"
         tools:targetApi="31">
 
-        <!-- Класс, отвечающий за отправку пользователю уведомлений -->
         <receiver
             android:name=".Notifications"
-            android:enabled="true"
+            android:enabled="true" />
+
+        <!-- Activity, отвечающая за выбор даты следующей тренировки -->
+        <activity
+            android:name=".NextTraining"
             android:exported="false" />
 
         <!-- Activity, отвечающая за главный экран -->
@@ -28,9 +32,12 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- Activity, отвечающая за экран тренировок -->
+        </activity>
+
+        <!-- Activity, отвечающая за экран тренировок -->
         <activity
             android:name=".Training"
             android:exported="false"
@@ -38,7 +45,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-        </activity> <!-- Activity, отвечающая за экран отдыха -->
+        </activity>
+
+        <!-- Activity, отвечающая за экран отдыха -->
         <activity
             android:name=".Rest"
             android:exported="false"
@@ -50,5 +59,4 @@
                 android:value=".MainActivity" />
         </activity>
     </application>
-
 </manifest>

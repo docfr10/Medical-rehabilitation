@@ -11,4 +11,5 @@
     <string name="resume">Продолжить</string>
     <string name="positive">Да</string>
     <string name="negative">Нет</string>
+    <string name="confirm">Подтвердить</string>
 </resources>
