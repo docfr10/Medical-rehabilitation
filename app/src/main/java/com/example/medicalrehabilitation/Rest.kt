@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.TextView
 
+//Класс, отвечающий за работу RestActivity
 class Rest : AppCompatActivity() {
     private lateinit var timertextView: TextView //Текстовое поле, отображающее время на таймере
     private var timer: CountDownTimer? = null //Таймер

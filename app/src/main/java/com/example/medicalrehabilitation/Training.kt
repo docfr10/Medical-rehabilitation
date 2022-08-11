@@ -7,9 +7,12 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
+//Класс, отвечающий за работу TrainingActivity
 class Training : AppCompatActivity() {
     private lateinit var myVideoUri: Uri //Ссылка на видео, которое будет проигрываться
     private lateinit var videoView: VideoView //Отображение видеофайла, который выбран в Uri
@@ -29,6 +32,11 @@ class Training : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        window.requestFeature(Window.FEATURE_NO_TITLE)
+        supportActionBar?.hide()
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
         setContentView(R.layout.activity_training)
 
         //Присваиваем значения в коде к значениям в разметке

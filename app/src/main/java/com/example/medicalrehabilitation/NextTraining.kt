@@ -1,28 +1,34 @@
 package com.example.medicalrehabilitation
 
-import android.annotation.SuppressLint
 import android.app.*
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.example.medicalrehabilitation.databinding.ActivityNextTrainingBinding
 import java.util.*
 
+//Класс, отвечающий за работу NextTrainingActivity
 class NextTraining : AppCompatActivity() {
 
     private lateinit var binding: ActivityNextTrainingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        window.requestFeature(Window.FEATURE_NO_TITLE)
+        supportActionBar?.hide()
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         binding = ActivityNextTrainingBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         createNotificationChannel()
         binding.button.setOnClickListener { createNotifications() }
     }
 
-    @SuppressLint("NewApi")
     private fun createNotifications() {
         val intent = Intent(applicationContext, Notifications::class.java)
         val title = "Уведомление"
@@ -30,12 +36,16 @@ class NextTraining : AppCompatActivity() {
         intent.putExtra(titleExtra, title)
         intent.putExtra(messageExtra, message)
 
-        val pendingIntent = PendingIntent.getBroadcast(
-            applicationContext,
-            notificationID,
-            intent,
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-        )
+        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PendingIntent.getBroadcast(
+                applicationContext,
+                notificationID,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
+        } else {
+            TODO("VERSION.SDK_INT < M")
+        }
 
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         val time = getTime()
@@ -63,9 +73,12 @@ class NextTraining : AppCompatActivity() {
             .show()
     }
 
-    @SuppressLint("NewApi")
     private fun getTime(): Long {
-        val minute = binding.timePicker.minute
+        val minute = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            binding.timePicker.minute
+        } else {
+            TODO("VERSION.SDK_INT < M")
+        }
         val hour = binding.timePicker.hour
         val day = binding.datePicker.dayOfMonth
         val month = binding.datePicker.month
@@ -76,12 +89,19 @@ class NextTraining : AppCompatActivity() {
         return calendar.timeInMillis
     }
 
-    @SuppressLint("NewApi")
     private fun createNotificationChannel() {
         val name = "Notif Channel"
         val desc = "A Description of the Channel"
-        val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel(channelID, name, importance)
+        val importance = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            NotificationManager.IMPORTANCE_DEFAULT
+        } else {
+            TODO("VERSION.SDK_INT < N")
+        }
+        val channel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel(channelID, name, importance)
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
         channel.description = desc
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)

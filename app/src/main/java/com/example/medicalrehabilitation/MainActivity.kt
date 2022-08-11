@@ -8,6 +8,7 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
 
+//Класс, отвечающий за работу MainActivity
 class MainActivity : AppCompatActivity() {
     private lateinit var beginimagebutton: ImageButton //Кнопка с изображением "Начало тренировки"
     private lateinit var aboutbutton: Button //Кнопка "О приложении"

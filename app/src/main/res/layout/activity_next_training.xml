@@ -18,21 +18,21 @@
         android:calendarViewShown="true"
         android:datePickerMode="calendar"
         android:scaleX="1.2"
-        android:scaleY="1.2"
+        android:scaleY="1.0"
         app:layout_constraintBottom_toTopOf="@+id/timePicker"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.734"
-        tools:ignore="MissingConstraints"/>
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
     <TimePicker
         android:id="@+id/timePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginBottom="68dp"
         android:scaleX="1.2"
         android:scaleY="1.2"
         android:timePickerMode="spinner"
