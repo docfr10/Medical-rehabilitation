@@ -42,6 +42,7 @@ class NextTraining : AppCompatActivity() {
                 notificationID,
                 intent,
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+
             )
         } else {
             TODO("VERSION.SDK_INT < M")
@@ -61,6 +62,7 @@ class NextTraining : AppCompatActivity() {
         val date = Date(time)
         val dateFormat = android.text.format.DateFormat.getLongDateFormat(applicationContext)
         val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
+        val intent1 = Intent(this@NextTraining, MainActivity::class.java)
 
         AlertDialog.Builder(this)
             .setTitle("Notification Scheduled")
@@ -69,7 +71,7 @@ class NextTraining : AppCompatActivity() {
                         "\nMessage: " + message +
                         "\nAt: " + dateFormat.format(date) + " " + timeFormat.format(date)
             )
-            .setPositiveButton("Okay") { _, _ -> }
+            .setPositiveButton("Okay") { dialog, id -> startActivity(intent1) }
             .show()
     }
 
