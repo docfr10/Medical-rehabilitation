@@ -38,6 +38,7 @@
         android:timePickerMode="spinner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:descendantFocusability="blocksDescendants"
         tools:ignore="MissingConstraints" />
 
     <Button

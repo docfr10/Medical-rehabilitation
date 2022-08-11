@@ -12,4 +12,9 @@
     <string name="positive">Да</string>
     <string name="negative">Нет</string>
     <string name="confirm">Подтвердить</string>
+    <string name="notification_scheduled">Уведомление запланировано</string>
+    <string name="notification">Уведомление</string>
+    <string name="training_time">Пора приступить к тренировке</string>
+    <string name="rest">Отдых</string>
+    <string name="want_to_rest">Вы хотите отдохнуть?</string>
 </resources>

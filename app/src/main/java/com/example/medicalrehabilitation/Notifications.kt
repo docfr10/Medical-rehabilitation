@@ -13,7 +13,7 @@ const val channelID = "channel1"
 const val titleExtra = "titleExtra"
 const val messageExtra = "messageExtra"
 
-//Класс, отвечающий за создение уведомлений
+//Класс, отвечающий за создание уведомлений
 class Notifications : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val intent1 = Intent(context, MainActivity::class.java).apply {

@@ -33,6 +33,7 @@ class Training : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //Убирается панель действий сверху
         window.requestFeature(Window.FEATURE_NO_TITLE)
         supportActionBar?.hide()
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -70,8 +71,8 @@ class Training : AppCompatActivity() {
         nextbutton.setOnClickListener {
             onPause()
             val builder = AlertDialog.Builder(this)
-                .setMessage("Хотите отдохнуть?")
-                .setTitle("Отдых")
+                .setMessage(R.string.want_to_rest)
+                .setTitle(R.string.rest)
                 .setNegativeButton(getString(R.string.positive)) { dialog, id -> rest() }
                 .setPositiveButton(getString(R.string.negative)) { dialog, id -> videoChange() }
                 .create()

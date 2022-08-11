@@ -10,15 +10,18 @@ import androidx.appcompat.app.AppCompatActivity
 
 //Класс, отвечающий за работу MainActivity
 class MainActivity : AppCompatActivity() {
-    private lateinit var beginimagebutton: ImageButton //Кнопка с изображением "Начало тренировки"
+    private lateinit var beginbutton: Button //Кнопка с изображением "Начало тренировки"
     private lateinit var aboutbutton: Button //Кнопка "О приложении"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Thread.sleep(2000)
+        //setTheme(R.style.Theme_MedicalRehabilitation)
+
         //Присваиваем значения в коде к значениям в разметке
-        beginimagebutton = findViewById(R.id.begin_imagebutton)
+        beginbutton = findViewById(R.id.begin_button)
         aboutbutton = findViewById(R.id.about_button)
     }
 
@@ -30,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     //Метод, с помошью которого можно взаимодействовать с кнопками
     private fun buttonClick() {
         //Переход с помощью кнопки к тренировке
-        beginimagebutton.setOnClickListener {
+        beginbutton.setOnClickListener {
             val intent = Intent(this@MainActivity, Training::class.java)
             startActivity(intent)
         }
