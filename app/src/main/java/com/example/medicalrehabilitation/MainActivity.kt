@@ -8,7 +8,7 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
 
-//Класс, отвечающий за работу MainActivity
+//Класс, отвечающий за работу главного экрана
 class MainActivity : AppCompatActivity() {
     private lateinit var beginbutton: Button //Кнопка с изображением "Начало тренировки"
     private lateinit var aboutbutton: Button //Кнопка "О приложении"
@@ -34,8 +34,10 @@ class MainActivity : AppCompatActivity() {
     private fun buttonClick() {
         //Переход с помощью кнопки к тренировке
         beginbutton.setOnClickListener {
-            val intent = Intent(this@MainActivity, Training::class.java)
+            /////////////////////////////////////////////////////////////
+            val intent = Intent(this@MainActivity, SendMail::class.java)
             startActivity(intent)
+            //////////////////////////////////////////////////////////////
         }
 
         //Переход с помощью кнопки к информации о приложении

@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.medicalrehabilitation.databinding.ActivityNextTrainingBinding
 import java.util.*
 
-//Класс, отвечающий за работу NextTrainingActivity
+//Класс, отвечающий за выбор даты следующей тренировки
 class NextTraining : AppCompatActivity() {
 
     private lateinit var binding: ActivityNextTrainingBinding //Библиотека binding

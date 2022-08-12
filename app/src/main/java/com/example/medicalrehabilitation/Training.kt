@@ -12,7 +12,7 @@ import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
-//Класс, отвечающий за работу TrainingActivity
+//Класс, отвечающий за работу экрана тренировки
 class Training : AppCompatActivity() {
     private lateinit var myVideoUri: Uri //Ссылка на видео, которое будет проигрываться
     private lateinit var videoView: VideoView //Отображение видеофайла, который выбран в Uri

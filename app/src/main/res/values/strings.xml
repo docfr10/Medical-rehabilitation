@@ -1,4 +1,10 @@
 <resources>
+    <string-array name="how_was_training_array">
+        <item>Fine</item>
+        <item>Great</item>
+        <item>Painful</item>
+    </string-array>
+
     <string name="app_name">Medical rehabilitation</string>
     <string name="start">Start training</string>
     <string name="about">About</string>
@@ -17,4 +23,8 @@
     <string name="training_time">It\'s time to start training</string>
     <string name="rest">Rest</string>
     <string name="want_to_rest">Do you want to rest?</string>
+    <string name="scroll_view">Scroll view</string>
+    <string name="to">To</string>
+    <string name="type_message">Type a message</string>
+    <string name="how_was_training">How was a training?</string>
 </resources>

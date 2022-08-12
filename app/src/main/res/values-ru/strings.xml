@@ -1,8 +1,14 @@
 <resources>
+    <string-array name="how_was_training_array">
+        <item>Хорошо</item>
+        <item>Отлично</item>
+        <item>Болезненно</item>
+    </string-array>
+
     <string name="app_name">Медицинская реабилитация</string>
     <string name="start">Начать тренировку</string>
     <string name="about">О приложении</string>
-    <string name="about_app">Приложение разработано с целью помощи людям в получении реабилитации в домашних условиях после получения травм</string>
+    <string name="about_app">Приложение разработано с целью помощи людям в получении реабилитации в домашних условиях после получения травм.</string>
     <string name="pause">Пауза</string>
     <string name="next">Далее</string>
     <string name="about_exercise">Об упражнении</string>
@@ -17,4 +23,8 @@
     <string name="training_time">Пора приступить к тренировке</string>
     <string name="rest">Отдых</string>
     <string name="want_to_rest">Вы хотите отдохнуть?</string>
+    <string name="scroll_view">Вид прокрутки</string>
+    <string name="to">Кому</string>
+    <string name="type_message">Введите сообщение</string>
+    <string name="how_was_training">Как прошла тренировка?</string>
 </resources>
