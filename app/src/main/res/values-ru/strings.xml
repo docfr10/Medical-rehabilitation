@@ -5,6 +5,12 @@
         <item>Болезненно</item>
     </string-array>
 
+    <string-array name="was_painful_array">
+        <item>Да</item>
+        <item>Нет</item>
+        <item>Немного</item>
+    </string-array>
+
     <string name="app_name">Медицинская реабилитация</string>
     <string name="start">Начать тренировку</string>
     <string name="about">О приложении</string>
@@ -24,7 +30,11 @@
     <string name="rest">Отдых</string>
     <string name="want_to_rest">Вы хотите отдохнуть?</string>
     <string name="scroll_view">Вид прокрутки</string>
-    <string name="to">Кому</string>
-    <string name="type_message">Введите сообщение</string>
+    <string name="doctor_email">Адрес электронной почты вашего врача</string>
+    <string name="enter_exercises">Введите упражнения</string>
     <string name="how_was_training">Как прошла тренировка?</string>
+    <string name="fill_questionnaire">Пожалуйста, заполните анкету и отправьте ее своему лечащему врачу, так ему будет легче следить за состоянием вашей реабилитации.</string>
+    <string name="was_painful">Было ли больно при выполнении упражнений?</string>
+    <string name="failed_exercieses">Какие упражнения не получилось сделать?</string>
+    <string name="send">Отправить</string>
 </resources>

@@ -5,6 +5,12 @@
         <item>Painful</item>
     </string-array>
 
+    <string-array name="was_painful_array">
+        <item>Yes</item>
+        <item>No</item>
+        <item>A little</item>
+    </string-array>
+
     <string name="app_name">Medical rehabilitation</string>
     <string name="start">Start training</string>
     <string name="about">About</string>
@@ -24,7 +30,11 @@
     <string name="rest">Rest</string>
     <string name="want_to_rest">Do you want to rest?</string>
     <string name="scroll_view">Scroll view</string>
-    <string name="to">To</string>
-    <string name="type_message">Type a message</string>
+    <string name="doctor_email">Your doctor\'s email address</string>
+    <string name="enter_exercises">Enter exercises</string>
     <string name="how_was_training">How was a training?</string>
+    <string name="fill_questionnaire">Please fill out the questionnaire and send it to your doctor, so it will be easier for him to monitor the state of your rehabilitation.</string>
+    <string name="was_painful">Was it painful when doing the exercises?</string>
+    <string name="failed_exercieses">What exercises failed to do?</string>
+    <string name="send">Send</string>
 </resources>

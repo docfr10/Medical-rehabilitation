@@ -21,30 +21,24 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="37dp"
-                android:text="@string/how_was_training"
-                android:textSize="20sp" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/fill_questionnaire"
+                android:textColorHint="#757575"
+                android:textSize="24sp" />
 
             <EditText
-                android:id="@+id/editTextTextEmailAddress"
-                android:layout_width="wrap_content"
+                android:id="@+id/doctorsmail_editTextTextEmailAddress"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:autofillHints=""
                 android:ems="10"
-                android:hint="@string/to"
+                android:hint="@string/doctor_email"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
                 android:textColorHint="#757575" />
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/type_message"
-                android:minHeight="48dp"
-                android:textColorHint="#757575"
-                android:layout_margin="20dp"/>
 
             <TextView
                 android:id="@+id/textView"
@@ -54,11 +48,49 @@
                 android:textSize="20sp" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/training_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:entries="@array/how_was_training_array"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:text="@string/was_painful"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/painful_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/was_painful_array"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:text="@string/failed_exercieses"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/failed_editTextNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/enter_exercises"
+                android:inputType="number"
                 android:minHeight="48dp"
-                android:entries="@array/how_was_training_array"/>
+                android:textColorHint="#757575" />
+
+            <Button
+                android:id="@+id/send_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send" />
 
         </LinearLayout>
     </ScrollView>
