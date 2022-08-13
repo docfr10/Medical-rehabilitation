@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         //Переход с помощью кнопки к тренировке
         beginbutton.setOnClickListener {
             /////////////////////////////////////////////////////////////
-            val intent = Intent(this@MainActivity, SendMail::class.java)
+            val intent = Intent(this@MainActivity, Training::class.java)
             startActivity(intent)
             //////////////////////////////////////////////////////////////
         }
