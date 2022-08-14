@@ -33,7 +33,7 @@ class Training : AppCompatActivity() {
     // необходим для повторного невоспроизведения звука завершения упражнения
 
     private var trainingPresenter: TrainingPresenter = TrainingPresenter()
-    private var trainingActivity : Activity = this
+    private var trainingActivity: Activity = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +75,8 @@ class Training : AppCompatActivity() {
 
         //Переход с помощью кнопки к информации об упражнении
         abouttrainimageButton.setOnClickListener {
-            aboutExercise()
+            val builder = AlertDialog.Builder(this)
+            TrainingPresenter().aboutExercise(numberoftraining, builder)
         }
 
         var ispause: Boolean = false
@@ -117,7 +118,6 @@ class Training : AppCompatActivity() {
     //Смена видео
     private fun videoChange(
         numberoftraining: Int,
-        myVideoUri: Uri,
         timertextView: TextView,
         pausebutton: Button,
         mediaController: MediaController,
@@ -137,18 +137,6 @@ class Training : AppCompatActivity() {
         trainingPresenter.videoPlay(mediaController, videoView, this.myVideoUri)
     }
 
-    //Смена информации об упражнении, реализована в виде диалогового окна
-    private fun aboutExercise() {
-        val builder = AlertDialog.Builder(this)
-        when (numberoftraining) {
-            0 -> builder.setMessage(R.string.description0)
-            1 -> builder.setMessage("Описание второго упражнения")
-        }
-        builder.setTitle(getString(R.string.about_exercise))
-            .setPositiveButton(getString(R.string.clear)) { dialog, _ -> dialog.cancel() }
-            .create()
-            .show()
-    }
 
     //Запуск и проверка таймера на окончание
     private fun timerStart(millisInFuture: Long) {
@@ -198,7 +186,7 @@ class Training : AppCompatActivity() {
         val intent = Intent(trainingActivity, Rest::class.java)
         startActivity(intent)
         videoChange(
-            numberoftraining, myVideoUri, timertextView, pausebutton, mediaController,
+            numberoftraining, timertextView, pausebutton, mediaController,
             videoView
         )
     }

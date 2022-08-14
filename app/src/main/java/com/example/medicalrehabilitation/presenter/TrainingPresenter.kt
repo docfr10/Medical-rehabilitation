@@ -1,13 +1,11 @@
 package com.example.medicalrehabilitation.presenter
 
+import android.app.AlertDialog
 import android.media.MediaPlayer
 import android.net.Uri
-import android.view.View
-import android.widget.Button
 import android.widget.MediaController
-import android.widget.TextView
 import android.widget.VideoView
-import com.example.medicalrehabilitation.view.Training
+import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.view.TrainingInterface
 
 class TrainingPresenter : TrainingInterface {
@@ -41,5 +39,17 @@ class TrainingPresenter : TrainingInterface {
 
     override fun soundPause(sound: MediaPlayer) {
         sound.pause()
+    }
+
+    //Смена информации об упражнении, реализована в виде диалогового окна
+    override fun aboutExercise(numberoftraining:Int, builder:AlertDialog.Builder) {
+        when (numberoftraining) {
+            0 -> builder.setMessage(R.string.description0)
+            1 -> builder.setMessage("Описание второго упражнения")
+        }
+        builder.setTitle((R.string.about_exercise))
+            .setPositiveButton((R.string.clear)) { dialog, _ -> dialog.cancel() }
+            .create()
+            .show()
     }
 }
