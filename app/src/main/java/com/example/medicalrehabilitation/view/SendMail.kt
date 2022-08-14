@@ -1,14 +1,13 @@
-package com.example.medicalrehabilitation
+package com.example.medicalrehabilitation.view
 
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Window
-import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import com.example.medicalrehabilitation.R
 
 //Класс, отвечающий за отправку сообщения на почту врачу
 class SendMail : AppCompatActivity() {

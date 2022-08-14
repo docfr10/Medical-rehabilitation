@@ -1,4 +1,4 @@
-package com.example.medicalrehabilitation
+package com.example.medicalrehabilitation.view
 
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.Button
 import android.widget.TextView
+import com.example.medicalrehabilitation.R
 
 //Класс, отвечающий за работу RestActivity
 class Rest : AppCompatActivity() {
