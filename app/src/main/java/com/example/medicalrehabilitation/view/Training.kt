@@ -2,7 +2,6 @@ package com.example.medicalrehabilitation.view
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
@@ -54,15 +53,15 @@ class Training : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         timerResume()
-        videoPlay(mediaController, videoView, myVideoUri)
+        trainingPresenter.videoPlay(mediaController, videoView, myVideoUri)
         buttonClick()
     }
 
     override fun onPause() {
         super.onPause()
         timerPause()
-        soundPause(soundOfStop)
-        videoPause(mediaController, videoView, myVideoUri)
+        TrainingPresenter().soundPause(soundOfStop)
+        trainingPresenter.videoPause(mediaController, videoView, myVideoUri)
     }
 
     //Метод, с помошью которого можно взаимодействовать с кнопками
@@ -84,35 +83,16 @@ class Training : AppCompatActivity() {
         pausebutton.setOnClickListener {
             ispause = if (!ispause) {
                 timerPause()
-                videoPause(mediaController, videoView, myVideoUri)
+                trainingPresenter.videoPause(mediaController, videoView, myVideoUri)
                 pausebutton.setText(R.string.resume)
                 true
             } else {
                 timerResume()
-                videoPlay(mediaController, videoView, myVideoUri)
+                trainingPresenter.videoPlay(mediaController, videoView, myVideoUri)
                 pausebutton.setText(R.string.pause)
                 false
             }
         }
-    }
-
-    //Воспроизведение видео
-    private fun videoPlay(
-        mediaController: MediaController,
-        videoView: VideoView,
-        myVideoUri: Uri
-    ) {
-        trainingPresenter.videoPlay(mediaController, videoView, myVideoUri)
-    }
-
-
-    //Остановка видео
-    private fun videoPause(
-        mediaController: MediaController,
-        videoView: VideoView,
-        myVideoUri: Uri
-    ) {
-        trainingPresenter.videoPause(mediaController, videoView, myVideoUri)
     }
 
     //Смена видео
@@ -151,7 +131,7 @@ class Training : AppCompatActivity() {
             override fun onFinish() {
                 timertextView.text = "Закончили"
                 if (!end) {
-                    soundPlay(soundOfStop)
+                    trainingPresenter.soundPlay(soundOfStop)
                     end = true
                 }
                 videoView.stopPlayback()
@@ -169,16 +149,6 @@ class Training : AppCompatActivity() {
     //Воспроизведение таймера с того момента когда он остановился
     private fun timerResume() {
         timerStart(millisLeft);
-    }
-
-    //Проигрывание звука
-    private fun soundPlay(sound: MediaPlayer) {
-        trainingPresenter.soundPlay(sound)
-    }
-
-    //Остановка звука
-    private fun soundPause(sound: MediaPlayer) {
-        trainingPresenter.soundPause(sound)
     }
 
     //Вызов activity отдыха

@@ -9,6 +9,8 @@ import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.view.TrainingInterface
 
 class TrainingPresenter : TrainingInterface {
+
+    //Воспроизведение видео
     override fun videoPlay(
         mediaController: MediaController,
         videoView: VideoView,
@@ -21,6 +23,7 @@ class TrainingPresenter : TrainingInterface {
         videoView.setOnPreparedListener { it.isLooping = true }
     }
 
+    //Остановка видео
     override fun videoPause(
         mediaController: MediaController,
         videoView: VideoView,
@@ -32,17 +35,18 @@ class TrainingPresenter : TrainingInterface {
         videoView.pause()
     }
 
-
+    //Проигрывание звука
     override fun soundPlay(sound: MediaPlayer) {
         sound.start()
     }
 
+    //Остановка звука
     override fun soundPause(sound: MediaPlayer) {
         sound.pause()
     }
 
     //Смена информации об упражнении, реализована в виде диалогового окна
-    override fun aboutExercise(numberoftraining:Int, builder:AlertDialog.Builder) {
+    override fun aboutExercise(numberoftraining: Int, builder: AlertDialog.Builder) {
         when (numberoftraining) {
             0 -> builder.setMessage(R.string.description0)
             1 -> builder.setMessage("Описание второго упражнения")
@@ -52,4 +56,5 @@ class TrainingPresenter : TrainingInterface {
             .create()
             .show()
     }
+
 }
