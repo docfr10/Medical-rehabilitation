@@ -9,11 +9,11 @@ import android.widget.TextView
 import android.widget.VideoView
 
 interface TrainingInterface {
-    fun videoPlay(mediaController: MediaController, videoView: VideoView, myVideoUri: Uri)
-    fun videoPause(mediaController: MediaController, videoView: VideoView, myVideoUri: Uri)
+    fun videoPlay(mediaController: MediaController, videoView: VideoView)
+    fun videoPause(mediaController: MediaController, videoView: VideoView)
     fun soundPlay(sound: MediaPlayer)
     fun soundPause(sound: MediaPlayer)
-    fun aboutExercise(numberoftraining: Int, builder: AlertDialog.Builder)
+    fun aboutExercise(builder: AlertDialog.Builder)
     fun timerPause()
     fun timerResume(
         timertextView: TextView,
@@ -28,5 +28,12 @@ interface TrainingInterface {
         soundOfStop: MediaPlayer,
         videoView: VideoView,
         pausebutton: Button
+    )
+
+    fun videoChange(
+        timertextView: TextView,
+        pausebutton: Button,
+        mediaController: MediaController,
+        videoView: VideoView
     )
 }

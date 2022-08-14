@@ -4,9 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.media.MediaPlayer
-import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.medicalrehabilitation.R
@@ -14,7 +12,6 @@ import com.example.medicalrehabilitation.presenter.TrainingPresenter
 
 //Класс, отвечающий за работу экрана тренировки
 class Training : AppCompatActivity() {
-    private lateinit var myVideoUri: Uri //Ссылка на видео, которое будет проигрываться
     private lateinit var videoView: VideoView //Отображение видеофайла, который выбран в Uri
     private lateinit var abouttrainimageButton: ImageButton //Кнопка с изображением "Об упражнении"
     private lateinit var nextbutton: Button //Кнопка "Следующее упражнение" переключает упражнение
@@ -23,7 +20,6 @@ class Training : AppCompatActivity() {
     private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании упражнения
     private lateinit var mediaController: MediaController //Элементы управления видео(пауза, перемотка)
 
-    private var numberoftraining: Int = 0 //Номер упражнения
     private var trainingPresenter: TrainingPresenter = TrainingPresenter()
     private var trainingActivity: Activity = this
 
@@ -33,7 +29,6 @@ class Training : AppCompatActivity() {
         setContentView(R.layout.activity_training)
 
         //Присваиваем значения в коде к значениям в разметке
-        myVideoUri = Uri.parse("android.resource://$packageName/" + R.raw.video)
         videoView = findViewById(R.id.training_videoView)
         abouttrainimageButton = findViewById(R.id.abouttrain_imageButton)
         pausebutton = findViewById(R.id.pause_button)
@@ -46,7 +41,7 @@ class Training : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         trainingPresenter.timerResume(timertextView, soundOfStop, videoView, pausebutton)
-        trainingPresenter.videoPlay(mediaController, videoView, myVideoUri)
+        trainingPresenter.videoPlay(mediaController, videoView)
         buttonClick()
     }
 
@@ -54,7 +49,7 @@ class Training : AppCompatActivity() {
         super.onPause()
         trainingPresenter.timerPause()
         trainingPresenter.soundPause(soundOfStop)
-        trainingPresenter.videoPause(mediaController, videoView, myVideoUri)
+        trainingPresenter.videoPause(mediaController, videoView)
     }
 
     //Метод, с помошью которого можно взаимодействовать с кнопками
@@ -68,7 +63,7 @@ class Training : AppCompatActivity() {
         //Переход с помощью кнопки к информации об упражнении
         abouttrainimageButton.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            trainingPresenter.aboutExercise(numberoftraining, builder)
+            trainingPresenter.aboutExercise(builder)
         }
 
         var ispause = false
@@ -76,52 +71,28 @@ class Training : AppCompatActivity() {
         pausebutton.setOnClickListener {
             ispause = if (!ispause) {
                 trainingPresenter.timerPause()
-                trainingPresenter.videoPause(mediaController, videoView, myVideoUri)
+                trainingPresenter.videoPause(mediaController, videoView)
                 pausebutton.setText(R.string.resume)
                 true
             } else {
                 trainingPresenter.timerResume(timertextView, soundOfStop, videoView, pausebutton)
-                trainingPresenter.videoPlay(mediaController, videoView, myVideoUri)
+                trainingPresenter.videoPlay(mediaController, videoView)
                 pausebutton.setText(R.string.pause)
                 false
             }
         }
     }
 
-    //Смена видео
-    private fun videoChange(
-        numberoftraining: Int,
-        timertextView: TextView,
-        pausebutton: Button,
-        mediaController: MediaController,
-        videoView: VideoView
-    ) {
-        when (numberoftraining) {
-            0 -> {
-                this.myVideoUri = Uri.parse("android.resource://$packageName/" + R.raw.video1)
-                this.numberoftraining = 1
-                timertextView.visibility = View.GONE
-                pausebutton.visibility = View.GONE
-            }
-            1 -> {
-                nextTraining()
-            }
-        }
-        trainingPresenter.videoPlay(mediaController, videoView, this.myVideoUri)
-    }
-
     //Вызов activity отдыха
     private fun rest() {
         val intent = Intent(trainingActivity, Rest::class.java)
         startActivity(intent)
-        videoChange(
-            numberoftraining, timertextView, pausebutton, mediaController,
-            videoView
-        )
+        trainingPresenter.videoChange(timertextView, pausebutton, mediaController, videoView)
+        trainingPresenter.videoPlay(mediaController, videoView)
     }
 
     //Вызов activity выбора следующей тренировки
-    private fun nextTraining() {
+    fun nextTraining() {
         val intent = Intent(trainingActivity, NextTraining::class.java)
         startActivity(intent)
     }

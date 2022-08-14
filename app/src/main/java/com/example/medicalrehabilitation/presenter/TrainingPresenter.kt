@@ -10,21 +10,25 @@ import android.widget.MediaController
 import android.widget.TextView
 import android.widget.VideoView
 import com.example.medicalrehabilitation.R
+import com.example.medicalrehabilitation.view.Training
 import com.example.medicalrehabilitation.view.TrainingInterface
 
 class TrainingPresenter : TrainingInterface {
 
+    //Ссылка на видео, которое будет проигрываться
     private var timer: CountDownTimer? = null //Таймер
     private var millisStart: Long = 20000 //120000 //Время выполнения упражнения
     private var millisLeft: Long = millisStart //Время, оставщееся до конца упражнения
-    private var end: Boolean = false //Параметр, определяюший завершился ли таймер,
-    // необходим для повторного невоспроизведения звука завершения упражнения
+    private var end: Boolean =
+        false //Параметр, определяюший завершился ли таймер, необходим для повторного невоспроизведения звука завершения упражнения
+    private var numberoftraining: Int = 0 //Номер упражнения
+    private var myVideoUri =
+        Uri.parse("android.resource://com.example.medicalrehabilitation/" + R.raw.video)
 
     //Воспроизведение видео
     override fun videoPlay(
         mediaController: MediaController,
         videoView: VideoView,
-        myVideoUri: Uri
     ) {
         videoView.setVideoURI(myVideoUri)
         videoView.setMediaController(mediaController)
@@ -37,12 +41,36 @@ class TrainingPresenter : TrainingInterface {
     override fun videoPause(
         mediaController: MediaController,
         videoView: VideoView,
-        myVideoUri: Uri
     ) {
         videoView.setVideoURI(myVideoUri)
         videoView.setMediaController(mediaController)
         mediaController.setAnchorView(videoView)
         videoView.pause()
+    }
+
+    //Смена видео
+    override fun videoChange(
+        timertextView: TextView,
+        pausebutton: Button,
+        mediaController: MediaController,
+        videoView: VideoView
+    ) {
+        when (numberoftraining) {
+            0 -> {
+                this.myVideoUri =
+                    Uri.parse(
+                        "android.resource://com.example.medicalrehabilitation/"
+                                + R.raw.video1
+                    )
+                this.numberoftraining = 1
+                timertextView.visibility = View.GONE
+                pausebutton.visibility = View.GONE
+            }
+            1 -> {
+                Training().nextTraining()
+            }
+        }
+        videoPlay(mediaController, videoView)
     }
 
     //Проигрывание звука
@@ -56,7 +84,7 @@ class TrainingPresenter : TrainingInterface {
     }
 
     //Смена информации об упражнении, реализована в виде диалогового окна
-    override fun aboutExercise(numberoftraining: Int, builder: AlertDialog.Builder) {
+    override fun aboutExercise(builder: AlertDialog.Builder) {
         when (numberoftraining) {
             0 -> builder.setMessage(R.string.description0)
             1 -> builder.setMessage("Описание второго упражнения")
