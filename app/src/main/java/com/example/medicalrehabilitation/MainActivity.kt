@@ -40,10 +40,10 @@ class MainActivity : AppCompatActivity() {
 
         //Переход с помощью кнопки к информации о приложении
         aboutbutton.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
+            AlertDialog.Builder(this)
                 .setMessage(R.string.about_app)
                 .setTitle(getString(R.string.about))
-                .setPositiveButton(getString(R.string.clear)) { dialog, id -> dialog.cancel() }
+                .setPositiveButton(getString(R.string.clear)) { dialog, _ -> dialog.cancel() }
                 .create()
                 .show()
         }

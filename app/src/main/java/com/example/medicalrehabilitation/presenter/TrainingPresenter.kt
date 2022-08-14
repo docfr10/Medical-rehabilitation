@@ -3,12 +3,22 @@ package com.example.medicalrehabilitation.presenter
 import android.app.AlertDialog
 import android.media.MediaPlayer
 import android.net.Uri
+import android.os.CountDownTimer
+import android.view.View
+import android.widget.Button
 import android.widget.MediaController
+import android.widget.TextView
 import android.widget.VideoView
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.view.TrainingInterface
 
 class TrainingPresenter : TrainingInterface {
+
+    private var timer: CountDownTimer? = null //Таймер
+    private var millisStart: Long = 20000 //120000 //Время выполнения упражнения
+    private var millisLeft: Long = millisStart //Время, оставщееся до конца упражнения
+    private var end: Boolean = false //Параметр, определяюший завершился ли таймер,
+    // необходим для повторного невоспроизведения звука завершения упражнения
 
     //Воспроизведение видео
     override fun videoPlay(
@@ -57,4 +67,49 @@ class TrainingPresenter : TrainingInterface {
             .show()
     }
 
+    //Запуск и проверка таймера на окончание
+    override fun timerStart(
+        millisInFuture: Long,
+        timertextView: TextView,
+        soundOfStop: MediaPlayer,
+        videoView: VideoView,
+        pausebutton: Button
+    ) {
+        timer?.cancel()
+        timer = object : CountDownTimer(millisInFuture, 1) {
+            override fun onTick(p0: Long) {
+                millisLeft = p0
+                val minutes = (p0 / (1000 * 60))
+                val seconds = ((p0 / 1000) - minutes * 60)
+                timertextView.text = "$minutes:$seconds"
+            }
+
+            override fun onFinish() {
+                timertextView.text = "Закончили"
+                if (!end) {
+                    soundPlay(soundOfStop)
+                    end = true
+                }
+                videoView.stopPlayback()
+                pausebutton.visibility = View.GONE
+            }
+        }
+        (timer as CountDownTimer).start()
+    }
+
+    //Постановка таймера на паузу
+    override fun timerPause() {
+        timer?.cancel()
+    }
+
+    //Воспроизведение таймера с того момента когда он остановился
+    override fun timerResume(
+        timertextView: TextView,
+        soundOfStop: MediaPlayer,
+        videoView: VideoView,
+        pausebutton: Button
+    ) {
+        timer?.cancel()
+        timerStart(millisLeft, timertextView, soundOfStop, videoView, pausebutton)
+    }
 }

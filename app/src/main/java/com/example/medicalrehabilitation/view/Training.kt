@@ -6,7 +6,6 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -25,12 +24,6 @@ class Training : AppCompatActivity() {
     private lateinit var mediaController: MediaController //Элементы управления видео(пауза, перемотка)
 
     private var numberoftraining: Int = 0 //Номер упражнения
-    private var timer: CountDownTimer? = null //Таймер
-    private var millisStart: Long = 20000; //120000 //Время выполнения упражнения
-    private var millisLeft: Long = millisStart //Время, оставщееся до конца упражнения
-    private var end: Boolean = false //Параметр, определяюший завершился ли таймер,
-    // необходим для повторного невоспроизведения звука завершения упражнения
-
     private var trainingPresenter: TrainingPresenter = TrainingPresenter()
     private var trainingActivity: Activity = this
 
@@ -52,15 +45,15 @@ class Training : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        timerResume()
+        trainingPresenter.timerResume(timertextView, soundOfStop, videoView, pausebutton)
         trainingPresenter.videoPlay(mediaController, videoView, myVideoUri)
         buttonClick()
     }
 
     override fun onPause() {
         super.onPause()
-        timerPause()
-        TrainingPresenter().soundPause(soundOfStop)
+        trainingPresenter.timerPause()
+        trainingPresenter.soundPause(soundOfStop)
         trainingPresenter.videoPause(mediaController, videoView, myVideoUri)
     }
 
@@ -75,19 +68,19 @@ class Training : AppCompatActivity() {
         //Переход с помощью кнопки к информации об упражнении
         abouttrainimageButton.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            TrainingPresenter().aboutExercise(numberoftraining, builder)
+            trainingPresenter.aboutExercise(numberoftraining, builder)
         }
 
-        var ispause: Boolean = false
+        var ispause = false
         //Постановка видео и таймера на паузу
         pausebutton.setOnClickListener {
             ispause = if (!ispause) {
-                timerPause()
+                trainingPresenter.timerPause()
                 trainingPresenter.videoPause(mediaController, videoView, myVideoUri)
                 pausebutton.setText(R.string.resume)
                 true
             } else {
-                timerResume()
+                trainingPresenter.timerResume(timertextView, soundOfStop, videoView, pausebutton)
                 trainingPresenter.videoPlay(mediaController, videoView, myVideoUri)
                 pausebutton.setText(R.string.pause)
                 false
@@ -115,40 +108,6 @@ class Training : AppCompatActivity() {
             }
         }
         trainingPresenter.videoPlay(mediaController, videoView, this.myVideoUri)
-    }
-
-
-    //Запуск и проверка таймера на окончание
-    private fun timerStart(millisInFuture: Long) {
-        timer = object : CountDownTimer(millisInFuture, 1) {
-            override fun onTick(p0: Long) {
-                millisLeft = p0
-                val minutes = (p0 / (1000 * 60));
-                val seconds = ((p0 / 1000) - minutes * 60);
-                timertextView.text = "$minutes:$seconds"
-            }
-
-            override fun onFinish() {
-                timertextView.text = "Закончили"
-                if (!end) {
-                    trainingPresenter.soundPlay(soundOfStop)
-                    end = true
-                }
-                videoView.stopPlayback()
-                pausebutton.visibility = View.GONE
-            }
-        }
-        (timer as CountDownTimer).start()
-    }
-
-    //Постановка таймера на паузу
-    private fun timerPause() {
-        timer?.cancel()
-    }
-
-    //Воспроизведение таймера с того момента когда он остановился
-    private fun timerResume() {
-        timerStart(millisLeft);
     }
 
     //Вызов activity отдыха
