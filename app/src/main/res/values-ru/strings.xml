@@ -37,4 +37,5 @@
     <string name="was_painful">Было ли больно при выполнении упражнений?</string>
     <string name="failed_exercieses">Какие упражнения не получилось сделать?</string>
     <string name="send">Отправить</string>
+    <string name="plus30sec">+30 сек</string>
 </resources>

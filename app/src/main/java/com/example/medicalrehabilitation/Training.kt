@@ -7,8 +7,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
@@ -32,11 +30,6 @@ class Training : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //Убирается панель действий сверху
-        window.requestFeature(Window.FEATURE_NO_TITLE)
-        supportActionBar?.hide()
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         setContentView(R.layout.activity_training)
 
@@ -70,13 +63,8 @@ class Training : AppCompatActivity() {
         //Переход с помощью кнопки к следующему упражнению
         nextbutton.setOnClickListener {
             onPause()
-            val builder = AlertDialog.Builder(this)
-                .setMessage(R.string.want_to_rest)
-                .setTitle(R.string.rest)
-                .setNegativeButton(getString(R.string.positive)) { dialog, id -> rest() }
-                .setPositiveButton(getString(R.string.negative)) { dialog, id -> videoChange() }
-                .create()
-                .show()
+            rest()
+            videoChange()
         }
 
         //Переход с помощью кнопки к информации об упражнении
@@ -120,13 +108,14 @@ class Training : AppCompatActivity() {
 
     //Смена видео
     private fun videoChange() {
-        if (myVideoUri == Uri.parse("android.resource://$packageName/" + R.raw.video)) {
-            myVideoUri = Uri.parse("android.resource://$packageName/" + R.raw.video1)
-            numberoftraining = 1
-            timertextView.visibility = View.GONE
-            pausebutton.visibility = View.GONE
-        } else if (myVideoUri == Uri.parse("android.resource://$packageName/" + R.raw.video1)) {
-            nextTraining()
+        when (numberoftraining) {
+            0 -> {
+                myVideoUri = Uri.parse("android.resource://$packageName/" + R.raw.video1)
+                numberoftraining = 1
+                timertextView.visibility = View.GONE
+                pausebutton.visibility = View.GONE
+            }
+            1 -> nextTraining()
         }
         videoPlay(mediaController)
     }

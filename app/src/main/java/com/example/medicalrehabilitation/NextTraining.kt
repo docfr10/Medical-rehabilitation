@@ -69,14 +69,14 @@ class NextTraining : AppCompatActivity() {
         val date = Date(time)
         val dateFormat = android.text.format.DateFormat.getLongDateFormat(applicationContext)
         val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
-        val intent1 = Intent(this@NextTraining, MainActivity::class.java)
+        val intent1 = Intent(this@NextTraining, SendMail::class.java)
 
         AlertDialog.Builder(this)
             .setTitle(R.string.notification_scheduled)
             .setMessage(
                 dateFormat.format(date) + " " + timeFormat.format(date)
             )
-            .setPositiveButton(R.string.clear) { dialog, id -> startActivity(intent1) }
+            .setPositiveButton(R.string.clear) { _, _ -> startActivity(intent1) }
             .show()
     }
 

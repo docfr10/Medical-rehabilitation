@@ -50,7 +50,7 @@
             android:exported="false"
             android:label="@string/pause"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Dialog" >
+            android:theme="@style/MyStyleDialog" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
