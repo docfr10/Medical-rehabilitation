@@ -21,11 +21,6 @@ class SendMail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_send_mail)
 
-        //Убирается панель действий сверху
-        //window.requestFeature(Window.FEATURE_NO_TITLE)
-        //supportActionBar?.hide()
-        //window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
         //Присваиваем значения в коде к значениям в разметке
         doctoremail = findViewById(R.id.doctorsmail_editTextTextEmailAddress)
         trainingspinner = findViewById(R.id.training_spinner)
@@ -44,7 +39,7 @@ class SendMail : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("mailto:${doctoremail.text}"))
             intent.putExtra(Intent.EXTRA_SUBJECT, "Реабилитация")
             intent.putExtra(Intent.EXTRA_SUBJECT, trainingspinner.toString())
-            startActivity(intent)
+            startActivity(Intent.createChooser(intent, "Send mail..."))
         }
     }
 }
