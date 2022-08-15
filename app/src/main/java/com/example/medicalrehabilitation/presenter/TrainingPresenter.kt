@@ -10,8 +10,6 @@ import android.widget.MediaController
 import android.widget.TextView
 import android.widget.VideoView
 import com.example.medicalrehabilitation.R
-import com.example.medicalrehabilitation.view.Training
-import com.example.medicalrehabilitation.view.TrainingInterface
 
 class TrainingPresenter : TrainingInterface {
 
@@ -21,7 +19,7 @@ class TrainingPresenter : TrainingInterface {
     private var millisLeft: Long = millisStart //Время, оставщееся до конца упражнения
     private var end: Boolean =
         false //Параметр, определяюший завершился ли таймер, необходим для повторного невоспроизведения звука завершения упражнения
-    private var numberoftraining: Int = 0 //Номер упражнения
+    private var numberoftraining: Int = 1 //Номер упражнения
     private var myVideoUri =
         Uri.parse("android.resource://com.example.medicalrehabilitation/" + R.raw.video)
 
@@ -56,18 +54,18 @@ class TrainingPresenter : TrainingInterface {
         videoView: VideoView
     ) {
         when (numberoftraining) {
-            0 -> {
+            1 -> {
                 this.myVideoUri =
                     Uri.parse(
                         "android.resource://com.example.medicalrehabilitation/"
                                 + R.raw.video1
                     )
-                this.numberoftraining = 1
+                this.numberoftraining = 2
                 timertextView.visibility = View.GONE
                 pausebutton.visibility = View.GONE
             }
-            1 -> {
-                Training().nextTraining()
+            2 -> {
+                numberoftraining = 0
             }
         }
         videoPlay(mediaController, videoView)
@@ -139,5 +137,9 @@ class TrainingPresenter : TrainingInterface {
     ) {
         timer?.cancel()
         timerStart(millisLeft, timertextView, soundOfStop, videoView, pausebutton)
+    }
+
+    override fun returnNumberOfTraining(): Int {
+        return numberoftraining
     }
 }

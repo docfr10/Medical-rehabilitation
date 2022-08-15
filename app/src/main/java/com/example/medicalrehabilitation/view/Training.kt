@@ -89,10 +89,13 @@ class Training : AppCompatActivity() {
         startActivity(intent)
         trainingPresenter.videoChange(timertextView, pausebutton, mediaController, videoView)
         trainingPresenter.videoPlay(mediaController, videoView)
+        if (trainingPresenter.returnNumberOfTraining() == 0) {
+            nextTraining()
+        }
     }
 
     //Вызов activity выбора следующей тренировки
-    fun nextTraining() {
+    private fun nextTraining() {
         val intent = Intent(trainingActivity, NextTraining::class.java)
         startActivity(intent)
     }

@@ -1,4 +1,4 @@
-package com.example.medicalrehabilitation.view
+package com.example.medicalrehabilitation.presenter
 
 import android.app.AlertDialog
 import android.media.MediaPlayer
@@ -36,4 +36,6 @@ interface TrainingInterface {
         mediaController: MediaController,
         videoView: VideoView
     )
+
+    fun returnNumberOfTraining(): Int
 }
