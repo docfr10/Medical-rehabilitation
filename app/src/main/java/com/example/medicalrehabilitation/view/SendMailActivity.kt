@@ -27,7 +27,7 @@ class SendMailActivity : AppCompatActivity() {
         doctoremail = findViewById(R.id.doctorsmail_editTextTextEmailAddress)
         trainingspinner = findViewById(R.id.training_spinner)
         painfulspinner = findViewById(R.id.painful_spinner)
-        failedexerciese = findViewById(R.id.failed_editTextNumber)
+        failedexerciese = findViewById(R.id.failed_editTextTextMultiLine)
         sendemail = findViewById(R.id.send_button)
     }
 
@@ -37,6 +37,8 @@ class SendMailActivity : AppCompatActivity() {
             sendemail,
             doctoremail,
             trainingspinner,
+            painfulspinner,
+            failedexerciese,
             getText(R.string.app_name) as String
         )
     }

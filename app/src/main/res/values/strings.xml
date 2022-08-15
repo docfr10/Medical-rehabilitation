@@ -2,7 +2,7 @@
     <string-array name="how_was_training_array">
         <item>Fine</item>
         <item>Great</item>
-        <item>Painful</item>
+        <item>Badly</item>
     </string-array>
 
     <string-array name="was_painful_array">
@@ -34,7 +34,7 @@
     <string name="how_was_training">How was a training?</string>
     <string name="fill_questionnaire">Please fill out the questionnaire and send it to your doctor, so it will be easier for him to monitor the state of your rehabilitation.</string>
     <string name="was_painful">Was it painful when doing the exercises?</string>
-    <string name="failed_exercieses">What exercises failed to do?</string>
+    <string name="failed_exercieses">What exercises failed to do? (If there are none, leave the field empty)</string>
     <string name="send">Send</string>
     <string name="plus30sec">+30 sec</string>
     <string name="send_mail">Send mail</string>

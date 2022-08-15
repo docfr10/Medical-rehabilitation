@@ -6,6 +6,13 @@ import android.widget.Spinner
 import com.example.medicalrehabilitation.view.SendMailActivity
 
 interface SendMailInterface {
-    fun sendEmail(sendemail: Button, doctoremail: EditText, trainingspinner: Spinner, theme: String)
     fun attachView(sendMail: SendMailActivity)
+    fun sendEmail(
+        sendemail: Button,
+        doctoremail: EditText,
+        trainingspinner: Spinner,
+        painfulspinner: Spinner,
+        failedexerciese: EditText,
+        theme: String
+    )
 }

@@ -86,13 +86,14 @@
                 android:id="@+id/failed_editTextTextMultiLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
                 android:ems="10"
                 android:gravity="start|top"
                 android:hint="@string/enter_failed_exercises"
                 android:inputType="textMultiLine"
+                android:maxLines="1"
                 android:minHeight="48dp"
-                android:textColorHint="#757575"
-                android:autofillHints="" />
+                android:textColorHint="#757575" />
 
             <Button
                 android:id="@+id/send_button"
