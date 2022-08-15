@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.medicalrehabilitation.Notifications
-import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.ActivityNextTrainingBinding
 import com.example.medicalrehabilitation.presenter.NextTrainingPresenter
 import java.util.*
@@ -22,6 +21,7 @@ class NextTraining : AppCompatActivity() {
         binding = ActivityNextTrainingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         createNotificationChannel()
+        nextTrainingPresenter.attachView(this)
         //С помощью binding обрабатываем нажатия на кнопку
         binding.button.setOnClickListener { createNotifications() }
     }
@@ -41,23 +41,16 @@ class NextTraining : AppCompatActivity() {
         showAlert()
     }
 
-    //Метод, отвечающий за показ пользователю того когда будет отправлено уведомление
     private fun showAlert() {
         val time = nextTrainingPresenter.getTime(binding)
         val date = Date(time)
         val dateFormat = android.text.format.DateFormat.getLongDateFormat(applicationContext)
         val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
         val builder = AlertDialog.Builder(this)
-        builder
-            .setTitle(R.string.notification_scheduled)
-            .setMessage(
-                dateFormat.format(date) + " " + timeFormat.format(date)
-            )
-            .setPositiveButton(R.string.clear) { _, _ -> sendMail() }
-            .show()
+        nextTrainingPresenter.showAlert(time, date, dateFormat, timeFormat, builder)
     }
 
-    private fun sendMail() {
+    fun sendMail() {
         val intent1 = Intent(this@NextTraining, SendMail::class.java)
         startActivity(intent1)
     }

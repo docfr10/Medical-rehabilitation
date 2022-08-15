@@ -6,9 +6,16 @@ import android.content.Intent
 import android.os.Build
 import com.example.medicalrehabilitation.*
 import com.example.medicalrehabilitation.databinding.ActivityNextTrainingBinding
+import com.example.medicalrehabilitation.view.NextTraining
+import java.text.DateFormat
 import java.util.*
 
 class NextTrainingPresenter : NextTrainingInterface {
+    private lateinit var nextTraining: NextTraining
+
+    override fun attachView(nextTraining: NextTraining) {
+        this.nextTraining = nextTraining
+    }
 
     //Метод, отвечающий за создание уведомлений на панели действий
     override fun createNotifications(
@@ -58,6 +65,23 @@ class NextTrainingPresenter : NextTrainingInterface {
         calendar.set(year, month, day, hour, minute)
         //Возвращает миллисекунды чтобы через время отправить уведомление
         return calendar.timeInMillis
+    }
+
+    //Метод, отвечающий за показ пользователю того когда будет отправлено уведомление
+    override fun showAlert(
+        time: Long,
+        date: Date,
+        dateFormat: DateFormat,
+        timeFormat: DateFormat,
+        builder: AlertDialog.Builder
+    ) {
+        builder
+            .setTitle(R.string.notification_scheduled)
+            .setMessage(
+                dateFormat.format(date) + " " + timeFormat.format(date)
+            )
+            .setPositiveButton(R.string.clear) { _, _ -> nextTraining.sendMail() }
+            .show()
     }
 
     //Метод, отвечающий за создание канала уведомлений
