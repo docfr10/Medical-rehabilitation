@@ -3,20 +3,19 @@ package com.example.medicalrehabilitation.view
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.widget.Button
 import android.widget.TextView
 import com.example.medicalrehabilitation.R
+import com.example.medicalrehabilitation.presenter.RestPresenter
 
 //Класс, отвечающий за работу RestActivity
 class Rest : AppCompatActivity() {
     private lateinit var timertextView: TextView //Текстовое поле, отображающее время на таймере
-    private var timer: CountDownTimer? = null //Таймер
-    private var millisStart: Long = 30000 //120000 //Время отдыха
-    private var millisLeft: Long = millisStart //Время, оставщееся до конца отдыха
     private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании отдыха
     private lateinit var plus30SecButton: Button
     private lateinit var nextButton: Button
+
+    private var restPresenter: RestPresenter = RestPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +29,14 @@ class Rest : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        timerResume()
+        restPresenter.timerResume(timertextView, soundOfStop)
         buttonClick()
     }
 
     override fun onPause() {
         super.onPause()
-        timerPause()
-        soundPause(soundOfStop)
+        restPresenter.timerPause()
+        restPresenter.soundPause(soundOfStop)
     }
 
     private fun buttonClick() {
@@ -50,46 +49,7 @@ class Rest : AppCompatActivity() {
         }
     }
 
-    //Запуск и проверка таймера на окончание
-    private fun timerStart(millisInFuture: Long) {
-        timer = object : CountDownTimer(millisInFuture, 1) {
-            override fun onTick(p0: Long) {
-                millisLeft = p0
-                val minutes = (p0 / (1000 * 60))
-                val seconds = ((p0 / 1000) - minutes * 60)
-                timertextView.text = "$minutes:$seconds"
-            }
-
-            override fun onFinish() {
-                timertextView.text = "Закончили"
-                soundPlay(soundOfStop)
-            }
-        }
-        (timer as CountDownTimer).start()
-    }
-
-    //Постановка таймера на паузу
-    private fun timerPause() {
-        timer?.cancel()
-    }
-
-    //Воспроизведение таймера с того момента когда он остановился
-    private fun timerResume() {
-        timerStart(millisLeft)
-    }
-
-    private fun plus30Sec(millisPlus: Long) {
-        timer?.cancel()
-        timerStart(millisLeft + millisPlus)
-    }
-
-    //Проигрывание звука
-    private fun soundPlay(sound: MediaPlayer) {
-        sound.start()
-    }
-
-    //Остановка звука
-    private fun soundPause(sound: MediaPlayer) {
-        sound.pause()
+    private fun plus30Sec(millisPlus: Int) {
+        restPresenter.plus30Sec(millisPlus, timertextView, soundOfStop)
     }
 }

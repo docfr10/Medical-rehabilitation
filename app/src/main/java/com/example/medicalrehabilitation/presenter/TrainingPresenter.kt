@@ -84,8 +84,8 @@ class TrainingPresenter : TrainingInterface {
     //Смена информации об упражнении, реализована в виде диалогового окна
     override fun aboutExercise(builder: AlertDialog.Builder) {
         when (numberoftraining) {
-            0 -> builder.setMessage(R.string.description0)
-            1 -> builder.setMessage("Описание второго упражнения")
+            1 -> builder.setMessage(R.string.description0)
+            2 -> builder.setMessage("Описание второго упражнения")
         }
         builder.setTitle((R.string.about_exercise))
             .setPositiveButton((R.string.clear)) { dialog, _ -> dialog.cancel() }

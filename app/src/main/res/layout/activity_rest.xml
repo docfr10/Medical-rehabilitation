@@ -22,8 +22,8 @@
 
         <TextView
             android:id="@+id/timer_textView_rest"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/pause"
@@ -32,7 +32,7 @@
         <Button
             android:id="@+id/plus30sec_button"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/plus30sec" />
@@ -44,6 +44,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/next" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
