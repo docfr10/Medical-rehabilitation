@@ -1,14 +1,11 @@
 package com.example.medicalrehabilitation.presenter
 
 import android.app.AlarmManager
-import android.app.AlertDialog
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import com.example.medicalrehabilitation.databinding.ActivityNextTrainingBinding
-import java.text.DateFormat
-import java.util.*
+
 
 interface NextTrainingInterface {
     fun createNotifications(
@@ -22,16 +19,5 @@ interface NextTrainingInterface {
     fun createNotificationChannel(
         binding: ActivityNextTrainingBinding,
         notificationManager: NotificationManager
-    )
-
-    fun showAlert(
-        time: Long,
-        date: Date,
-        dateFormat: DateFormat,
-        timeFormat: DateFormat,
-        intent1: Intent,
-        applicationContext: Context,
-        savedInstanceState: Bundle?,
-        builder: AlertDialog.Builder
     )
 }

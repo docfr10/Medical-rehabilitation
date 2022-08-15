@@ -4,10 +4,8 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.os.Bundle
 import com.example.medicalrehabilitation.*
 import com.example.medicalrehabilitation.databinding.ActivityNextTrainingBinding
-import java.text.DateFormat
 import java.util.*
 
 class NextTrainingPresenter : NextTrainingInterface {
@@ -60,26 +58,6 @@ class NextTrainingPresenter : NextTrainingInterface {
         calendar.set(year, month, day, hour, minute)
         //Возвращает миллисекунды чтобы через время отправить уведомление
         return calendar.timeInMillis
-    }
-
-    //Метод, отвечающий за показ пользователю того когда будет отправлено уведомление
-    override fun showAlert(
-        time: Long,
-        date: Date,
-        dateFormat: DateFormat,
-        timeFormat: DateFormat,
-        intent1: Intent,
-        applicationContext: Context,
-        savedInstanceState: Bundle?,
-        builder: AlertDialog.Builder
-    ) {
-        builder
-            .setTitle(R.string.notification_scheduled)
-            .setMessage(
-                dateFormat.format(date) + " " + timeFormat.format(date)
-            )
-            .setPositiveButton(R.string.clear) { dialog, _ -> dialog.cancel() }
-            .show()
     }
 
     //Метод, отвечающий за создание канала уведомлений

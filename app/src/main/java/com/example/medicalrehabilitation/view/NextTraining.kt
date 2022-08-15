@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.medicalrehabilitation.Notifications
+import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.ActivityNextTrainingBinding
 import com.example.medicalrehabilitation.presenter.NextTrainingPresenter
 import java.util.*
@@ -22,7 +23,7 @@ class NextTraining : AppCompatActivity() {
         setContentView(binding.root)
         createNotificationChannel()
         //С помощью binding обрабатываем нажатия на кнопку
-        binding.button.setOnClickListener { createNotifications(savedInstanceState) }
+        binding.button.setOnClickListener { createNotifications() }
     }
 
     private fun createNotificationChannel() {
@@ -31,32 +32,33 @@ class NextTraining : AppCompatActivity() {
         nextTrainingPresenter.createNotificationChannel(binding, notificationManager)
     }
 
-    private fun createNotifications(savedInstanceState: Bundle?) {
+    private fun createNotifications() {
         val intent = Intent(applicationContext, Notifications::class.java)
         //Записываем дату когда необходимо отправить уведомление
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         val time = nextTrainingPresenter.getTime(binding)
         nextTrainingPresenter.createNotifications(intent, applicationContext, alarmManager, time)
-        showAlert(savedInstanceState)
+        showAlert()
     }
 
-    private fun showAlert(savedInstanceState: Bundle?) {
+    //Метод, отвечающий за показ пользователю того когда будет отправлено уведомление
+    private fun showAlert() {
         val time = nextTrainingPresenter.getTime(binding)
         val date = Date(time)
         val dateFormat = android.text.format.DateFormat.getLongDateFormat(applicationContext)
         val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
-        val intent1 = Intent(this@NextTraining, SendMail::class.java)
         val builder = AlertDialog.Builder(this)
-        nextTrainingPresenter.showAlert(
-            time,
-            date,
-            dateFormat,
-            timeFormat,
-            intent1,
-            applicationContext,
-            savedInstanceState,
-            builder
-        )
+        builder
+            .setTitle(R.string.notification_scheduled)
+            .setMessage(
+                dateFormat.format(date) + " " + timeFormat.format(date)
+            )
+            .setPositiveButton(R.string.clear) { _, _ -> sendMail() }
+            .show()
+    }
+
+    private fun sendMail() {
+        val intent1 = Intent(this@NextTraining, SendMail::class.java)
         startActivity(intent1)
     }
 }
