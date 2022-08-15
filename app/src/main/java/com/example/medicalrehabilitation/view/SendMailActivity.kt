@@ -33,10 +33,15 @@ class SendMailActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        sendMailPresenter.sendEmail(sendemail, doctoremail, trainingspinner)
+        sendMailPresenter.sendEmail(
+            sendemail,
+            doctoremail,
+            trainingspinner,
+            getText(R.string.app_name) as String
+        )
     }
 
     fun chooseEmail(intent: Intent) {
-        startActivity(Intent.createChooser(intent, "Send mail..."))
+        startActivity(Intent.createChooser(intent, getText(R.string.send_mail)))
     }
 }

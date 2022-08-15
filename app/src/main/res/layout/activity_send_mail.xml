@@ -21,12 +21,13 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/fill_questionnaire"
                 android:textColorHint="#757575"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/doctorsmail_editTextTextEmailAddress"
@@ -43,9 +44,11 @@
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
-                android:layout_height="37dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@string/how_was_training"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/training_spinner"
@@ -57,9 +60,11 @@
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
-                android:layout_height="37dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@string/was_painful"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/painful_spinner"
@@ -71,20 +76,23 @@
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
-                android:layout_height="37dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@string/failed_exercieses"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/failed_editTextNumber"
+                android:id="@+id/failed_editTextTextMultiLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autofillHints=""
                 android:ems="10"
-                android:hint="@string/enter_exercises"
-                android:inputType="number"
+                android:gravity="start|top"
+                android:hint="@string/enter_failed_exercises"
+                android:inputType="textMultiLine"
                 android:minHeight="48dp"
-                android:textColorHint="#757575" />
+                android:textColorHint="#757575"
+                android:autofillHints="" />
 
             <Button
                 android:id="@+id/send_button"

@@ -31,11 +31,12 @@
     <string name="want_to_rest">Вы хотите отдохнуть?</string>
     <string name="scroll_view">Вид прокрутки</string>
     <string name="doctor_email">Адрес электронной почты вашего врача</string>
-    <string name="enter_exercises">Введите упражнения</string>
     <string name="how_was_training">Как прошла тренировка?</string>
     <string name="fill_questionnaire">Пожалуйста, заполните анкету и отправьте ее своему лечащему врачу, так ему будет легче следить за состоянием вашей реабилитации.</string>
     <string name="was_painful">Было ли больно при выполнении упражнений?</string>
     <string name="failed_exercieses">Какие упражнения не получилось сделать?</string>
     <string name="send">Отправить</string>
     <string name="plus30sec">+30 сек</string>
+    <string name="send_mail">Отправить письмо</string>
+    <string name="enter_failed_exercises">Введите неудачные упражнения</string>
 </resources>

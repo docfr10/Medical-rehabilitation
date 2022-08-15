@@ -15,11 +15,19 @@ class SendMailPresenter : SendMailInterface {
         this.sendMail = sendMail
     }
 
-    override fun sendEmail(sendemail: Button, doctoremail: EditText, trainingspinner: Spinner) {
+    override fun sendEmail(
+        sendemail: Button,
+        doctoremail: EditText,
+        trainingspinner: Spinner,
+        theme: String
+    ) {
         sendemail.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("mailto:${doctoremail.text}"))
-            intent.putExtra(Intent.EXTRA_SUBJECT, "Реабилитация")
-            intent.putExtra(Intent.EXTRA_SUBJECT, trainingspinner.toString())
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("mailto:${doctoremail.text}")
+            ) //Кому отправляем
+            intent.putExtra(Intent.EXTRA_SUBJECT, theme) //Тема письма
+            intent.putExtra(Intent.EXTRA_TEXT, "Здесь содержится текст письма")
             sendMail.chooseEmail(intent)
         }
     }
