@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.medicalrehabilitation.view.Training
+import com.example.medicalrehabilitation.view.TrainingActivity
 
 
 //Класс, отвечающий за работу главного экрана
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     private fun buttonClick() {
         //Переход с помощью кнопки к тренировке
         beginbutton.setOnClickListener {
-            val intent = Intent(this@MainActivity, Training::class.java)
+            val intent = Intent(this@MainActivity, TrainingActivity::class.java)
             startActivity(intent)
         }
 

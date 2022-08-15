@@ -10,7 +10,7 @@ import com.example.medicalrehabilitation.presenter.NextTrainingPresenter
 import java.util.*
 
 //Класс, отвечающий за выбор даты следующей тренировки
-class NextTraining : AppCompatActivity() {
+class NextTrainingActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNextTrainingBinding //Библиотека binding упрощает работу с компонентами GUI
     private var nextTrainingPresenter: NextTrainingPresenter = NextTrainingPresenter()
@@ -51,7 +51,7 @@ class NextTraining : AppCompatActivity() {
     }
 
     fun sendMail() {
-        val intent1 = Intent(this@NextTraining, SendMail::class.java)
+        val intent1 = Intent(this@NextTrainingActivity, SendMailActivity::class.java)
         startActivity(intent1)
     }
 }

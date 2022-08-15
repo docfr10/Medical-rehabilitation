@@ -6,14 +6,14 @@ import android.content.Intent
 import android.os.Build
 import com.example.medicalrehabilitation.*
 import com.example.medicalrehabilitation.databinding.ActivityNextTrainingBinding
-import com.example.medicalrehabilitation.view.NextTraining
+import com.example.medicalrehabilitation.view.NextTrainingActivity
 import java.text.DateFormat
 import java.util.*
 
 class NextTrainingPresenter : NextTrainingInterface {
-    private lateinit var nextTraining: NextTraining
+    private lateinit var nextTraining: NextTrainingActivity
 
-    override fun attachView(nextTraining: NextTraining) {
+    override fun attachView(nextTraining: NextTrainingActivity) {
         this.nextTraining = nextTraining
     }
 

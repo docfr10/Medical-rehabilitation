@@ -9,7 +9,7 @@ import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.presenter.RestPresenter
 
 //Класс, отвечающий за работу RestActivity
-class Rest : AppCompatActivity() {
+class RestActivity : AppCompatActivity() {
     private lateinit var timertextView: TextView //Текстовое поле, отображающее время на таймере
     private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании отдыха
     private lateinit var plus30SecButton: Button

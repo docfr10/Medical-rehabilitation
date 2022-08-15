@@ -6,7 +6,7 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import com.example.medicalrehabilitation.databinding.ActivityNextTrainingBinding
-import com.example.medicalrehabilitation.view.NextTraining
+import com.example.medicalrehabilitation.view.NextTrainingActivity
 import java.text.DateFormat
 import java.util.*
 
@@ -25,7 +25,7 @@ interface NextTrainingInterface {
         notificationManager: NotificationManager
     )
 
-    fun attachView(nextTraining: NextTraining)
+    fun attachView(nextTraining: NextTrainingActivity)
     fun showAlert(
         time: Long,
         date: Date,

@@ -11,7 +11,7 @@ import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.presenter.TrainingPresenter
 
 //Класс, отвечающий за работу экрана тренировки
-class Training : AppCompatActivity() {
+class TrainingActivity : AppCompatActivity() {
     private lateinit var videoView: VideoView //Отображение видеофайла, который выбран в Uri
     private lateinit var abouttrainimageButton: ImageButton //Кнопка с изображением "Об упражнении"
     private lateinit var nextbutton: Button //Кнопка "Следующее упражнение" переключает упражнение
@@ -85,7 +85,7 @@ class Training : AppCompatActivity() {
 
     //Вызов activity отдыха
     private fun rest() {
-        val intent = Intent(trainingActivity, Rest::class.java)
+        val intent = Intent(trainingActivity, RestActivity::class.java)
         startActivity(intent)
         trainingPresenter.videoChange(timertextView, pausebutton, mediaController, videoView)
         trainingPresenter.videoPlay(mediaController, videoView)
@@ -96,7 +96,7 @@ class Training : AppCompatActivity() {
 
     //Вызов activity выбора следующей тренировки
     private fun nextTraining() {
-        val intent = Intent(trainingActivity, NextTraining::class.java)
+        val intent = Intent(trainingActivity, NextTrainingActivity::class.java)
         startActivity(intent)
     }
 }
