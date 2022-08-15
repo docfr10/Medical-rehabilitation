@@ -39,13 +39,23 @@ class SendMailPresenter : SendMailInterface {
                 Uri.parse("mailto:${doctoremail.text}")
             ) //Кому отправляем
             intent.putExtra(Intent.EXTRA_SUBJECT, theme) //Тема письма
-            intent.putExtra(
-                Intent.EXTRA_TEXT,
-                "Здравствуйте, сегодня $dateString я провел занятие по медицинской реабилитации после травмы передней крестообразной связки.\n" +
-                        "Тренировка прошла: " + trainingspinner.selectedItem.toString() + ".\n" +
-                        "Ощущения боли: " + painfulspinner.selectedItem.toString() + ".\n" +
-                        "Невыполненные упражнения: $failedexerciesestring."
-            ) //Текст письма
+            if (Locale.getDefault().language == "ru") {
+                intent.putExtra(
+                    Intent.EXTRA_TEXT,
+                    "Здравствуйте, сегодня $dateString я провел занятие по медицинской реабилитации после травмы передней крестообразной связки.\n" +
+                            "Тренировка прошла: " + trainingspinner.selectedItem.toString() + ".\n" +
+                            "Ощущения боли: " + painfulspinner.selectedItem.toString() + ".\n" +
+                            "Невыполненные упражнения: $failedexerciesestring."
+                ) //Текст письма
+            } else if (Locale.getDefault().language == "en") {
+                intent.putExtra(
+                    Intent.EXTRA_TEXT,
+                    "Hello, today $dateString I conducted a medical rehabilitation class after an anterior cruciate ligament injury.\n" +
+                            "The training was:" + trainingspinner.selectedItem.toString() + ".\n" +
+                            "Feelings of pain: " + painfulspinner.selectedItem.toString() + ".\n" +
+                            "Unfulfilled exercises: $failedexerciesestring."
+                ) //Текст письма
+            }
             sendMail.chooseEmail(intent)
         }
     }
