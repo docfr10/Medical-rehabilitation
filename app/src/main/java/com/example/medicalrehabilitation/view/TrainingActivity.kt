@@ -17,6 +17,7 @@ class TrainingActivity : AppCompatActivity() {
     private lateinit var nextbutton: Button //Кнопка "Следующее упражнение" переключает упражнение
     private lateinit var pausebutton: Button //Кнопка "Пауза" ставит таймер и проигрываемое видео на паузу
     private lateinit var timertextView: TextView //Текстовое поле, отображающее время на таймере
+    private lateinit var exercisetextView: TextView //Текстовое поле, отображающее информацию об упражнении
     private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании упражнения
     private lateinit var mediaController: MediaController //Элементы управления видео(пауза, перемотка)
 
@@ -29,11 +30,14 @@ class TrainingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_training)
 
         //Присваиваем значения в коде к значениям в разметке
+        trainingPresenter.attachView(this)
         videoView = findViewById(R.id.training_videoView)
         abouttrainimageButton = findViewById(R.id.abouttrain_imageButton)
         pausebutton = findViewById(R.id.pause_button)
         nextbutton = findViewById(R.id.next_button)
         timertextView = findViewById(R.id.timer_textView)
+        exercisetextView = findViewById(R.id.exercise_textView)
+        exercisetextView.text = getText(R.string.description1)
         soundOfStop = MediaPlayer.create(this, R.raw.sound_stop)
         mediaController = MediaController(this)
     }
@@ -87,7 +91,13 @@ class TrainingActivity : AppCompatActivity() {
     private fun rest() {
         val intent = Intent(trainingActivity, RestActivity::class.java)
         startActivity(intent)
-        trainingPresenter.videoChange(timertextView, pausebutton, mediaController, videoView)
+        trainingPresenter.videoChange(
+            timertextView,
+            pausebutton,
+            mediaController,
+            videoView,
+            exercisetextView
+        )
         trainingPresenter.videoPlay(mediaController, videoView)
         if (trainingPresenter.returnNumberOfTraining() == 0) {
             nextTraining()

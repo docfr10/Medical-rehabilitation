@@ -19,7 +19,7 @@
     <string name="next">Далее</string>
     <string name="about_exercise">Об упражнении</string>
     <string name="clear">Понятно</string>
-    <string name="description0">Описание начального упражнения</string>
+    <string name="description1">И.п. - стоя. Катать небольшой мяч по всей поверхности стопы.</string>
     <string name="resume">Продолжить</string>
     <string name="positive">Да</string>
     <string name="negative">Нет</string>
@@ -39,4 +39,5 @@
     <string name="plus30sec">+30 сек</string>
     <string name="send_mail">Отправить письмо</string>
     <string name="enter_failed_exercises">Введите неудачные упражнения</string>
+    <string name="description2">Описание второго упражнения</string>
 </resources>

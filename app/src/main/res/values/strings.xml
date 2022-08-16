@@ -19,7 +19,7 @@
     <string name="next">Next</string>
     <string name="about_exercise">About the exercise</string>
     <string name="clear">Clear</string>
-    <string name="description0">Description of the initial exercise</string>
+    <string name="description1">S.p. - standing. Roll a small ball over the entire surface of the foot.</string>
     <string name="resume">Resume</string>
     <string name="positive">Yes</string>
     <string name="negative">No</string>
@@ -39,4 +39,5 @@
     <string name="plus30sec">+30 sec</string>
     <string name="send_mail">Send mail</string>
     <string name="enter_failed_exercises">Enter failed exercises</string>
+    <string name="description2">Description of the second exercise</string>
 </resources>

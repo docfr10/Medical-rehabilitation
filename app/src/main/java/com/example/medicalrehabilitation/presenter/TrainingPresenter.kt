@@ -10,6 +10,7 @@ import android.widget.MediaController
 import android.widget.TextView
 import android.widget.VideoView
 import com.example.medicalrehabilitation.R
+import com.example.medicalrehabilitation.view.TrainingActivity
 
 class TrainingPresenter : TrainingInterface {
 
@@ -22,11 +23,16 @@ class TrainingPresenter : TrainingInterface {
     private var numberoftraining: Int = 1 //Номер упражнения
     private var myVideoUri =
         Uri.parse("android.resource://com.example.medicalrehabilitation/" + R.raw.video)
+    private lateinit var trainingActivity: TrainingActivity
+
+    override fun attachView(trainigActivity: TrainingActivity) {
+        this.trainingActivity = trainigActivity
+    }
 
     //Воспроизведение видео
     override fun videoPlay(
         mediaController: MediaController,
-        videoView: VideoView,
+        videoView: VideoView
     ) {
         videoView.setVideoURI(myVideoUri)
         videoView.setMediaController(mediaController)
@@ -51,7 +57,8 @@ class TrainingPresenter : TrainingInterface {
         timertextView: TextView,
         pausebutton: Button,
         mediaController: MediaController,
-        videoView: VideoView
+        videoView: VideoView,
+        exercisetextView: TextView
     ) {
         when (numberoftraining) {
             1 -> {
@@ -61,6 +68,7 @@ class TrainingPresenter : TrainingInterface {
                                 + R.raw.video1
                     )
                 this.numberoftraining = 2
+                exercisetextView.text = trainingActivity.resources.getText(R.string.description2)
                 timertextView.visibility = View.GONE
                 pausebutton.visibility = View.GONE
             }
@@ -84,7 +92,7 @@ class TrainingPresenter : TrainingInterface {
     //Смена информации об упражнении, реализована в виде диалогового окна
     override fun aboutExercise(builder: AlertDialog.Builder) {
         when (numberoftraining) {
-            1 -> builder.setMessage(R.string.description0)
+            1 -> builder.setMessage(R.string.description1)
             2 -> builder.setMessage("Описание второго упражнения")
         }
         builder.setTitle((R.string.about_exercise))

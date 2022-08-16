@@ -7,9 +7,14 @@ import android.widget.Button
 import android.widget.MediaController
 import android.widget.TextView
 import android.widget.VideoView
+import com.example.medicalrehabilitation.view.TrainingActivity
 
 interface TrainingInterface {
-    fun videoPlay(mediaController: MediaController, videoView: VideoView)
+    fun videoPlay(
+        mediaController: MediaController,
+        videoView: VideoView
+    )
+
     fun videoPause(mediaController: MediaController, videoView: VideoView)
     fun soundPlay(sound: MediaPlayer)
     fun soundPause(sound: MediaPlayer)
@@ -34,8 +39,10 @@ interface TrainingInterface {
         timertextView: TextView,
         pausebutton: Button,
         mediaController: MediaController,
-        videoView: VideoView
+        videoView: VideoView,
+        exercisetextView: TextView
     )
 
     fun returnNumberOfTraining(): Int
+    fun attachView(trainigActivity: TrainingActivity)
 }

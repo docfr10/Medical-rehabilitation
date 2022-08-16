@@ -25,7 +25,6 @@
       android:id="@+id/timer_textView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="timer"
       android:textColor="@color/black"
       android:textSize="34sp"
       android:textStyle="bold"
@@ -36,6 +35,21 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/frameLayout"
       app:layout_constraintVertical_bias="0.607" />
+
+  <TextView
+      android:id="@+id/exercise_textView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="180dp"
+      android:gravity="center"
+      android:textColor="@color/black"
+      android:textSize="20sp"
+      android:textStyle="bold"
+      app:autoSizeTextType="uniform"
+      app:layout_constraintBottom_toTopOf="@+id/next_button"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintStart_toStartOf="parent" />
 
   <Button
       android:id="@+id/pause_button"
@@ -53,13 +67,12 @@
       android:id="@+id/next_button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
       android:text="@string/next"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/pause_button"
-      app:layout_constraintVertical_bias="0.338" />
+      app:layout_constraintHorizontal_bias="0.501"
+      app:layout_constraintStart_toStartOf="parent" />
 
   <ImageButton
       android:id="@+id/abouttrain_imageButton"
