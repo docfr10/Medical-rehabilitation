@@ -32,7 +32,7 @@
     <string name="scroll_view">Вид прокрутки</string>
     <string name="doctor_email">Адрес электронной почты вашего врача</string>
     <string name="how_was_training">Как прошла тренировка?</string>
-    <string name="fill_questionnaire">Пожалуйста, заполните анкету и отправьте ее своему лечащему врачу, так ему будет легче следить за состоянием вашей реабилитации.</string>
+    <string name="fill_questionnaire">Пожалуйста, заполните анкету и отправьте ее своему лечащему врачу, так ему будет легче следить за состоянием вашей реабилитации</string>
     <string name="was_painful">Было ли больно при выполнении упражнений?</string>
     <string name="failed_exercieses">Какие упражнения не получилось сделать? (Если таких нет, оставьте поле пустым)</string>
     <string name="send">Отправить</string>
@@ -40,5 +40,5 @@
     <string name="send_mail">Отправить письмо</string>
     <string name="enter_failed_exercises">Введите неудачные упражнения</string>
     <string name="description2">Описание второго упражнения</string>
-    <string name="warning">*Перед использованием данного приложения обязательно проконсультируйтесь со своим лечащим врачом.</string>
+    <string name="warning">Перед использованием данного приложения обязательно проконсультируйтесь со своим лечащим врачом.</string>
 </resources>

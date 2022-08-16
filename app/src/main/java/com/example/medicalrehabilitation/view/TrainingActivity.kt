@@ -3,6 +3,8 @@ package com.example.medicalrehabilitation.view
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Color.TRANSPARENT
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.*
@@ -40,6 +42,7 @@ class TrainingActivity : AppCompatActivity() {
         exercisetextView.text = getText(R.string.description1)
         soundOfStop = MediaPlayer.create(this, R.raw.sound_stop)
         mediaController = MediaController(this)
+        videoView.setBackgroundColor(TRANSPARENT)
     }
 
     override fun onResume() {

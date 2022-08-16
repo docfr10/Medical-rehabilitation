@@ -32,7 +32,7 @@
     <string name="scroll_view">Scroll view</string>
     <string name="doctor_email">Your doctor\'s email address</string>
     <string name="how_was_training">How was a training?</string>
-    <string name="fill_questionnaire">Please fill out the questionnaire and send it to your doctor, so it will be easier for him to monitor the state of your rehabilitation.</string>
+    <string name="fill_questionnaire">Please fill out the questionnaire and send it to your doctor, so it will be easier for him to monitor the state of your rehabilitation</string>
     <string name="was_painful">Was it painful when doing the exercises?</string>
     <string name="failed_exercieses">What exercises failed to do? (If there are none, leave the field empty)</string>
     <string name="send">Send</string>
@@ -40,5 +40,5 @@
     <string name="send_mail">Send mail</string>
     <string name="enter_failed_exercises">Enter failed exercises</string>
     <string name="description2">Description of the second exercise</string>
-    <string name="warning">*Before using this application, be sure to consult with your doctor.</string>
+    <string name="warning">Before using this application, be sure to consult with your doctor.</string>
 </resources>

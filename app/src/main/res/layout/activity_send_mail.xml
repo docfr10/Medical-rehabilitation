@@ -26,7 +26,7 @@
                 android:gravity="center"
                 android:text="@string/fill_questionnaire"
                 android:textColorHint="#757575"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -39,7 +39,7 @@
                 android:hint="@string/doctor_email"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
-                android:textColorHint="#757575" />
+                android:textColorHint="#616161" />
 
             <TextView
                 android:id="@+id/textView"
@@ -93,13 +93,14 @@
                 android:inputType="textMultiLine"
                 android:maxLines="1"
                 android:minHeight="48dp"
-                android:textColorHint="#757575" />
+                android:textColorHint="#616161" />
 
             <Button
                 android:id="@+id/send_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/send" />
+                android:text="@string/send"
+                tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
     </ScrollView>

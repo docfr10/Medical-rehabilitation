@@ -35,9 +35,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/warning"
-        android:textColorHint="#757575"
         android:textSize="20sp"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
