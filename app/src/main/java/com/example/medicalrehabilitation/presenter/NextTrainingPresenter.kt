@@ -24,8 +24,8 @@ class NextTrainingPresenter : NextTrainingInterface {
         alarmManager: AlarmManager,
         time: Long
     ) {
-        val title = R.string.notification //Название уведомления
-        val message = R.string.training_time //Текст уведомления
+        val title : String = nextTraining.resources.getString(R.string.notification) //Название уведомления
+        val message : String = nextTraining.resources.getString(R.string.training_time) //Текст уведомления
         //Передаем название и текст уведомления в Notifications
         intent.putExtra(titleExtra, title)
         intent.putExtra(messageExtra, message)
