@@ -32,7 +32,7 @@ class SendMailPresenter : SendMailInterface {
         sendemail.setOnClickListener {
             var failedexerciesestring: String = failedexerciese.text.toString()
             if (failedexerciese.text.isEmpty()) {
-                failedexerciesestring = "Все упражнения были выполнены"
+                failedexerciesestring = "Отсутствуют"
             }
             val intent = Intent(
                 Intent.ACTION_VIEW,

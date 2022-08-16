@@ -15,9 +15,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="0dp"
         android:layout_weight="1"
-        android:calendarViewShown="true"
+        android:calendarViewShown="false"
         android:datePickerMode="calendar"
-        android:scaleX="1.2"
+        android:foregroundGravity="center"
+        android:scaleX="1.1"
         android:scaleY="1.0"
         app:layout_constraintBottom_toTopOf="@+id/timePicker"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,14 +32,17 @@
         android:id="@+id/timePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="92dp"
         android:layout_marginBottom="68dp"
-        android:scaleX="1.2"
-        android:scaleY="1.2"
+        android:descendantFocusability="blocksDescendants"
+        android:foregroundGravity="center"
+        android:scaleX="1.0"
+        android:scaleY="1.0"
+
         android:timePickerMode="spinner"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:descendantFocusability="blocksDescendants"
         tools:ignore="MissingConstraints" />
 
     <Button

@@ -24,6 +24,7 @@ class NextTrainingActivity : AppCompatActivity() {
         nextTrainingPresenter.attachView(this)
         //С помощью binding обрабатываем нажатия на кнопку
         binding.button.setOnClickListener { createNotifications() }
+        binding.timePicker.setIs24HourView(true)
     }
 
     private fun createNotificationChannel() {
