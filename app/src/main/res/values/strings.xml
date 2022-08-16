@@ -40,4 +40,5 @@
     <string name="send_mail">Send mail</string>
     <string name="enter_failed_exercises">Enter failed exercises</string>
     <string name="description2">Description of the second exercise</string>
+    <string name="warning">Before using this application, be sure to consult with your doctor.</string>
 </resources>

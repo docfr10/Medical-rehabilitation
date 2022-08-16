@@ -6,83 +6,83 @@
     android:layout_height="match_parent"
     tools:context=".view.TrainingActivity">
 
-  <FrameLayout
-      android:id="@+id/frameLayout"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent">
-
-    <VideoView
-        android:id="@+id/training_videoView"
+    <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="362dp" />
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-  </FrameLayout>
+        <VideoView
+            android:id="@+id/training_videoView"
+            android:layout_width="match_parent"
+            android:layout_height="362dp" />
 
-  <TextView
-      android:id="@+id/timer_textView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:textColor="@color/black"
-      android:textSize="34sp"
-      android:textStyle="bold"
-      app:autoSizeTextType="uniform"
-      app:layout_constraintBottom_toTopOf="@+id/pause_button"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-      app:layout_constraintVertical_bias="0.607" />
+    </FrameLayout>
 
-  <TextView
-      android:id="@+id/exercise_textView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="180dp"
-      android:gravity="center"
-      android:textColor="@color/black"
-      android:textSize="20sp"
-      android:textStyle="bold"
-      app:autoSizeTextType="uniform"
-      app:layout_constraintBottom_toTopOf="@+id/next_button"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.498"
-      app:layout_constraintStart_toStartOf="parent" />
+    <TextView
+        android:id="@+id/timer_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="#757575"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/pause_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:layout_constraintVertical_bias="0.607" />
 
-  <Button
-      android:id="@+id/pause_button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="148dp"
-      android:text="@string/pause"
-      app:layout_constraintBottom_toTopOf="@+id/next_button"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/timer_textView" />
+    <TextView
+        android:id="@+id/exercise_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="180dp"
+        android:gravity="center"
+        android:textColorHint="#757575"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/next_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
-  <Button
-      android:id="@+id/next_button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="16dp"
-      android:text="@string/next"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.501"
-      app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:id="@+id/pause_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:text="@string/pause"
+        app:layout_constraintBottom_toTopOf="@+id/next_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timer_textView" />
 
-  <ImageButton
-      android:id="@+id/abouttrain_imageButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="?attr/selectableItemBackground"
-      android:contentDescription="@string/about"
-      android:labelFor="@id/frameLayout"
-      app:layout_constraintEnd_toEndOf="@+id/frameLayout"
-      app:layout_constraintTop_toTopOf="@+id/frameLayout"
-      app:srcCompat="@android:drawable/ic_dialog_info" />
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/abouttrain_imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:contentDescription="@string/about"
+        android:labelFor="@id/frameLayout"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
+        app:srcCompat="@android:drawable/ic_dialog_info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

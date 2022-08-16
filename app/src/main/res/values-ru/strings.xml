@@ -40,4 +40,5 @@
     <string name="send_mail">Отправить письмо</string>
     <string name="enter_failed_exercises">Введите неудачные упражнения</string>
     <string name="description2">Описание второго упражнения</string>
+    <string name="warning">Перед использованием данного приложения обязательно проконсультируйтесь со своим лечащим врачом.</string>
 </resources>
