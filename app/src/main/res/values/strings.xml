@@ -19,7 +19,7 @@
     <string name="next">Next</string>
     <string name="about_exercise">About the exercise</string>
     <string name="clear">Clear</string>
-    <string name="description1">The starting position is standing. Roll a small ball over the entire surface of the foot.</string>
+    <string name="description1">Exercise 1: The starting position is standing. Roll a small ball over the entire surface of the foot</string>
     <string name="resume">Resume</string>
     <string name="positive">Yes</string>
     <string name="negative">No</string>
@@ -40,5 +40,6 @@
     <string name="send_mail">Send mail</string>
     <string name="enter_failed_exercises">Enter failed exercises</string>
     <string name="description2">Description of the second exercise</string>
-    <string name="warning">Before using this application, be sure to consult with your doctor.</string>
+    <string name="warning">Before using this application, be sure to consult with your doctor</string>
+    <string name="choose_next_trainig">Choose the date of your next training</string>
 </resources>

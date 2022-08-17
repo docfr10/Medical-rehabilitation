@@ -14,12 +14,12 @@
     <string name="app_name">Медицинская реабилитация</string>
     <string name="start">Начать тренировку</string>
     <string name="about">О приложении</string>
-    <string name="about_app">Приложение разработано с целью помощи людям в получении реабилитации в домашних условиях после получения травм.</string>
+    <string name="about_app">Приложение разработано с целью помощи людям в получении реабилитации в домашних условиях после получения травм</string>
     <string name="pause">Пауза</string>
     <string name="next">Далее</string>
     <string name="about_exercise">Об упражнении</string>
     <string name="clear">Понятно</string>
-    <string name="description1">Исходное положение - стоя. Катать небольшой мяч по всей поверхности стопы.</string>
+    <string name="description1">Упражнение 1: Исходное положение - стоя. Катать небольшой мяч по всей поверхности стопы</string>
     <string name="resume">Продолжить</string>
     <string name="positive">Да</string>
     <string name="negative">Нет</string>
@@ -40,5 +40,6 @@
     <string name="send_mail">Отправить письмо</string>
     <string name="enter_failed_exercises">Введите неудачные упражнения</string>
     <string name="description2">Описание второго упражнения</string>
-    <string name="warning">Перед использованием данного приложения обязательно проконсультируйтесь со своим лечащим врачом.</string>
+    <string name="warning">Перед использованием данного приложения обязательно проконсультируйтесь со своим лечащим врачом</string>
+    <string name="choose_next_trainig">Выберите дату вашей следующей тренировки</string>
 </resources>

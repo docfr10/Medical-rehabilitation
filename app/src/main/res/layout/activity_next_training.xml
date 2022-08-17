@@ -8,51 +8,67 @@
     tools:context=".view.NextTrainingActivity">
 
 
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginHorizontal="0dp"
-        android:layout_weight="1"
-        android:calendarViewShown="false"
-        android:datePickerMode="calendar"
-        android:foregroundGravity="center"
-        android:scaleX="1.1"
-        android:scaleY="1.0"
-        app:layout_constraintBottom_toTopOf="@+id/timePicker"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/scroll_view"
+        android:fillViewport="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-    <TimePicker
-        android:id="@+id/timePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginBottom="68dp"
-        android:descendantFocusability="blocksDescendants"
-        android:foregroundGravity="center"
-        android:scaleX="1.0"
-        android:scaleY="1.0"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        android:timePickerMode="spinner"
+            <TextView
+                android:id="@+id/nexttraining_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="@string/choose_next_trainig"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="0dp"
+                android:layout_marginTop="11dp"
+                android:layout_weight="1"
+                android:calendarViewShown="false"
+                android:datePickerMode="calendar"
+                android:foregroundGravity="center"
+                android:scaleX="1.1"
+                android:scaleY="1.0"
+                tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/confirm"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timePicker" />
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="32dp"
+                android:descendantFocusability="blocksDescendants"
+                android:foregroundGravity="center"
+                android:scaleX="1.0"
+                android:scaleY="1.0"
+
+                android:timePickerMode="spinner"
+
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/confirm" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
