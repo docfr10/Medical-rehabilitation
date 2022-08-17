@@ -3,7 +3,6 @@ package com.example.medicalrehabilitation.view
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.Color.TRANSPARENT
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -47,7 +46,13 @@ class TrainingActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        trainingPresenter.timerResume(timertextView, soundOfStop, videoView, pausebutton)
+        trainingPresenter.timerResume(
+            timertextView,
+            soundOfStop,
+            videoView,
+            pausebutton,
+            mediaController
+        )
         trainingPresenter.videoPlay(mediaController, videoView)
         buttonClick()
     }
@@ -82,7 +87,13 @@ class TrainingActivity : AppCompatActivity() {
                 pausebutton.setText(R.string.resume)
                 true
             } else {
-                trainingPresenter.timerResume(timertextView, soundOfStop, videoView, pausebutton)
+                trainingPresenter.timerResume(
+                    timertextView,
+                    soundOfStop,
+                    videoView,
+                    pausebutton,
+                    mediaController
+                )
                 trainingPresenter.videoPlay(mediaController, videoView)
                 pausebutton.setText(R.string.pause)
                 false

@@ -107,7 +107,8 @@ class TrainingPresenter : TrainingInterface {
         timertextView: TextView,
         soundOfStop: MediaPlayer,
         videoView: VideoView,
-        pausebutton: Button
+        pausebutton: Button,
+        mediaController: MediaController
     ) {
         timer?.cancel()
         timer = object : CountDownTimer(millisInFuture, 1) {
@@ -124,7 +125,6 @@ class TrainingPresenter : TrainingInterface {
                     soundPlay(soundOfStop)
                     end = true
                 }
-                videoView.stopPlayback()
                 pausebutton.visibility = View.GONE
             }
         }
@@ -141,10 +141,11 @@ class TrainingPresenter : TrainingInterface {
         timertextView: TextView,
         soundOfStop: MediaPlayer,
         videoView: VideoView,
-        pausebutton: Button
+        pausebutton: Button,
+        mediaController: MediaController
     ) {
         timer?.cancel()
-        timerStart(millisLeft, timertextView, soundOfStop, videoView, pausebutton)
+        timerStart(millisLeft, timertextView, soundOfStop, videoView, pausebutton, mediaController)
     }
 
     override fun returnNumberOfTraining(): Int {

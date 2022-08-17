@@ -24,7 +24,8 @@ interface TrainingInterface {
         timertextView: TextView,
         soundOfStop: MediaPlayer,
         videoView: VideoView,
-        pausebutton: Button
+        pausebutton: Button,
+        mediaController: MediaController
     )
 
     fun timerStart(
@@ -32,7 +33,8 @@ interface TrainingInterface {
         timertextView: TextView,
         soundOfStop: MediaPlayer,
         videoView: VideoView,
-        pausebutton: Button
+        pausebutton: Button,
+        mediaController: MediaController
     )
 
     fun videoChange(
