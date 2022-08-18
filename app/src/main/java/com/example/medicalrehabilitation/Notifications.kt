@@ -26,7 +26,7 @@ class Notifications : BroadcastReceiver() {
                 TODO("VERSION.SDK_INT < M")
             }
         val notification = NotificationCompat.Builder(context, channelID)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(R.mipmap.ic_launcher_round)
             .setContentTitle(intent.getStringExtra(titleExtra))
             .setContentText(intent.getStringExtra(messageExtra))
             .setContentIntent(pendingIntent)

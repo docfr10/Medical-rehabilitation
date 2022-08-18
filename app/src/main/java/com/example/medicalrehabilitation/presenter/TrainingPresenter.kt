@@ -22,7 +22,7 @@ class TrainingPresenter : TrainingInterface {
         false //Параметр, определяюший завершился ли таймер, необходим для повторного невоспроизведения звука завершения упражнения
     private var numberoftraining: Int = 1 //Номер упражнения
     private var myVideoUri =
-        Uri.parse("android.resource://com.example.medicalrehabilitation/" + R.raw.video)
+        Uri.parse("android.resource://com.example.medicalrehabilitation/" + R.raw.video1)
     private lateinit var trainingActivity: TrainingActivity
 
     override fun attachView(trainigActivity: TrainingActivity) {
@@ -65,7 +65,7 @@ class TrainingPresenter : TrainingInterface {
                 this.myVideoUri =
                     Uri.parse(
                         "android.resource://com.example.medicalrehabilitation/"
-                                + R.raw.video1
+                                + R.raw.video2
                     )
                 this.numberoftraining = 2
                 exercisetextView.text = trainingActivity.resources.getText(R.string.description2)
@@ -73,6 +73,26 @@ class TrainingPresenter : TrainingInterface {
                 pausebutton.visibility = View.GONE
             }
             2 -> {
+                this.myVideoUri =
+                    Uri.parse(
+                        "android.resource://com.example.medicalrehabilitation/"
+                                + R.raw.video3
+                    )
+                this.numberoftraining = 3
+                exercisetextView.text =
+                    trainingActivity.resources.getText(R.string.description2) //Поменять на 3 упражнение
+            }
+            3 -> {
+                this.myVideoUri =
+                    Uri.parse(
+                        "android.resource://com.example.medicalrehabilitation/"
+                                + R.raw.video4
+                    )
+                this.numberoftraining = 4
+                exercisetextView.text =
+                    trainingActivity.resources.getText(R.string.description2) //Поменять на 4 упражнение
+            }
+            4 -> {
                 numberoftraining = 0
             }
         }

@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Thread.sleep(2000)
-        //setTheme(R.style.Theme_MedicalRehabilitation)
 
         //Присваиваем значения в коде к значениям в разметке
         beginbutton = findViewById(R.id.begin_button)
