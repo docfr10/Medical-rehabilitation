@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         //Присваиваем значения в коде к значениям в разметке
         beginButton = findViewById(R.id.begin_button)
         aboutButton = findViewById(R.id.about_button)
