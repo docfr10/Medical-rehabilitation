@@ -19,7 +19,7 @@
     <string name="next">Next</string>
     <string name="about_exercise">About the exercise</string>
     <string name="clear">Clear</string>
-    <string name="description1">Exercise 1: The starting position is standing. Roll a small ball over the entire surface of the foot</string>
+    <string name="description1">Exercise 1: The starting position is standing. Roll a small ball over the entire surface of the foot.</string>
     <string name="resume">Resume</string>
     <string name="positive">Yes</string>
     <string name="negative">No</string>
@@ -39,7 +39,9 @@
     <string name="plus30sec">+30 sec</string>
     <string name="send_mail">Send mail</string>
     <string name="enter_failed_exercises">Enter failed exercises</string>
-    <string name="description2">Description of the second exercise</string>
+    <string name="description2">Exercise 2: Starting position - lying on your stomach, hand on the lower back (for control). The operated leg is lifted up by 10-15 sm . and we perform dynamic exercises. Perform 8-10 times.</string>
     <string name="warning">Before using this application, be sure to consult with your doctor</string>
     <string name="choose_next_trainig">Choose the date of your next training</string>
+    <string name="description3">Exercise 3: Starting position - lying on your back. Raise a straight leg by 10 degrees, 20 degrees, 30 degrees. Hold at each level for 7-10 seconds, slowly return to the starting position. Perform alternately with each leg 10-15 times.</string>
+    <string name="description4">Exercise 4: Starting position - lying on the side of the operated leg, the upper leg is bent at the knee, resting in front of the other leg. Perform lifting of the operated leg. Perform 10-15 times.</string>
 </resources>

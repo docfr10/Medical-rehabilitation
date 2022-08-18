@@ -80,7 +80,7 @@ class TrainingPresenter : TrainingInterface {
                     )
                 this.numberoftraining = 3
                 exercisetextView.text =
-                    trainingActivity.resources.getText(R.string.description2) //Поменять на 3 упражнение
+                    trainingActivity.resources.getText(R.string.description3)
             }
             3 -> {
                 this.myVideoUri =
@@ -90,7 +90,7 @@ class TrainingPresenter : TrainingInterface {
                     )
                 this.numberoftraining = 4
                 exercisetextView.text =
-                    trainingActivity.resources.getText(R.string.description2) //Поменять на 4 упражнение
+                    trainingActivity.resources.getText(R.string.description4)
             }
             4 -> {
                 numberoftraining = 0
