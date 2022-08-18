@@ -11,11 +11,11 @@ import com.example.medicalrehabilitation.presenter.SendMailPresenter
 
 //Класс, отвечающий за отправку сообщения на почту врачу
 class SendMailActivity : AppCompatActivity() {
-    private lateinit var doctoremail: EditText //Электронная почта врача
-    private lateinit var trainingspinner: Spinner //Выбор того как прошла тренировка
-    private lateinit var painfulspinner: Spinner //Выбор того было ли больно при тренировке
-    private lateinit var failedexerciese: EditText //Выбор того какие упражнения не получились
-    private lateinit var sendemail: Button //Кнопка отправки письма
+    private lateinit var doctorEmail: EditText //Электронная почта врача
+    private lateinit var trainingSpinner: Spinner //Выбор того как прошла тренировка
+    private lateinit var painfulSpinner: Spinner //Выбор того было ли больно при тренировке
+    private lateinit var failedExercises: EditText //Выбор того какие упражнения не получились
+    private lateinit var sendEmail: Button //Кнопка отправки письма
     private var sendMailPresenter: SendMailPresenter = SendMailPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,21 +24,21 @@ class SendMailActivity : AppCompatActivity() {
 
         //Присваиваем значения в коде к значениям в разметке
         sendMailPresenter.attachView(this)
-        doctoremail = findViewById(R.id.doctorsmail_editTextTextEmailAddress)
-        trainingspinner = findViewById(R.id.training_spinner)
-        painfulspinner = findViewById(R.id.painful_spinner)
-        failedexerciese = findViewById(R.id.failed_editTextTextMultiLine)
-        sendemail = findViewById(R.id.send_button)
+        doctorEmail = findViewById(R.id.doctorsmail_editTextTextEmailAddress)
+        trainingSpinner = findViewById(R.id.training_spinner)
+        painfulSpinner = findViewById(R.id.painful_spinner)
+        failedExercises = findViewById(R.id.failed_editTextTextMultiLine)
+        sendEmail = findViewById(R.id.send_button)
     }
 
     override fun onResume() {
         super.onResume()
         sendMailPresenter.sendEmail(
-            sendemail,
-            doctoremail,
-            trainingspinner,
-            painfulspinner,
-            failedexerciese,
+            sendEmail,
+            doctorEmail,
+            trainingSpinner,
+            painfulSpinner,
+            failedExercises,
             getText(R.string.app_name) as String
         )
     }

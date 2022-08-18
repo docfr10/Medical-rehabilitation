@@ -10,8 +10,8 @@ import com.example.medicalrehabilitation.view.TrainingActivity
 
 //Класс, отвечающий за работу главного экрана
 class MainActivity : AppCompatActivity() {
-    private lateinit var beginbutton: Button //Кнопка с изображением "Начало тренировки"
-    private lateinit var aboutbutton: Button //Кнопка "О приложении"
+    private lateinit var beginButton: Button //Кнопка с изображением "Начало тренировки"
+    private lateinit var aboutButton: Button //Кнопка "О приложении"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
 
 
         //Присваиваем значения в коде к значениям в разметке
-        beginbutton = findViewById(R.id.begin_button)
-        aboutbutton = findViewById(R.id.about_button)
+        beginButton = findViewById(R.id.begin_button)
+        aboutButton = findViewById(R.id.about_button)
     }
 
     override fun onResume() {
@@ -31,13 +31,13 @@ class MainActivity : AppCompatActivity() {
     //Метод, с помошью которого можно взаимодействовать с кнопками
     private fun buttonClick() {
         //Переход с помощью кнопки к тренировке
-        beginbutton.setOnClickListener {
+        beginButton.setOnClickListener {
             val intent = Intent(this@MainActivity, TrainingActivity::class.java)
             startActivity(intent)
         }
 
         //Переход с помощью кнопки к информации о приложении
-        aboutbutton.setOnClickListener {
+        aboutButton.setOnClickListener {
             AlertDialog.Builder(this)
                 .setMessage(R.string.about_app)
                 .setTitle(getString(R.string.about))

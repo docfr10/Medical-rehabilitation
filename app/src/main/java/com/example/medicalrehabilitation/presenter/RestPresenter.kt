@@ -12,7 +12,7 @@ class RestPresenter : RestInterface {
     //Запуск и проверка таймера на окончание
     override fun timerStart(
         millisInFuture: Long,
-        timertextView: TextView,
+        timerTextView: TextView,
         soundOfStop: MediaPlayer
     ) {
         timer = object : CountDownTimer(millisInFuture, 1) {
@@ -20,11 +20,11 @@ class RestPresenter : RestInterface {
                 millisLeft = p0
                 val minutes = (p0 / (1000 * 60))
                 val seconds = ((p0 / 1000) - minutes * 60)
-                timertextView.text = "$minutes:$seconds"
+                timerTextView.text = "$minutes:$seconds"
             }
 
             override fun onFinish() {
-                timertextView.text = "Закончили"
+                timerTextView.text = "Закончили"
                 soundPlay(soundOfStop)
             }
         }
@@ -37,13 +37,13 @@ class RestPresenter : RestInterface {
     }
 
     //Воспроизведение таймера с того момента когда он остановился
-    override fun timerResume(timertextView: TextView, soundOfStop: MediaPlayer) {
-        timerStart(millisLeft, timertextView, soundOfStop)
+    override fun timerResume(timerTextView: TextView, soundOfStop: MediaPlayer) {
+        timerStart(millisLeft, timerTextView, soundOfStop)
     }
 
-    override fun plus30Sec(millisPlus: Int, timertextView: TextView, soundOfStop: MediaPlayer) {
+    override fun plus30Sec(millisPlus: Int, timerTextView: TextView, soundOfStop: MediaPlayer) {
         timer?.cancel()
-        timerStart(millisLeft + millisPlus, timertextView, soundOfStop)
+        timerStart(millisLeft + millisPlus, timerTextView, soundOfStop)
     }
 
     //Проигрывание звука

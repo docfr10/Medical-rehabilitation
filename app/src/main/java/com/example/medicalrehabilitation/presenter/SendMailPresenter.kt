@@ -21,39 +21,39 @@ class SendMailPresenter : SendMailInterface {
     }
 
     override fun sendEmail(
-        sendemail: Button,
-        doctoremail: EditText,
-        trainingspinner: Spinner,
-        painfulspinner: Spinner,
-        failedexerciese: EditText,
+        sendEmail: Button,
+        doctorEmail: EditText,
+        trainingSpinner: Spinner,
+        painfulSpinner: Spinner,
+        failedExercises: EditText,
         theme: String
     ) {
         val dateString: String = dateFormat.format(currentDate)
-        sendemail.setOnClickListener {
-            var failedexerciesestring: String = failedexerciese.text.toString()
-            if (failedexerciese.text.isEmpty()) {
-                failedexerciesestring = "Отсутствуют"
+        sendEmail.setOnClickListener {
+            var failedExercisesString: String = failedExercises.text.toString()
+            if (failedExercises.text.isEmpty()) {
+                failedExercisesString = "Отсутствуют"
             }
             val intent = Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("mailto:${doctoremail.text}")
+                Uri.parse("mailto:${doctorEmail.text}")
             ) //Кому отправляем
-            intent.putExtra(Intent.EXTRA_SUBJECT, theme) //Тема письма
+                .putExtra(Intent.EXTRA_SUBJECT, theme) //Тема письма
             if (Locale.getDefault().language == "ru") {
                 intent.putExtra(
                     Intent.EXTRA_TEXT,
                     "Здравствуйте, сегодня $dateString я провел занятие по медицинской реабилитации после травмы передней крестообразной связки.\n" +
-                            "Тренировка прошла: " + trainingspinner.selectedItem.toString() + ".\n" +
-                            "Ощущения боли: " + painfulspinner.selectedItem.toString() + ".\n" +
-                            "Невыполненные упражнения: $failedexerciesestring."
+                            "Тренировка прошла: " + trainingSpinner.selectedItem.toString() + ".\n" +
+                            "Ощущения боли: " + painfulSpinner.selectedItem.toString() + ".\n" +
+                            "Невыполненные упражнения: $failedExercisesString."
                 ) //Текст письма
             } else if (Locale.getDefault().language == "en") {
                 intent.putExtra(
                     Intent.EXTRA_TEXT,
                     "Hello, today $dateString I conducted a medical rehabilitation class after an anterior cruciate ligament injury.\n" +
-                            "The training was:" + trainingspinner.selectedItem.toString() + ".\n" +
-                            "Feelings of pain: " + painfulspinner.selectedItem.toString() + ".\n" +
-                            "Unfulfilled exercises: $failedexerciesestring."
+                            "The training was:" + trainingSpinner.selectedItem.toString() + ".\n" +
+                            "Feelings of pain: " + painfulSpinner.selectedItem.toString() + ".\n" +
+                            "Unfulfilled exercises: $failedExercisesString."
                 ) //Текст письма
             }
             sendMail.chooseEmail(intent)

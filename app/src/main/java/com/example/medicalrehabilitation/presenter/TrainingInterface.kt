@@ -2,7 +2,6 @@ package com.example.medicalrehabilitation.presenter
 
 import android.app.AlertDialog
 import android.media.MediaPlayer
-import android.net.Uri
 import android.widget.Button
 import android.widget.MediaController
 import android.widget.TextView
@@ -21,30 +20,30 @@ interface TrainingInterface {
     fun aboutExercise(builder: AlertDialog.Builder)
     fun timerPause()
     fun timerResume(
-        timertextView: TextView,
+        timerTextView: TextView,
         soundOfStop: MediaPlayer,
         videoView: VideoView,
-        pausebutton: Button,
+        pauseButton: Button,
         mediaController: MediaController
     )
 
     fun timerStart(
         millisInFuture: Long,
-        timertextView: TextView,
+        timerTextView: TextView,
         soundOfStop: MediaPlayer,
         videoView: VideoView,
-        pausebutton: Button,
+        pauseButton: Button,
         mediaController: MediaController
     )
 
     fun videoChange(
-        timertextView: TextView,
-        pausebutton: Button,
+        timerTextView: TextView,
+        pauseButton: Button,
         mediaController: MediaController,
         videoView: VideoView,
-        exercisetextView: TextView
+        exerciseTextView: TextView
     )
 
     fun returnNumberOfTraining(): Int
-    fun attachView(trainigActivity: TrainingActivity)
+    fun attachView(trainingActivity: TrainingActivity)
 }

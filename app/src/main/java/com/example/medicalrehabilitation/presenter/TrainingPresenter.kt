@@ -20,13 +20,13 @@ class TrainingPresenter : TrainingInterface {
     private var millisLeft: Long = millisStart //Время, оставщееся до конца упражнения
     private var end: Boolean =
         false //Параметр, определяюший завершился ли таймер, необходим для повторного невоспроизведения звука завершения упражнения
-    private var numberoftraining: Int = 1 //Номер упражнения
+    private var numberOfTraining: Int = 1 //Номер упражнения
     private var myVideoUri =
         Uri.parse("android.resource://com.example.medicalrehabilitation/" + R.raw.video1)
     private lateinit var trainingActivity: TrainingActivity
 
-    override fun attachView(trainigActivity: TrainingActivity) {
-        this.trainingActivity = trainigActivity
+    override fun attachView(trainingActivity: TrainingActivity) {
+        this.trainingActivity = trainingActivity
     }
 
     //Воспроизведение видео
@@ -54,23 +54,23 @@ class TrainingPresenter : TrainingInterface {
 
     //Смена видео
     override fun videoChange(
-        timertextView: TextView,
-        pausebutton: Button,
+        timerTextView: TextView,
+        pauseButton: Button,
         mediaController: MediaController,
         videoView: VideoView,
-        exercisetextView: TextView
+        exerciseTextView: TextView
     ) {
-        when (numberoftraining) {
+        when (numberOfTraining) {
             1 -> {
                 this.myVideoUri =
                     Uri.parse(
                         "android.resource://com.example.medicalrehabilitation/"
                                 + R.raw.video2
                     )
-                this.numberoftraining = 2
-                exercisetextView.text = trainingActivity.resources.getText(R.string.description2)
-                timertextView.visibility = View.GONE
-                pausebutton.visibility = View.GONE
+                this.numberOfTraining = 2
+                exerciseTextView.text = trainingActivity.resources.getText(R.string.description2)
+                timerTextView.visibility = View.GONE
+                pauseButton.visibility = View.GONE
             }
             2 -> {
                 this.myVideoUri =
@@ -78,8 +78,8 @@ class TrainingPresenter : TrainingInterface {
                         "android.resource://com.example.medicalrehabilitation/"
                                 + R.raw.video3
                     )
-                this.numberoftraining = 3
-                exercisetextView.text =
+                this.numberOfTraining = 3
+                exerciseTextView.text =
                     trainingActivity.resources.getText(R.string.description3)
             }
             3 -> {
@@ -88,12 +88,12 @@ class TrainingPresenter : TrainingInterface {
                         "android.resource://com.example.medicalrehabilitation/"
                                 + R.raw.video4
                     )
-                this.numberoftraining = 4
-                exercisetextView.text =
+                this.numberOfTraining = 4
+                exerciseTextView.text =
                     trainingActivity.resources.getText(R.string.description4)
             }
             4 -> {
-                numberoftraining = 0
+                numberOfTraining = 0
             }
         }
         videoPlay(mediaController, videoView)
@@ -111,7 +111,7 @@ class TrainingPresenter : TrainingInterface {
 
     //Смена информации об упражнении, реализована в виде диалогового окна
     override fun aboutExercise(builder: AlertDialog.Builder) {
-        when (numberoftraining) {
+        when (numberOfTraining) {
             1 -> builder.setMessage(R.string.description1)
             2 -> builder.setMessage("Описание второго упражнения")
         }
@@ -124,10 +124,10 @@ class TrainingPresenter : TrainingInterface {
     //Запуск и проверка таймера на окончание
     override fun timerStart(
         millisInFuture: Long,
-        timertextView: TextView,
+        timerTextView: TextView,
         soundOfStop: MediaPlayer,
         videoView: VideoView,
-        pausebutton: Button,
+        pauseButton: Button,
         mediaController: MediaController
     ) {
         timer?.cancel()
@@ -136,16 +136,16 @@ class TrainingPresenter : TrainingInterface {
                 millisLeft = p0
                 val minutes = (p0 / (1000 * 60))
                 val seconds = ((p0 / 1000) - minutes * 60)
-                timertextView.text = "$minutes:$seconds"
+                timerTextView.text = "$minutes:$seconds"
             }
 
             override fun onFinish() {
-                timertextView.text = "Закончили"
+                timerTextView.text = "Закончили"
                 if (!end) {
                     soundPlay(soundOfStop)
                     end = true
                 }
-                pausebutton.visibility = View.GONE
+                pauseButton.visibility = View.GONE
             }
         }
         (timer as CountDownTimer).start()
@@ -158,17 +158,17 @@ class TrainingPresenter : TrainingInterface {
 
     //Воспроизведение таймера с того момента когда он остановился
     override fun timerResume(
-        timertextView: TextView,
+        timerTextView: TextView,
         soundOfStop: MediaPlayer,
         videoView: VideoView,
-        pausebutton: Button,
+        pauseButton: Button,
         mediaController: MediaController
     ) {
         timer?.cancel()
-        timerStart(millisLeft, timertextView, soundOfStop, videoView, pausebutton, mediaController)
+        timerStart(millisLeft, timerTextView, soundOfStop, videoView, pauseButton, mediaController)
     }
 
     override fun returnNumberOfTraining(): Int {
-        return numberoftraining
+        return numberOfTraining
     }
 }

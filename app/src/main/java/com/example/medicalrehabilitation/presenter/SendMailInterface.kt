@@ -8,11 +8,11 @@ import com.example.medicalrehabilitation.view.SendMailActivity
 interface SendMailInterface {
     fun attachView(sendMail: SendMailActivity)
     fun sendEmail(
-        sendemail: Button,
-        doctoremail: EditText,
-        trainingspinner: Spinner,
-        painfulspinner: Spinner,
-        failedexerciese: EditText,
+        sendEmail: Button,
+        doctorEmail: EditText,
+        trainingSpinner: Spinner,
+        painfulSpinner: Spinner,
+        failedExercises: EditText,
         theme: String
     )
 }

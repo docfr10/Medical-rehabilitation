@@ -4,10 +4,10 @@ import android.media.MediaPlayer
 import android.widget.TextView
 
 interface RestInterface {
-    fun timerStart(millisInFuture: Long, timertextView: TextView, soundOfStop: MediaPlayer)
+    fun timerStart(millisInFuture: Long, timerTextView: TextView, soundOfStop: MediaPlayer)
     fun timerPause()
-    fun timerResume(timertextView: TextView, soundOfStop: MediaPlayer)
-    fun plus30Sec(millisPlus: Int, timertextView: TextView, soundOfStop: MediaPlayer)
+    fun timerResume(timerTextView: TextView, soundOfStop: MediaPlayer)
+    fun plus30Sec(millisPlus: Int, timerTextView: TextView, soundOfStop: MediaPlayer)
     fun soundPlay(sound: MediaPlayer)
     fun soundPause(sound: MediaPlayer)
 }
