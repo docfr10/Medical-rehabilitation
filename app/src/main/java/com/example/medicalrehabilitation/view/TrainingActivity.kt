@@ -70,6 +70,7 @@ class TrainingActivity : AppCompatActivity() {
         nextbutton.setOnClickListener {
             onPause()
             rest()
+            videoChange()
         }
 
         //Переход с помощью кнопки к информации об упражнении
@@ -101,10 +102,7 @@ class TrainingActivity : AppCompatActivity() {
         }
     }
 
-    //Вызов activity отдыха
-    private fun rest() {
-        val intent = Intent(trainingActivity, RestActivity::class.java)
-        startActivity(intent)
+    private fun videoChange() {
         trainingPresenter.videoChange(
             timertextView,
             pausebutton,
@@ -116,6 +114,12 @@ class TrainingActivity : AppCompatActivity() {
         if (trainingPresenter.returnNumberOfTraining() == 0) {
             nextTraining()
         }
+    }
+
+    //Вызов activity отдыха
+    private fun rest() {
+        val intent = Intent(trainingActivity, RestActivity::class.java)
+        startActivity(intent)
     }
 
     //Вызов activity выбора следующей тренировки
