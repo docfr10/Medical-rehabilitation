@@ -23,7 +23,7 @@
     <string name="about_app">The medical rehabilitation application is designed for patients after anterior cruciate ligament reconstruction. The complex of exercises of therapeutic gymnastics is designed to be performed at home.</string>
     <string name="pause">Pause</string>
     <string name="next">Next</string>
-    <string name="about_exercise">About the exercise</string>
+    <string name="equipment">Equipment</string>
     <string name="clear">Clear</string>
     <string name="description1">Exercise 1: Starting position - standing. Roll the ball over the entire surface of the foot. Perform 5 minutes.</string>
     <string name="resume">Resume</string>
@@ -40,11 +40,11 @@
     <string name="how_was_training">How was the lesson?</string>
     <string name="fill_questionnaire">Please fill out the questionnaire and send it to your attending physician, so it will be easier for him to monitor the state of your medical rehabilitation</string>
     <string name="was_painful">Was it painful when doing the exercises?</string>
-    <string name="failed_exercieses">Specify the exercises that cause difficulties/ unpleasant sensations (If there are none, leave the field empty)</string>
+    <string name="failed_exercieses">Specify the numbers of exercises that cause difficulties/unpleasant sensations (If there are none, leave the field empty)</string>
     <string name="send">Send</string>
     <string name="plus30sec">+30 sec</string>
     <string name="send_mail">Send mail</string>
-    <string name="enter_failed_exercises">Specify the exercises or leave the field empty</string>
+    <string name="enter_failed_exercises">Specify the exercise numbers or leave the field blank</string>
     <string name="description2">Exercise 2: Starting position – lying on your stomach, hand on the lower back (for control). The operated leg is lifted up by 10-15 cm . and we perform dynamic exercises. Perform 8-10 times.</string>
     <string name="warning">There are contraindications. Before using this application, it is necessary to consult with your doctor</string>
     <string name="choose_next_trainig">Select the date of the next class</string>

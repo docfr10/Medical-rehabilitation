@@ -50,8 +50,7 @@ class TrainingPresenter : TrainingInterface {
     override fun videoChange(
         timerTextView: TextView,
         pauseButton: Button,
-        videoView: VideoView,
-        exerciseTextView: TextView
+        videoView: VideoView
     ) {
         when (numberOfTraining) {
             1 -> {
@@ -61,7 +60,6 @@ class TrainingPresenter : TrainingInterface {
                                 + R.raw.video2
                     )
                 this.numberOfTraining = 2
-                exerciseTextView.text = trainingActivity.resources.getText(R.string.description2)
                 timerTextView.visibility = View.GONE
                 pauseButton.visibility = View.GONE
             }
@@ -72,8 +70,6 @@ class TrainingPresenter : TrainingInterface {
                                 + R.raw.video3
                     )
                 this.numberOfTraining = 3
-                exerciseTextView.text =
-                    trainingActivity.resources.getText(R.string.description3)
             }
             3 -> {
                 this.myVideoUri =
@@ -82,14 +78,26 @@ class TrainingPresenter : TrainingInterface {
                                 + R.raw.video4
                     )
                 this.numberOfTraining = 4
-                exerciseTextView.text =
-                    trainingActivity.resources.getText(R.string.description4)
             }
             4 -> {
                 numberOfTraining = 0
             }
         }
         videoPlay(videoView)
+    }
+
+    override fun changeDescription(exerciseTextView: TextView) {
+        when (numberOfTraining) {
+            2 -> {
+                exerciseTextView.text = trainingActivity.resources.getText(R.string.description2)
+            }
+            3 -> {
+                exerciseTextView.text = trainingActivity.resources.getText(R.string.description3)
+            }
+            4 -> {
+                exerciseTextView.text = trainingActivity.resources.getText(R.string.description4)
+            }
+        }
     }
 
     //Проигрывание звука
@@ -106,9 +114,9 @@ class TrainingPresenter : TrainingInterface {
     override fun aboutExercise(builder: AlertDialog.Builder) {
         when (numberOfTraining) {
             1 -> builder.setMessage(R.string.exercise1)
-            2,3,4 -> builder.setMessage(R.string.exercise2_3_4)
+            2, 3, 4 -> builder.setMessage(R.string.exercise2_3_4)
         }
-        builder.setTitle((R.string.about_exercise))
+        builder.setTitle((R.string.equipment))
             .setPositiveButton((R.string.clear)) { dialog, _ -> dialog.cancel() }
             .create()
             .show()

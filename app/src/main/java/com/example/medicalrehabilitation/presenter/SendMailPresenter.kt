@@ -2,6 +2,7 @@ package com.example.medicalrehabilitation.presenter
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Handler
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
@@ -12,12 +13,12 @@ import java.util.*
 
 class SendMailPresenter : SendMailInterface {
 
-    private lateinit var sendMail: SendMailActivity
+    private lateinit var sendMailActivity: SendMailActivity
     private var currentDate: Date = Calendar.getInstance().time
     private var dateFormat: DateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
 
     override fun attachView(sendMail: SendMailActivity) {
-        this.sendMail = sendMail
+        this.sendMailActivity = sendMail
     }
 
     override fun sendEmail(
@@ -56,7 +57,7 @@ class SendMailPresenter : SendMailInterface {
                             "Unfulfilled exercises: $failedExercisesString."
                 ) //Текст письма
             }
-            sendMail.chooseEmail(intent)
+            sendMailActivity.chooseEmail(intent)
         }
     }
 }

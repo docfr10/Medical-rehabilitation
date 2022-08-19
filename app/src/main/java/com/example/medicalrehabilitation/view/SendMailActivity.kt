@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import com.example.medicalrehabilitation.MainActivity
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.presenter.SendMailPresenter
 
@@ -42,8 +43,18 @@ class SendMailActivity : AppCompatActivity() {
             getText(R.string.app_name) as String
         )
     }
+    
+    override fun onRestart() {
+        super.onRestart()
+        transitionToMainActivity()
+    }
 
     fun chooseEmail(intent: Intent) {
         startActivity(Intent.createChooser(intent, getText(R.string.send_mail)))
+    }
+
+    private fun transitionToMainActivity() {
+        val intent = Intent(this@SendMailActivity, MainActivity::class.java)
+        startActivity(intent)
     }
 }

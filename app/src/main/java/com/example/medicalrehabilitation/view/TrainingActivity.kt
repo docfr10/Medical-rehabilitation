@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color.TRANSPARENT
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.medicalrehabilitation.R
@@ -107,9 +108,11 @@ class TrainingActivity : AppCompatActivity() {
             timerTextView,
             pauseButton,
             videoView,
-            exerciseTextView
         )
         trainingPresenter.videoPlay(videoView)
+        Handler().postDelayed({
+            trainingPresenter.changeDescription(exerciseTextView)
+        }, 100)
         if (trainingPresenter.returnNumberOfTraining() == 0) {
             nextTraining()
         }

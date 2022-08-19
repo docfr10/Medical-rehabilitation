@@ -9,13 +9,8 @@ import android.widget.VideoView
 import com.example.medicalrehabilitation.view.TrainingActivity
 
 interface TrainingInterface {
-    fun videoPlay(
-        //mediaController: MediaController,
-        videoView: VideoView
-    )
-
-    fun videoPause(//mediaController: MediaController,
-                   videoView: VideoView)
+    fun videoPlay(videoView: VideoView)
+    fun videoPause(videoView: VideoView)
     fun soundPlay(sound: MediaPlayer)
     fun soundPause(sound: MediaPlayer)
     fun aboutExercise(builder: AlertDialog.Builder)
@@ -40,11 +35,10 @@ interface TrainingInterface {
     fun videoChange(
         timerTextView: TextView,
         pauseButton: Button,
-        //mediaController: MediaController,
         videoView: VideoView,
-        exerciseTextView: TextView
     )
 
     fun returnNumberOfTraining(): Int
     fun attachView(trainingActivity: TrainingActivity)
+    fun changeDescription(exerciseTextView: TextView)
 }
