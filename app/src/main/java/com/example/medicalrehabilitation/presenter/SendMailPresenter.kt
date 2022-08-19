@@ -3,9 +3,11 @@ package com.example.medicalrehabilitation.presenter
 import android.content.Intent
 import android.net.Uri
 import android.os.Handler
+import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import com.example.medicalrehabilitation.view.SendMailActivity
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -17,8 +19,8 @@ class SendMailPresenter : SendMailInterface {
     private var currentDate: Date = Calendar.getInstance().time
     private var dateFormat: DateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
 
-    override fun attachView(sendMail: SendMailActivity) {
-        this.sendMailActivity = sendMail
+    override fun attachView(sendMailActivity: SendMailActivity) {
+        this.sendMailActivity = sendMailActivity
     }
 
     override fun sendEmail(
@@ -57,7 +59,9 @@ class SendMailPresenter : SendMailInterface {
                             "Unfulfilled exercises: $failedExercisesString."
                 ) //Текст письма
             }
-            sendMailActivity.chooseEmail(intent)
+            if (doctorEmail.text.isEmpty()) {
+                sendMailActivity.enterADoctorsEmail()
+            } else sendMailActivity.chooseEmail(intent)
         }
     }
 }

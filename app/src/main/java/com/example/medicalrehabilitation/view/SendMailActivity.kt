@@ -1,14 +1,14 @@
 package com.example.medicalrehabilitation.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.view.Gravity
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.example.medicalrehabilitation.MainActivity
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.presenter.SendMailPresenter
+
 
 //Класс, отвечающий за отправку сообщения на почту врачу
 class SendMailActivity : AppCompatActivity() {
@@ -43,7 +43,7 @@ class SendMailActivity : AppCompatActivity() {
             getText(R.string.app_name) as String
         )
     }
-    
+
     override fun onRestart() {
         super.onRestart()
         transitionToMainActivity()
@@ -56,5 +56,11 @@ class SendMailActivity : AppCompatActivity() {
     private fun transitionToMainActivity() {
         val intent = Intent(this@SendMailActivity, MainActivity::class.java)
         startActivity(intent)
+    }
+
+    fun enterADoctorsEmail() {
+        val toast = Toast.makeText(applicationContext, R.string.fill_email, Toast.LENGTH_LONG)
+        toast.setGravity(Gravity.BOTTOM, 0, 0)
+        toast.show()
     }
 }
