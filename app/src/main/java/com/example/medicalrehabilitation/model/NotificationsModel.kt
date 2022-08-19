@@ -1,4 +1,4 @@
-package com.example.medicalrehabilitation
+package com.example.medicalrehabilitation.model
 
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -7,14 +7,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import com.example.medicalrehabilitation.*
 
-const val notificationID = 1
-const val channelID = "channel1"
-const val titleExtra = "titleExtra"
-const val messageExtra = "messageExtra"
 
 //Класс, отвечающий за создание уведомлений
-class Notifications : BroadcastReceiver() {
+class NotificationsModel : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val intent1 = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -26,7 +23,7 @@ class Notifications : BroadcastReceiver() {
                 TODO("VERSION.SDK_INT < M")
             }
         val notification = NotificationCompat.Builder(context, channelID)
-            .setSmallIcon(R.mipmap.ic_launcher_round)
+            .setSmallIcon(R.mipmap.ic_launcher_my_app_round)
             .setContentTitle(intent.getStringExtra(titleExtra))
             .setContentText(intent.getStringExtra(messageExtra))
             .setContentIntent(pendingIntent)

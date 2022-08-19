@@ -7,6 +7,10 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.medicalrehabilitation.view.TrainingActivity
 
+const val notificationID = 1
+const val channelID = "channel1"
+const val titleExtra = "titleExtra"
+const val messageExtra = "messageExtra"
 
 //Класс, отвечающий за работу главного экрана
 class MainActivity : AppCompatActivity() {

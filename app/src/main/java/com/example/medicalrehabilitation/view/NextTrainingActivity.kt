@@ -4,7 +4,7 @@ import android.app.*
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.medicalrehabilitation.Notifications
+import com.example.medicalrehabilitation.model.NotificationsModel
 import com.example.medicalrehabilitation.databinding.ActivityNextTrainingBinding
 import com.example.medicalrehabilitation.presenter.NextTrainingPresenter
 import java.util.*
@@ -34,7 +34,7 @@ class NextTrainingActivity : AppCompatActivity() {
     }
 
     private fun createNotifications() {
-        val intent = Intent(applicationContext, Notifications::class.java)
+        val intent = Intent(applicationContext, NotificationsModel::class.java)
         //Записываем дату когда необходимо отправить уведомление
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         val time = nextTrainingPresenter.getTime(binding)
