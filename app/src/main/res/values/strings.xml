@@ -12,10 +12,9 @@
     </string-array>
 
     <string-array name="recommendations">
-        <item>The first tip</item>
-        <item>Second tip</item>
-        <item>The third tip</item>
-        <item>Fourth tip</item>
+        <item>Do not do exercises through pain!</item>
+        <item>If you are tired, take a break.</item>
+        <item>Clothing during exercise should be light, not restricting movement.</item>
     </string-array>
 
     <string name="app_name">Medical rehabilitation</string>
@@ -26,7 +25,7 @@
     <string name="next">Next</string>
     <string name="about_exercise">About the exercise</string>
     <string name="clear">Clear</string>
-    <string name="description1">Exercise 1: Starting position - standing. Roll a small ball (tennis) over the entire surface of the foot. Perform 5 minutes.</string>
+    <string name="description1">Exercise 1: Starting position - standing. Roll the ball over the entire surface of the foot. Perform 5 minutes.</string>
     <string name="resume">Resume</string>
     <string name="positive">Yes</string>
     <string name="negative">No</string>
@@ -51,4 +50,7 @@
     <string name="choose_next_trainig">Select the date of the next class</string>
     <string name="description3">Exercise 3: Starting position - lying on your back. We start with a healthy leg. Raise the straight leg by 10 degrees, 20 degrees and 30 degrees, holding at each level for 7-10 seconds, slowly return to the starting position. Perform alternately with each leg 10-15 times.</string>
     <string name="description4">Exercise 4: Starting position - lying on the side of the operated leg, the upper leg is bent at the knee, resting in front of the other leg. Perform lifting of the operated leg. Perform 10-15 times.</string>
+    <string name="exercise1">For this exercise, use a small ball (tennis).</string>
+    <string name="exercise2_3_4">It is advisable to perform this exercise on a gym mat.</string>
+    <string name="warning2">The appearance of pain during exercise is a signal to reduce the amplitude of exercise, their intensity, or to completely stop their performance.</string>
 </resources>
