@@ -47,22 +47,16 @@ class TrainingActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        trainingPresenter.timerResume(
-            timerTextView,
-            soundOfStop,
-            videoView,
-            pauseButton,
-            mediaController
-        )
-        trainingPresenter.videoPlay(videoView)
+        timerResume(timerTextView, soundOfStop, videoView, pauseButton, mediaController)
+        videoPlay(videoView)
         buttonClick()
     }
 
     override fun onPause() {
         super.onPause()
-        trainingPresenter.timerPause()
-        trainingPresenter.soundPause(soundOfStop)
-        trainingPresenter.videoPause(videoView)
+        timerPause()
+        soundPause(soundOfStop)
+        videoPause(videoView)
     }
 
     //Метод, с помошью которого можно взаимодействовать с кнопками
@@ -77,26 +71,20 @@ class TrainingActivity : AppCompatActivity() {
         //Переход с помощью кнопки к информации об упражнении
         aboutTrainImageButton.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            trainingPresenter.aboutExercise(builder)
+            aboutExercise(builder)
         }
 
         var isPause = false
         //Постановка видео и таймера на паузу
         pauseButton.setOnClickListener {
             isPause = if (!isPause) {
-                trainingPresenter.timerPause()
-                trainingPresenter.videoPause(videoView)
+                timerPause()
+                videoPause(videoView)
                 pauseButton.setText(R.string.resume)
                 true
             } else {
-                trainingPresenter.timerResume(
-                    timerTextView,
-                    soundOfStop,
-                    videoView,
-                    pauseButton,
-                    mediaController
-                )
-                trainingPresenter.videoPlay(videoView)
+                timerResume(timerTextView, soundOfStop, videoView, pauseButton, mediaController)
+                videoPlay(videoView)
                 pauseButton.setText(R.string.pause)
                 false
             }
@@ -109,13 +97,42 @@ class TrainingActivity : AppCompatActivity() {
             pauseButton,
             videoView,
         )
-        trainingPresenter.videoPlay(videoView)
+        videoPlay(videoView)
         Handler().postDelayed({
             trainingPresenter.changeDescription(exerciseTextView)
         }, 100)
         if (trainingPresenter.returnNumberOfTraining() == 0) {
             nextTraining()
         }
+    }
+
+    private fun videoPlay(videoView: VideoView) {
+        trainingPresenter.videoPlay(videoView)
+    }
+
+    private fun videoPause(videoView: VideoView) {
+        trainingPresenter.videoPause(videoView)
+    }
+
+    private fun timerResume(
+        timerTextView: TextView, soundOfStop: MediaPlayer, videoView: VideoView,
+        pauseButton: Button, mediaController: MediaController
+    ) {
+        trainingPresenter.timerResume(
+            timerTextView, soundOfStop, videoView, pauseButton, mediaController
+        )
+    }
+
+    private fun timerPause() {
+        trainingPresenter.timerPause()
+    }
+
+    private fun soundPause(soundOfStop: MediaPlayer) {
+        trainingPresenter.soundPause(soundOfStop)
+    }
+
+    private fun aboutExercise(builder: AlertDialog.Builder) {
+        trainingPresenter.aboutExercise(builder)
     }
 
     //Вызов activity отдыха

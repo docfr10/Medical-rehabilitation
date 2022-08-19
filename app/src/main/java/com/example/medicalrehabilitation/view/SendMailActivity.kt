@@ -34,14 +34,7 @@ class SendMailActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        sendMailPresenter.sendEmail(
-            sendEmail,
-            doctorEmail,
-            trainingSpinner,
-            painfulSpinner,
-            failedExercises,
-            getText(R.string.app_name) as String
-        )
+        sendEmail(sendEmail, doctorEmail, trainingSpinner, painfulSpinner, failedExercises)
     }
 
     override fun onRestart() {
@@ -51,6 +44,23 @@ class SendMailActivity : AppCompatActivity() {
 
     fun chooseEmail(intent: Intent) {
         startActivity(Intent.createChooser(intent, getText(R.string.send_mail)))
+    }
+
+    private fun sendEmail(
+        sendEmail: Button,
+        doctorEmail: EditText,
+        trainingSpinner: Spinner,
+        painfulSpinner: Spinner,
+        failedExercises: EditText
+    ) {
+        sendMailPresenter.sendEmail(
+            sendEmail,
+            doctorEmail,
+            trainingSpinner,
+            painfulSpinner,
+            failedExercises,
+            getText(R.string.app_name) as String
+        )
     }
 
     private fun transitionToMainActivity() {
