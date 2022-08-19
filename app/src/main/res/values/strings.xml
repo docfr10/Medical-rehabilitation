@@ -11,6 +11,13 @@
         <item>A little</item>
     </string-array>
 
+    <string-array name="recommendations">
+        <item>The first tip</item>
+        <item>Second tip</item>
+        <item>The third tip</item>
+        <item>Fourth tip</item>
+    </string-array>
+
     <string name="app_name">Medical rehabilitation</string>
     <string name="start">Start a class</string>
     <string name="about">About</string>
@@ -39,7 +46,7 @@
     <string name="plus30sec">+30 sec</string>
     <string name="send_mail">Send mail</string>
     <string name="enter_failed_exercises">Specify the exercises or leave the field empty</string>
-    <string name="description2">Exercise 2: Starting position - lying on your stomach, hand on the lower back (for control). The operated leg is lifted up by 10-15 cm . and we perform dynamic exercises. Perform 8-10 times.</string>
+    <string name="description2">Exercise 2: Starting position – lying on your stomach, hand on the lower back (for control). The operated leg is lifted up by 10-15 cm . and we perform dynamic exercises. Perform 8-10 times.</string>
     <string name="warning">There are contraindications. Before using this application, it is necessary to consult with your doctor</string>
     <string name="choose_next_trainig">Select the date of the next class</string>
     <string name="description3">Exercise 3: Starting position - lying on your back. We start with a healthy leg. Raise the straight leg by 10 degrees, 20 degrees and 30 degrees, holding at each level for 7-10 seconds, slowly return to the starting position. Perform alternately with each leg 10-15 times.</string>

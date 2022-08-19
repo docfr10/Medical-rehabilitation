@@ -11,6 +11,13 @@
         <item>Немного</item>
     </string-array>
 
+    <string-array name="recommendations">
+        <item>Первый совет</item>
+        <item>Второй совет</item>
+        <item>Третий совет</item>
+        <item>Четвертый совет</item>
+    </string-array>
+
     <string name="app_name">Медицинская реабилитация</string>
     <string name="start">Начать занятие</string>
     <string name="about">О приложении</string>

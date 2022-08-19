@@ -3,11 +3,19 @@ package com.example.medicalrehabilitation.presenter
 import android.media.MediaPlayer
 import android.os.CountDownTimer
 import android.widget.TextView
+import com.example.medicalrehabilitation.R
+import com.example.medicalrehabilitation.view.RestActivity
+import java.util.*
 
 class RestPresenter : RestInterface {
     private var timer: CountDownTimer? = null //Таймер
     private var millisStart: Long = 5000 //120000 //Время отдыха
     private var millisLeft: Long = millisStart //Время, оставщееся до конца отдыха
+    private lateinit var restActivity: RestActivity
+
+    override fun attachView(restActivity: RestActivity) {
+        this.restActivity = restActivity
+    }
 
     //Запуск и проверка таймера на окончание
     override fun timerStart(
@@ -54,5 +62,14 @@ class RestPresenter : RestInterface {
     //Остановка звука
     override fun soundPause(sound: MediaPlayer) {
         sound.pause()
+    }
+
+
+    override fun getRecommendations(): String {
+        val recommendations: Array<String> =
+            restActivity.resources.getStringArray(R.array.recommendations)
+        val randomIndex = Random().nextInt(recommendations.size)
+        println("RANDOM: $randomIndex")
+        return recommendations[randomIndex]
     }
 }
