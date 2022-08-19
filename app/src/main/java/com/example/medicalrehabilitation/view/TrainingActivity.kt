@@ -53,7 +53,7 @@ class TrainingActivity : AppCompatActivity() {
             pauseButton,
             mediaController
         )
-        trainingPresenter.videoPlay(mediaController, videoView)
+        trainingPresenter.videoPlay(videoView)
         buttonClick()
     }
 
@@ -61,7 +61,7 @@ class TrainingActivity : AppCompatActivity() {
         super.onPause()
         trainingPresenter.timerPause()
         trainingPresenter.soundPause(soundOfStop)
-        trainingPresenter.videoPause(mediaController, videoView)
+        trainingPresenter.videoPause(videoView)
     }
 
     //Метод, с помошью которого можно взаимодействовать с кнопками
@@ -84,7 +84,7 @@ class TrainingActivity : AppCompatActivity() {
         pauseButton.setOnClickListener {
             isPause = if (!isPause) {
                 trainingPresenter.timerPause()
-                trainingPresenter.videoPause(mediaController, videoView)
+                trainingPresenter.videoPause(videoView)
                 pauseButton.setText(R.string.resume)
                 true
             } else {
@@ -95,7 +95,7 @@ class TrainingActivity : AppCompatActivity() {
                     pauseButton,
                     mediaController
                 )
-                trainingPresenter.videoPlay(mediaController, videoView)
+                trainingPresenter.videoPlay(videoView)
                 pauseButton.setText(R.string.pause)
                 false
             }
@@ -106,11 +106,10 @@ class TrainingActivity : AppCompatActivity() {
         trainingPresenter.videoChange(
             timerTextView,
             pauseButton,
-            mediaController,
             videoView,
             exerciseTextView
         )
-        trainingPresenter.videoPlay(mediaController, videoView)
+        trainingPresenter.videoPlay(videoView)
         if (trainingPresenter.returnNumberOfTraining() == 0) {
             nextTraining()
         }

@@ -31,24 +31,18 @@ class TrainingPresenter : TrainingInterface {
 
     //Воспроизведение видео
     override fun videoPlay(
-        mediaController: MediaController,
         videoView: VideoView
     ) {
         videoView.setVideoURI(myVideoUri)
-        videoView.setMediaController(mediaController)
-        mediaController.setAnchorView(videoView)
         videoView.start()
         videoView.setOnPreparedListener { it.isLooping = true }
     }
 
     //Остановка видео
     override fun videoPause(
-        mediaController: MediaController,
         videoView: VideoView,
     ) {
         videoView.setVideoURI(myVideoUri)
-        videoView.setMediaController(mediaController)
-        mediaController.setAnchorView(videoView)
         videoView.pause()
     }
 
@@ -56,7 +50,6 @@ class TrainingPresenter : TrainingInterface {
     override fun videoChange(
         timerTextView: TextView,
         pauseButton: Button,
-        mediaController: MediaController,
         videoView: VideoView,
         exerciseTextView: TextView
     ) {
@@ -96,7 +89,7 @@ class TrainingPresenter : TrainingInterface {
                 numberOfTraining = 0
             }
         }
-        videoPlay(mediaController, videoView)
+        videoPlay(videoView)
     }
 
     //Проигрывание звука

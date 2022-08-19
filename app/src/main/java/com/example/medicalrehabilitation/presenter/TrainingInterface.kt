@@ -10,11 +10,12 @@ import com.example.medicalrehabilitation.view.TrainingActivity
 
 interface TrainingInterface {
     fun videoPlay(
-        mediaController: MediaController,
+        //mediaController: MediaController,
         videoView: VideoView
     )
 
-    fun videoPause(mediaController: MediaController, videoView: VideoView)
+    fun videoPause(//mediaController: MediaController,
+                   videoView: VideoView)
     fun soundPlay(sound: MediaPlayer)
     fun soundPause(sound: MediaPlayer)
     fun aboutExercise(builder: AlertDialog.Builder)
@@ -39,7 +40,7 @@ interface TrainingInterface {
     fun videoChange(
         timerTextView: TextView,
         pauseButton: Button,
-        mediaController: MediaController,
+        //mediaController: MediaController,
         videoView: VideoView,
         exerciseTextView: TextView
     )
