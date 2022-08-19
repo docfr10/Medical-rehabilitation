@@ -89,7 +89,6 @@
                 android:autofillHints=""
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="@string/enter_failed_exercises"
                 android:inputType="textMultiLine"
                 android:maxLines="1"
                 android:minHeight="48dp"
