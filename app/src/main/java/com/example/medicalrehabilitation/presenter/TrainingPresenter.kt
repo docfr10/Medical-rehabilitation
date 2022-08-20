@@ -16,7 +16,7 @@ class TrainingPresenter : TrainingInterface {
 
     //Ссылка на видео, которое будет проигрываться
     private var timer: CountDownTimer? = null //Таймер
-    private var millisStart: Long = 20000 //120000 //Время выполнения упражнения
+    private var millisStart: Long = 300000 //Время выполнения упражнения
     private var millisLeft: Long = millisStart //Время, оставщееся до конца упражнения
     private var end: Boolean =
         false //Параметр, определяюший завершился ли таймер, необходим для повторного невоспроизведения звука завершения упражнения

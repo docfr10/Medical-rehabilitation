@@ -9,7 +9,7 @@ import java.util.*
 
 class RestPresenter : RestInterface {
     private var timer: CountDownTimer? = null //Таймер
-    private var millisStart: Long = 5000 //120000 //Время отдыха
+    private var millisStart: Long = 120000 //Время отдыха
     private var millisLeft: Long = millisStart //Время, оставщееся до конца отдыха
     private lateinit var restActivity: RestActivity
 

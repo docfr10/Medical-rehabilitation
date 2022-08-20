@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.TextView
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.presenter.RestPresenter
-import com.example.medicalrehabilitation.presenter.TrainingPresenter
 
 //Класс, отвечающий за работу RestActivity
 class RestActivity : AppCompatActivity() {
