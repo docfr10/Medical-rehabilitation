@@ -44,7 +44,7 @@
     <string name="send">Отправить</string>
     <string name="plus30sec">+30 сек</string>
     <string name="send_mail">Отправить письмо</string>
-    <string name="enter_failed_exercises">Укажите номера упражнений или оставьте поле пустым</string>
+    <string name="enter_failed_exercises">Максимум 10 символов</string>
     <string name="description2">Упражнение 2: Исходное положение - лежа на животе, рука на пояснице (для контроля). Оперированную ногу поднимаем вверх на 10-15 см. и выполняем динамические упражнения. Выполнять 8-10 раз.</string>
     <string name="warning">Имеются противопоказания. Перед использованием данного приложения необходимо обязательно проконсультируйтесь со своим лечащим врачом</string>
     <string name="choose_next_trainig">Выберите дату следующего занятия</string>

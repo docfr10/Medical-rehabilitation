@@ -44,7 +44,7 @@
     <string name="send">Send</string>
     <string name="plus30sec">+30 sec</string>
     <string name="send_mail">Send mail</string>
-    <string name="enter_failed_exercises">Specify the exercise numbers or leave the field blank</string>
+    <string name="enter_failed_exercises">Maximum of 10 characters</string>
     <string name="description2">Exercise 2: Starting position – lying on your stomach, hand on the lower back (for control). The operated leg is lifted up by 10-15 cm . and we perform dynamic exercises. Perform 8-10 times.</string>
     <string name="warning">There are contraindications. Before using this application, it is necessary to consult with your doctor</string>
     <string name="choose_next_trainig">Select the date of the next class</string>
