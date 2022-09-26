@@ -3,8 +3,8 @@ package com.example.medicalrehabilitation
 import android.app.*
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.medicalrehabilitation.databinding.ActivityMainBinding
 import com.example.medicalrehabilitation.view.TrainingActivity
 
 const val notificationID = 1
@@ -14,39 +14,31 @@ const val messageExtra = "messageExtra"
 
 //Класс, отвечающий за работу главного экрана
 class MainActivity : AppCompatActivity() {
-    private lateinit var beginButton: Button //Кнопка с изображением "Начало тренировки"
-    private lateinit var aboutButton: Button //Кнопка "О приложении"
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        //Присваиваем значения в коде к значениям в разметке
-        beginButton = findViewById(R.id.begin_button)
-        aboutButton = findViewById(R.id.about_button)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     override fun onResume() {
         super.onResume()
-        buttonClick()
+        binding.beginButton.setOnClickListener { beginButtonClicked() } //Кнопка с изображением "Начало тренировки"
+        binding.aboutButton.setOnClickListener { aboutButtonClicked() } //Кнопка "О приложении"
     }
 
-    //Метод, с помошью которого можно взаимодействовать с кнопками
-    private fun buttonClick() {
-        //Переход с помощью кнопки к тренировке
-        beginButton.setOnClickListener {
-            val intent = Intent(this@MainActivity, TrainingActivity::class.java)
-            startActivity(intent)
-        }
+    private fun beginButtonClicked() {
+        val intent = Intent(this@MainActivity, TrainingActivity::class.java)
+        startActivity(intent)
+    }
 
-        //Переход с помощью кнопки к информации о приложении
-        aboutButton.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setMessage(R.string.about_app)
-                .setTitle(getString(R.string.about))
-                .setPositiveButton(getString(R.string.clear)) { dialog, _ -> dialog.cancel() }
-                .create()
-                .show()
-        }
+    private fun aboutButtonClicked() {
+        AlertDialog.Builder(this)
+            .setMessage(R.string.about_app)
+            .setTitle(getString(R.string.about))
+            .setPositiveButton(getString(R.string.clear)) { dialog, _ -> dialog.cancel() }
+            .create()
+            .show()
     }
 }

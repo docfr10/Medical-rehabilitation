@@ -10,96 +10,97 @@ import android.os.Handler
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.medicalrehabilitation.R
+import com.example.medicalrehabilitation.databinding.ActivityTrainingBinding
 import com.example.medicalrehabilitation.presenter.TrainingPresenter
 
 //Класс, отвечающий за работу экрана тренировки
 class TrainingActivity : AppCompatActivity() {
-    private lateinit var videoView: VideoView //Отображение видеофайла, который выбран в Uri
-    private lateinit var aboutTrainImageButton: ImageButton //Кнопка с изображением "Об упражнении"
-    private lateinit var nextButton: Button //Кнопка "Следующее упражнение" переключает упражнение
-    private lateinit var pauseButton: Button //Кнопка "Пауза" ставит таймер и проигрываемое видео на паузу
-    private lateinit var timerTextView: TextView //Текстовое поле, отображающее время на таймере
-    private lateinit var exerciseTextView: TextView //Текстовое поле, отображающее информацию об упражнении
     private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании упражнения
     private lateinit var mediaController: MediaController //Элементы управления видео(пауза, перемотка)
 
     private var trainingPresenter: TrainingPresenter = TrainingPresenter()
     private var trainingActivity: Activity = this
+    private lateinit var binding: ActivityTrainingBinding
+
+    private var isPause = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_training)
+        binding = ActivityTrainingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        //Присваиваем значения в коде к значениям в разметке
         trainingPresenter.attachView(this)
-        videoView = findViewById(R.id.training_videoView)
-        aboutTrainImageButton = findViewById(R.id.abouttrain_imageButton)
-        pauseButton = findViewById(R.id.pause_button)
-        nextButton = findViewById(R.id.next_button)
-        timerTextView = findViewById(R.id.timer_textView)
-        exerciseTextView = findViewById(R.id.exercise_textView)
-        exerciseTextView.text = getText(R.string.description1)
+        binding.exerciseTextView.text =
+            getText(R.string.description1) //Текстовое поле, отображающее информацию об упражнении
         soundOfStop = MediaPlayer.create(this, R.raw.sound_stop)
         mediaController = MediaController(this)
-        videoView.setBackgroundColor(TRANSPARENT)
+        binding.trainingVideoView.setBackgroundColor(TRANSPARENT) //Отображение видеофайла, который выбран в Uri
     }
 
     override fun onResume() {
         super.onResume()
-        timerResume(timerTextView, soundOfStop, videoView, pauseButton, mediaController)
-        videoPlay(videoView)
-        buttonClick()
+        binding.pauseButton.setOnClickListener { pauseButtonClicked() } //Кнопка "Пауза" ставит таймер и проигрываемое видео на паузу
+        binding.nextButton.setOnClickListener { nextButtonClicked() } //Кнопка "Следующее упражнение" переключает упражнение
+        binding.abouttrainImageButton.setOnClickListener { aboutTrainImageButtonClicked() } //Кнопка с изображением "Об упражнении"
+        timerResume(
+            binding.timerTextView,
+            soundOfStop,
+            binding.trainingVideoView,
+            binding.pauseButton,
+            mediaController
+        )
+        videoPlay(binding.trainingVideoView)
     }
 
     override fun onPause() {
         super.onPause()
         timerPause()
         soundPause(soundOfStop)
-        videoPause(videoView)
+        videoPause(binding.trainingVideoView)
     }
 
-    //Метод, с помошью которого можно взаимодействовать с кнопками
-    private fun buttonClick() {
-        //Переход с помощью кнопки к следующему упражнению
-        nextButton.setOnClickListener {
-            onPause()
-            rest()
-            videoChange()
+    private fun pauseButtonClicked() {
+        isPause = if (!isPause) {
+            timerPause()
+            videoPause(binding.trainingVideoView)
+            binding.pauseButton.setText(R.string.resume)
+            true
+        } else {
+            timerResume(
+                binding.timerTextView,
+                soundOfStop,
+                binding.trainingVideoView,
+                binding.pauseButton,
+                mediaController
+            )
+            videoPlay(binding.trainingVideoView)
+            binding.pauseButton.setText(R.string.pause)
+            false
         }
 
-        //Переход с помощью кнопки к информации об упражнении
-        aboutTrainImageButton.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            aboutExercise(builder)
-        }
+    }
 
-        var isPause = false
-        //Постановка видео и таймера на паузу
-        pauseButton.setOnClickListener {
-            isPause = if (!isPause) {
-                timerPause()
-                videoPause(videoView)
-                pauseButton.setText(R.string.resume)
-                true
-            } else {
-                timerResume(timerTextView, soundOfStop, videoView, pauseButton, mediaController)
-                videoPlay(videoView)
-                pauseButton.setText(R.string.pause)
-                false
-            }
-        }
+    private fun nextButtonClicked() {
+        onPause()
+        rest()
+        videoChange()
+    }
+
+    private fun aboutTrainImageButtonClicked() {
+        val builder = AlertDialog.Builder(this)
+        aboutExercise(builder)
     }
 
     private fun videoChange() {
         trainingPresenter.videoChange(
-            timerTextView,
-            pauseButton,
-            videoView,
+            binding.timerTextView,
+            binding.pauseButton,
+            binding.trainingVideoView,
         )
-        videoPlay(videoView)
+        videoPlay(binding.trainingVideoView)
         Handler().postDelayed({
-            trainingPresenter.changeDescription(exerciseTextView)
+            trainingPresenter.changeDescription(binding.exerciseTextView)
         }, 100)
         if (trainingPresenter.returnNumberOfTraining() == 0) {
             nextTraining()

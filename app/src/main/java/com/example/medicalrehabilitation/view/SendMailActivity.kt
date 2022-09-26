@@ -7,34 +7,33 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.medicalrehabilitation.MainActivity
 import com.example.medicalrehabilitation.R
+import com.example.medicalrehabilitation.databinding.ActivitySendMailBinding
 import com.example.medicalrehabilitation.presenter.SendMailPresenter
 
 
 //Класс, отвечающий за отправку сообщения на почту врачу
 class SendMailActivity : AppCompatActivity() {
-    private lateinit var doctorEmail: EditText //Электронная почта врача
-    private lateinit var trainingSpinner: Spinner //Выбор того как прошла тренировка
-    private lateinit var painfulSpinner: Spinner //Выбор того было ли больно при тренировке
-    private lateinit var failedExercises: EditText //Выбор того какие упражнения не получились
-    private lateinit var sendEmail: Button //Кнопка отправки письма
     private var sendMailPresenter: SendMailPresenter = SendMailPresenter()
+    private lateinit var binding: ActivitySendMailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_send_mail)
 
-        //Присваиваем значения в коде к значениям в разметке
+        binding = ActivitySendMailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         sendMailPresenter.attachView(this)
-        doctorEmail = findViewById(R.id.doctorsmail_editTextTextEmailAddress)
-        trainingSpinner = findViewById(R.id.training_spinner)
-        painfulSpinner = findViewById(R.id.painful_spinner)
-        failedExercises = findViewById(R.id.failed_editTextTextMultiLine)
-        sendEmail = findViewById(R.id.send_button)
     }
 
     override fun onResume() {
         super.onResume()
-        sendEmail(sendEmail, doctorEmail, trainingSpinner, painfulSpinner, failedExercises)
+        sendEmail(
+            binding.sendButton,
+            binding.doctorsmailEditTextTextEmailAddress,
+            binding.trainingSpinner,
+            binding.painfulSpinner,
+            binding.failedEditTextTextMultiLine
+        )
     }
 
     override fun onRestart() {
