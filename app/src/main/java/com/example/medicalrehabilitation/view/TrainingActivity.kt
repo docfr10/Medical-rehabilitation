@@ -9,20 +9,22 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.ActivityTrainingBinding
-import com.example.medicalrehabilitation.presenter.TrainingPresenter
+import com.example.medicalrehabilitation.viewmodel.TrainingViewModel
 
 //Класс, отвечающий за работу экрана тренировки
 class TrainingActivity : AppCompatActivity() {
     private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании упражнения
     private lateinit var mediaController: MediaController //Элементы управления видео(пауза, перемотка)
 
-    private var trainingPresenter: TrainingPresenter = TrainingPresenter()
     private var trainingActivity: Activity = this
     private lateinit var binding: ActivityTrainingBinding
 
     private var isPause = false
+
+    private lateinit var viewModel: TrainingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +32,9 @@ class TrainingActivity : AppCompatActivity() {
         binding = ActivityTrainingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        trainingPresenter.attachView(this)
+        val provider = ViewModelProvider(this)
+        viewModel = provider.get(TrainingViewModel::class.java)
+
         binding.exerciseTextView.text =
             getText(R.string.description1) //Текстовое поле, отображающее информацию об упражнении
         soundOfStop = MediaPlayer.create(this, R.raw.sound_stop)
@@ -43,42 +47,29 @@ class TrainingActivity : AppCompatActivity() {
         binding.pauseButton.setOnClickListener { pauseButtonClicked() } //Кнопка "Пауза" ставит таймер и проигрываемое видео на паузу
         binding.nextButton.setOnClickListener { nextButtonClicked() } //Кнопка "Следующее упражнение" переключает упражнение
         binding.abouttrainImageButton.setOnClickListener { aboutTrainImageButtonClicked() } //Кнопка с изображением "Об упражнении"
-        timerResume(
-            binding.timerTextView,
-            soundOfStop,
-            binding.trainingVideoView,
-            binding.pauseButton,
-            mediaController
-        )
-        videoPlay(binding.trainingVideoView)
+        timerResume(binding, soundOfStop)
+        videoPlay(binding)
     }
 
     override fun onPause() {
         super.onPause()
         timerPause()
         soundPause(soundOfStop)
-        videoPause(binding.trainingVideoView)
+        videoPause(binding)
     }
 
     private fun pauseButtonClicked() {
         isPause = if (!isPause) {
             timerPause()
-            videoPause(binding.trainingVideoView)
+            videoPause(binding)
             binding.pauseButton.setText(R.string.resume)
             true
         } else {
-            timerResume(
-                binding.timerTextView,
-                soundOfStop,
-                binding.trainingVideoView,
-                binding.pauseButton,
-                mediaController
-            )
-            videoPlay(binding.trainingVideoView)
+            timerResume(binding, soundOfStop)
+            videoPlay(binding)
             binding.pauseButton.setText(R.string.pause)
             false
         }
-
     }
 
     private fun nextButtonClicked() {
@@ -93,47 +84,42 @@ class TrainingActivity : AppCompatActivity() {
     }
 
     private fun videoChange() {
-        trainingPresenter.videoChange(
-            binding.timerTextView,
-            binding.pauseButton,
-            binding.trainingVideoView,
-        )
-        videoPlay(binding.trainingVideoView)
+        viewModel.videoChange(binding)
+        videoPlay(binding)
         Handler().postDelayed({
-            trainingPresenter.changeDescription(binding.exerciseTextView)
+            changeDescription()
         }, 100)
-        if (trainingPresenter.returnNumberOfTraining() == 0) {
+        if (viewModel.returnNumberOfTraining() == 0) {
             nextTraining()
         }
     }
 
-    private fun videoPlay(videoView: VideoView) {
-        trainingPresenter.videoPlay(videoView)
+    private fun changeDescription() {
+        viewModel.changeDescription(binding)
     }
 
-    private fun videoPause(videoView: VideoView) {
-        trainingPresenter.videoPause(videoView)
+    private fun videoPlay(binding: ActivityTrainingBinding) {
+        viewModel.videoPlay(binding)
     }
 
-    private fun timerResume(
-        timerTextView: TextView, soundOfStop: MediaPlayer, videoView: VideoView,
-        pauseButton: Button, mediaController: MediaController
-    ) {
-        trainingPresenter.timerResume(
-            timerTextView, soundOfStop, videoView, pauseButton, mediaController
-        )
+    private fun videoPause(binding: ActivityTrainingBinding) {
+        viewModel.videoPause(binding)
+    }
+
+    private fun timerResume(binding: ActivityTrainingBinding, soundOfStop: MediaPlayer) {
+        viewModel.timerResume(binding, soundOfStop)
     }
 
     private fun timerPause() {
-        trainingPresenter.timerPause()
+        viewModel.timerPause()
     }
 
     private fun soundPause(soundOfStop: MediaPlayer) {
-        trainingPresenter.soundPause(soundOfStop)
+        viewModel.soundPause(soundOfStop)
     }
 
     private fun aboutExercise(builder: AlertDialog.Builder) {
-        trainingPresenter.aboutExercise(builder)
+        viewModel.aboutExercise(builder)
     }
 
     //Вызов activity отдыха
