@@ -57,8 +57,9 @@ class SendMailPresenter : SendMailInterface {
                 ) //Текст письма
             }
             if (doctorEmail.text.isEmpty()) {
-                sendMailActivity.enterADoctorsEmail()
-            } else sendMailActivity.chooseEmail(intent)
+                //sendMailActivity.enterADoctorsEmail()
+            } else {//sendMailActivity.chooseEmail(intent)
+            }
         }
     }
 }
