@@ -4,21 +4,19 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.medicalrehabilitation.*
-import com.example.medicalrehabilitation.databinding.ActivityNextTrainingBinding
+import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentNextTrainingBinding
 import java.text.DateFormat
 import java.util.*
 
-class NextTrainingViewModel : ViewModel() {
+class BlankFragmentNextTrainingViewModel(application: Application) : AndroidViewModel(application) {
     var showAlert = MutableLiveData<Boolean>()
 
     //Метод, отвечающий за создание уведомлений на панели действий
     fun createNotifications(
         intent: Intent,
-        applicationContext: Context,
         alarmManager: AlarmManager,
         time: Long,
         title: String,
@@ -28,10 +26,12 @@ class NextTrainingViewModel : ViewModel() {
         intent.putExtra(titleExtra, title)
         intent.putExtra(messageExtra, message)
 
+        val context: Context = getApplication()
+
         //Создаем широковещательный сигнал для отправки уведомления
         val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             PendingIntent.getBroadcast(
-                applicationContext,
+                context,
                 notificationID,
                 intent,
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
@@ -48,7 +48,7 @@ class NextTrainingViewModel : ViewModel() {
     }
 
     //Метод, переводящий выбранные значения даты и времени в миллисекунды
-    fun getTime(binding: ActivityNextTrainingBinding): Long {
+    fun getTime(binding: FragmentBlankFragmentNextTrainingBinding): Long {
         val minute = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             binding.timePicker.minute
         } else {
@@ -99,10 +99,5 @@ class NextTrainingViewModel : ViewModel() {
         }
         channel.description = desc
         notificationManager.createNotificationChannel(channel)
-    }
-
-    fun returnShowAlert(): Boolean? {
-        Log.d("returnShowAlert", showAlert.value.toString())
-        return showAlert.value
     }
 }

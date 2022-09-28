@@ -15,14 +15,14 @@
         android:theme="@style/Theme.MedicalRehabilitation"
         tools:targetApi="31" >
         <activity
-            android:name=".view.SendMailActivity"
+            android:name=".trash.SendMailActivity"
             android:exported="false" />
 
         <receiver
             android:name=".model.NotificationsModel"
             android:enabled="true" /> <!-- Activity, отвечающая за выбор даты следующей тренировки -->
         <activity
-            android:name=".view.NextTrainingActivity"
+            android:name=".trash.NextTrainingActivity"
             android:exported="false"
             android:screenOrientation="portrait" /> <!-- Activity, отвечающая за главный экран -->
         <!-- android:theme="@style/SplashTheme" -->
@@ -37,7 +37,7 @@
             </intent-filter>
         </activity> <!-- Activity, отвечающая за экран тренировок -->
         <activity
-            android:name=".view.TrainingActivity"
+            android:name=".trash.TrainingActivity"
             android:exported="false"
             android:screenOrientation="portrait" >
             <meta-data
@@ -45,7 +45,7 @@
                 android:value=".MainActivity" />
         </activity> <!-- Activity, отвечающая за экран отдыха -->
         <activity
-            android:name=".view.RestActivity"
+            android:name=".trash.RestActivity"
             android:exported="false"
             android:label="@string/pause"
             android:screenOrientation="portrait"

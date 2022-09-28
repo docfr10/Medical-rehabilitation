@@ -1,46 +1,49 @@
 package com.example.medicalrehabilitation.view
 
-import android.app.Activity
 import android.app.AlertDialog
-import android.content.Intent
-import android.graphics.Color.TRANSPARENT
+import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
-import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.MediaController
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.medicalrehabilitation.viewmodel.BlankFragmentTrainingViewModel
 import com.example.medicalrehabilitation.R
-import com.example.medicalrehabilitation.databinding.ActivityTrainingBinding
-import com.example.medicalrehabilitation.viewmodel.TrainingViewModel
+import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentTrainingBinding
 
-//Класс, отвечающий за работу экрана тренировки
-class TrainingActivity : AppCompatActivity() {
+class BlankFragmentTraining : Fragment() {
     private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании упражнения
     private lateinit var mediaController: MediaController //Элементы управления видео(пауза, перемотка)
 
-    private var trainingActivity: Activity = this
-    private lateinit var binding: ActivityTrainingBinding
-
     private var isPause = false
 
-    private lateinit var viewModel: TrainingViewModel
+    private lateinit var viewModel: BlankFragmentTrainingViewModel
+    private lateinit var binding: FragmentBlankFragmentTrainingBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding = ActivityTrainingBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentBlankFragmentTrainingBinding.inflate(inflater, container, false)
 
         val provider = ViewModelProvider(this)
-        viewModel = provider.get(TrainingViewModel::class.java)
+        viewModel = provider[BlankFragmentTrainingViewModel::class.java]
 
         binding.exerciseTextView.text =
             getText(R.string.description1) //Текстовое поле, отображающее информацию об упражнении
-        soundOfStop = MediaPlayer.create(this, R.raw.sound_stop)
-        mediaController = MediaController(this)
-        binding.trainingVideoView.setBackgroundColor(TRANSPARENT) //Отображение видеофайла, который выбран в Uri
+        soundOfStop = MediaPlayer.create(context, R.raw.sound_stop)
+        mediaController = MediaController(context)
+        binding.trainingVideoView.setBackgroundColor(Color.TRANSPARENT) //Отображение видеофайла, который выбран в Uri
+
+        return binding.root
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -49,6 +52,7 @@ class TrainingActivity : AppCompatActivity() {
         binding.abouttrainImageButton.setOnClickListener { aboutTrainImageButtonClicked() } //Кнопка с изображением "Об упражнении"
         timerResume(binding, soundOfStop)
         videoPlay(binding)
+        Log.d("AAAAAAAAA", viewModel.counterNumberOfTraining.value.toString())
     }
 
     override fun onPause() {
@@ -79,7 +83,7 @@ class TrainingActivity : AppCompatActivity() {
     }
 
     private fun aboutTrainImageButtonClicked() {
-        val builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(context)
         aboutExercise(builder)
     }
 
@@ -98,15 +102,18 @@ class TrainingActivity : AppCompatActivity() {
         viewModel.changeDescription(binding)
     }
 
-    private fun videoPlay(binding: ActivityTrainingBinding) {
+    private fun videoPlay(binding: FragmentBlankFragmentTrainingBinding) {
         viewModel.videoPlay(binding)
     }
 
-    private fun videoPause(binding: ActivityTrainingBinding) {
+    private fun videoPause(binding: FragmentBlankFragmentTrainingBinding) {
         viewModel.videoPause(binding)
     }
 
-    private fun timerResume(binding: ActivityTrainingBinding, soundOfStop: MediaPlayer) {
+    private fun timerResume(
+        binding: FragmentBlankFragmentTrainingBinding,
+        soundOfStop: MediaPlayer
+    ) {
         viewModel.timerResume(binding, soundOfStop)
     }
 
@@ -124,13 +131,11 @@ class TrainingActivity : AppCompatActivity() {
 
     //Вызов activity отдыха
     private fun rest() {
-        val intent = Intent(trainingActivity, RestActivity::class.java)
-        startActivity(intent)
+        findNavController().navigate(R.id.action_blankFragmentTraining_to_blankFragmentRest)
     }
 
     //Вызов activity выбора следующей тренировки
     private fun nextTraining() {
-        val intent = Intent(trainingActivity, NextTrainingActivity::class.java)
-        startActivity(intent)
+        findNavController().navigate(R.id.action_blankFragmentTraining_to_blankFragmentNextTraining)
     }
 }

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.SendMailActivity">
+    tools:context=".view.BlankFragmentSendMail">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -102,10 +101,18 @@
                 android:id="@+id/send_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="@string/send"
+                tools:ignore="TextContrastCheck" />
+
+            <Button
+                android:id="@+id/on_menu_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/on_menu"
                 tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

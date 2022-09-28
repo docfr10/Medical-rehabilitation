@@ -8,18 +8,18 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.medicalrehabilitation.R
-import com.example.medicalrehabilitation.databinding.ActivitySendMailBinding
+import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentSendMailBinding
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class SendMailViewModel(application: Application) : AndroidViewModel(application) {
+class BlankFragmentSendMailViewModel(application: Application) : AndroidViewModel(application) {
     private var currentDate: Date = Calendar.getInstance().time
     private var dateFormat: DateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
     var mutableLiveDataIntent = MutableLiveData<Intent>()
 
     fun sendEmail(
-        binding: ActivitySendMailBinding,
+        binding: FragmentBlankFragmentSendMailBinding,
         theme: String
     ) {
         val dateString: String = dateFormat.format(currentDate)

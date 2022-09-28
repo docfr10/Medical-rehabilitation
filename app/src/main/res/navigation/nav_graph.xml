@@ -2,4 +2,54 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph" />
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/blankFragmentHome">
+    <fragment
+        android:id="@+id/blankFragmentTraining"
+        android:name="com.example.medicalrehabilitation.view.BlankFragmentTraining"
+        android:label="fragment_blank_fragment_training"
+        tools:layout="@layout/fragment_blank_fragment_training" >
+        <action
+            android:id="@+id/action_blankFragmentTraining_to_blankFragmentNextTraining"
+            app:destination="@id/blankFragmentNextTraining" />
+        <action
+            android:id="@+id/action_blankFragmentTraining_to_blankFragmentRest"
+            app:destination="@id/blankFragmentRest" />
+    </fragment>
+    <fragment
+        android:id="@+id/blankFragmentHome"
+        android:name="com.example.medicalrehabilitation.view.BlankFragmentHome"
+        android:label="fragment_blank_fragment_home"
+        tools:layout="@layout/fragment_blank_fragment_home" >
+        <action
+            android:id="@+id/action_blankFragmentHome_to_blankFragmentTraining"
+            app:destination="@id/blankFragmentTraining" />
+    </fragment>
+    <fragment
+        android:id="@+id/blankFragmentNextTraining"
+        android:name="com.example.medicalrehabilitation.view.BlankFragmentNextTraining"
+        android:label="fragment_blank_fragment_next_training"
+        tools:layout="@layout/fragment_blank_fragment_next_training" >
+        <action
+            android:id="@+id/action_blankFragmentNextTraining_to_blankFragmentSendMail"
+            app:destination="@id/blankFragmentSendMail" />
+    </fragment>
+    <fragment
+        android:id="@+id/blankFragmentRest"
+        android:name="com.example.medicalrehabilitation.view.BlankFragmentRest"
+        android:label="fragment_blank_fragment_rest"
+        tools:layout="@layout/fragment_blank_fragment_rest" >
+        <action
+            android:id="@+id/action_blankFragmentRest_to_blankFragmentTraining"
+            app:destination="@id/blankFragmentTraining" />
+    </fragment>
+    <fragment
+        android:id="@+id/blankFragmentSendMail"
+        android:name="com.example.medicalrehabilitation.view.BlankFragmentSendMail"
+        android:label="fragment_blank_fragment_send_mail"
+        tools:layout="@layout/fragment_blank_fragment_send_mail" >
+        <action
+            android:id="@+id/action_blankFragmentSendMail_to_blankFragmentHome"
+            app:destination="@id/blankFragmentHome" />
+    </fragment>
+</navigation>

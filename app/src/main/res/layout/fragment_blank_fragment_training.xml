@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.TrainingActivity">
+    tools:context=".view.BlankFragmentTraining">
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -26,10 +26,10 @@
         android:id="@+id/timer_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Example"
         android:textColorHint="#757575"
         android:textSize="60sp"
-        android:gravity="center"
         android:textStyle="bold|italic"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"

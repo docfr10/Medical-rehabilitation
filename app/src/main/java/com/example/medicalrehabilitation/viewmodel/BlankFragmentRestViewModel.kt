@@ -3,10 +3,10 @@ package com.example.medicalrehabilitation.viewmodel
 import android.media.MediaPlayer
 import android.os.CountDownTimer
 import androidx.lifecycle.ViewModel
-import com.example.medicalrehabilitation.databinding.ActivityRestBinding
+import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentRestBinding
 import java.util.*
 
-class RestViewModel : ViewModel() {
+class BlankFragmentRestViewModel : ViewModel() {
     private var timer: CountDownTimer? = null //Таймер
     private var millisStart: Long = 120000 //Время отдыха
     private var millisLeft: Long = millisStart //Время, оставщееся до конца отдыха
@@ -14,7 +14,7 @@ class RestViewModel : ViewModel() {
     //Запуск и проверка таймера на окончание
     private fun timerStart(
         millisInFuture: Long,
-        binding: ActivityRestBinding,
+        binding: FragmentBlankFragmentRestBinding,
         soundOfStop: MediaPlayer
     ) {
         timer = object : CountDownTimer(millisInFuture, 1) {
@@ -39,11 +39,11 @@ class RestViewModel : ViewModel() {
     }
 
     //Воспроизведение таймера с того момента когда он остановился
-    fun timerResume(binding: ActivityRestBinding, soundOfStop: MediaPlayer) {
+    fun timerResume(binding: FragmentBlankFragmentRestBinding, soundOfStop: MediaPlayer) {
         timerStart(millisLeft, binding, soundOfStop)
     }
 
-    fun plus30Sec(millisPlus: Int, binding: ActivityRestBinding, soundOfStop: MediaPlayer) {
+    fun plus30Sec(millisPlus: Int, binding: FragmentBlankFragmentRestBinding, soundOfStop: MediaPlayer) {
         timer?.cancel()
         timerStart(millisLeft + millisPlus, binding, soundOfStop)
     }
