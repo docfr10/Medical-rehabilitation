@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.model.NotificationsModel
 import com.example.medicalrehabilitation.databinding.ActivityNextTrainingBinding
-import com.example.medicalrehabilitation.presenter.NextTrainingPresenter
 import com.example.medicalrehabilitation.viewmodel.NextTrainingViewModel
 import java.util.*
 
@@ -16,8 +15,6 @@ import java.util.*
 class NextTrainingActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNextTrainingBinding //Библиотека binding упрощает работу с компонентами GUI
-    private var nextTrainingPresenter: NextTrainingPresenter = NextTrainingPresenter()
-
     private lateinit var viewModel: NextTrainingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +27,6 @@ class NextTrainingActivity : AppCompatActivity() {
         viewModel = provider.get(NextTrainingViewModel::class.java)
 
         createNotificationChannel()
-        nextTrainingPresenter.attachView(this)
         //С помощью binding обрабатываем нажатия на кнопку
         binding.button.setOnClickListener { createNotifications() }
         binding.timePicker.setIs24HourView(true)
@@ -67,11 +63,13 @@ class NextTrainingActivity : AppCompatActivity() {
         val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
         val builder = AlertDialog.Builder(this)
         viewModel.showAlert(date, dateFormat, timeFormat, builder)
-        if (viewModel.returnShowAlert() == true)
-            sendMail()
+        viewModel.showAlert.observe(this) {
+            if (it == true)
+                sendMail()
+        }
     }
 
-    fun sendMail() {
+    private fun sendMail() {
         val intent1 = Intent(this@NextTrainingActivity, SendMailActivity::class.java)
         startActivity(intent1)
     }

@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.ActivityRestBinding
-import com.example.medicalrehabilitation.presenter.RestPresenter
 import com.example.medicalrehabilitation.viewmodel.RestViewModel
 
 //Класс, отвечающий за работу RestActivity
