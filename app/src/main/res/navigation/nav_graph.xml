@@ -12,9 +12,6 @@
         <action
             android:id="@+id/action_blankFragmentTraining_to_blankFragmentNextTraining"
             app:destination="@id/blankFragmentNextTraining" />
-        <action
-            android:id="@+id/action_blankFragmentTraining_to_blankFragmentRest"
-            app:destination="@id/blankFragmentRest" />
     </fragment>
     <fragment
         android:id="@+id/blankFragmentHome"
@@ -33,15 +30,6 @@
         <action
             android:id="@+id/action_blankFragmentNextTraining_to_blankFragmentSendMail"
             app:destination="@id/blankFragmentSendMail" />
-    </fragment>
-    <fragment
-        android:id="@+id/blankFragmentRest"
-        android:name="com.example.medicalrehabilitation.view.BlankFragmentRest"
-        android:label="fragment_blank_fragment_rest"
-        tools:layout="@layout/fragment_blank_fragment_rest" >
-        <action
-            android:id="@+id/action_blankFragmentRest_to_blankFragmentTraining"
-            app:destination="@id/blankFragmentTraining" />
     </fragment>
     <fragment
         android:id="@+id/blankFragmentSendMail"
