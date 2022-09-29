@@ -5,16 +5,24 @@ import android.media.MediaPlayer
 import android.net.Uri
 import android.os.CountDownTimer
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentTrainingBinding
+import java.util.*
 
 class BlankFragmentTrainingViewModel : ViewModel() {
     //Ссылка на видео, которое будет проигрываться
     private var timer: CountDownTimer? = null //Таймер
+
     private var millisStart: Long = 300000 //Время выполнения упражнения
     private var millisLeft: Long = millisStart //Время, оставщееся до конца упражнения
+
+    private var millisStartOnRest: Long = 120000 //Время отдыха
+    private var millisLeftOnRest: Long = millisStartOnRest //Время, оставщееся до конца отдыха
+    private var plus30SecOnRest: Int = 30000
+
     private var end: Boolean =
         false //Параметр, определяюший завершился ли таймер, необходим для повторного невоспроизведения звука завершения упражнения
 
@@ -112,6 +120,7 @@ class BlankFragmentTrainingViewModel : ViewModel() {
 
     //Запуск и проверка таймера на окончание
     private fun timerStart(
+        isRestTimer: Boolean,
         millisInFuture: Long,
         soundOfStop: MediaPlayer,
         binding: FragmentBlankFragmentTrainingBinding
@@ -119,18 +128,29 @@ class BlankFragmentTrainingViewModel : ViewModel() {
         timer?.cancel()
         timer = object : CountDownTimer(millisInFuture, 1) {
             override fun onTick(p0: Long) {
-                millisLeft = p0
+                if (isRestTimer)
+                    millisLeftOnRest = p0
+                else
+                    millisLeft = p0
                 val minutes = (p0 / (1000 * 60))
                 val seconds = ((p0 / 1000) - minutes * 60)
-                binding.timerTextView.text = "$minutes:$seconds"
+                if (isRestTimer)
+                    binding.timerTextViewRest.text = "$minutes:$seconds"
+                else
+                    binding.timerTextView.text = "$minutes:$seconds"
             }
 
             override fun onFinish() {
-                binding.timerTextView.text = "Закончили"
+                if (isRestTimer)
+                    binding.timerTextViewRest.text = "Закончили"
+                else
+                    binding.timerTextView.text = "Закончили"
                 if (!end) {
                     soundPlay(soundOfStop)
                     end = true
                 }
+                if (isRestTimer)
+                    binding.linerLayoutBlankRest.isVisible = false
                 binding.pauseButton.visibility = View.GONE
             }
         }
@@ -143,9 +163,31 @@ class BlankFragmentTrainingViewModel : ViewModel() {
     }
 
     //Воспроизведение таймера с того момента когда он остановился
-    fun timerResume(binding: FragmentBlankFragmentTrainingBinding, soundOfStop: MediaPlayer) {
+    fun timerResume(
+        isRestTimer: Boolean,
+        binding: FragmentBlankFragmentTrainingBinding,
+        soundOfStop: MediaPlayer
+    ) {
         timer?.cancel()
-        timerStart(millisLeft, soundOfStop, binding)
+        if (isRestTimer)
+            timerStart(isRestTimer, millisLeft, soundOfStop, binding)
+        else
+            timerStart(isRestTimer, millisLeftOnRest, soundOfStop, binding)
+    }
+
+    //////////////////////////////
+    fun plus30Sec(
+        binding: FragmentBlankFragmentTrainingBinding,
+        soundOfStop: MediaPlayer
+    ) {
+        timer?.cancel()
+        timerStart(true, millisLeftOnRest + plus30SecOnRest, soundOfStop, binding)
+    }
+
+    fun getRecommendations(recommendations: Array<String>): String {
+        val randomIndex = Random().nextInt(recommendations.size)
+        println("RANDOM: $randomIndex")
+        return recommendations[randomIndex]
     }
 
     fun returnNumberOfTraining(): Int? {

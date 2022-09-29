@@ -5,12 +5,12 @@ import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.MediaController
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.medicalrehabilitation.viewmodel.BlankFragmentTrainingViewModel
@@ -41,6 +41,9 @@ class BlankFragmentTraining : Fragment() {
         mediaController = MediaController(context)
         binding.trainingVideoView.setBackgroundColor(Color.TRANSPARENT) //Отображение видеофайла, который выбран в Uri
 
+        val recommendations: Array<String> = resources.getStringArray(R.array.recommendations)
+        binding.recommendationsTextView.text = viewModel.getRecommendations(recommendations)
+
         return binding.root
     }
 
@@ -50,9 +53,11 @@ class BlankFragmentTraining : Fragment() {
         binding.pauseButton.setOnClickListener { pauseButtonClicked() } //Кнопка "Пауза" ставит таймер и проигрываемое видео на паузу
         binding.nextButton.setOnClickListener { nextButtonClicked() } //Кнопка "Следующее упражнение" переключает упражнение
         binding.abouttrainImageButton.setOnClickListener { aboutTrainImageButtonClicked() } //Кнопка с изображением "Об упражнении"
-        timerResume(binding, soundOfStop)
+
+        binding.plus30secButton.setOnClickListener { plus30Sec() }
+        binding.nextButton2.setOnClickListener { nextButtonClickedOnRest() }
+        timerResume(false, binding, soundOfStop)
         videoPlay(binding)
-        Log.d("AAAAAAAAA", viewModel.counterNumberOfTraining.value.toString())
     }
 
     override fun onPause() {
@@ -69,7 +74,7 @@ class BlankFragmentTraining : Fragment() {
             binding.pauseButton.setText(R.string.resume)
             true
         } else {
-            timerResume(binding, soundOfStop)
+            timerResume(false, binding, soundOfStop)
             videoPlay(binding)
             binding.pauseButton.setText(R.string.pause)
             false
@@ -111,10 +116,11 @@ class BlankFragmentTraining : Fragment() {
     }
 
     private fun timerResume(
+        isRestTimer: Boolean,
         binding: FragmentBlankFragmentTrainingBinding,
         soundOfStop: MediaPlayer
     ) {
-        viewModel.timerResume(binding, soundOfStop)
+        viewModel.timerResume(isRestTimer, binding, soundOfStop)
     }
 
     private fun timerPause() {
@@ -131,7 +137,16 @@ class BlankFragmentTraining : Fragment() {
 
     //Вызов activity отдыха
     private fun rest() {
-        findNavController().navigate(R.id.action_blankFragmentTraining_to_blankFragmentRest)
+        binding.linerLayoutBlankRest.isVisible = true
+        timerResume(true, binding, soundOfStop)
+    }
+
+    private fun plus30Sec() {
+        viewModel.plus30Sec(binding, soundOfStop)
+    }
+
+    private fun nextButtonClickedOnRest() {
+        binding.linerLayoutBlankRest.isVisible = false
     }
 
     //Вызов activity выбора следующей тренировки

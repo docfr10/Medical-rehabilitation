@@ -89,4 +89,56 @@
         app:layout_constraintTop_toTopOf="@+id/frameLayout"
         app:srcCompat="@android:drawable/ic_dialog_info" />
 
+    <LinearLayout
+        android:id="@+id/linerLayoutBlankRest"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/recommendations_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/pause"
+            android:textSize="34sp" />
+
+        <TextView
+            android:id="@+id/timer_textView_rest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/pause"
+            android:textSize="34sp" />
+
+        <Button
+            android:id="@+id/plus30sec_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/plus30sec" />
+
+        <Button
+            android:id="@+id/next_button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/next" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
