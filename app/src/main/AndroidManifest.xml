@@ -19,7 +19,7 @@
             android:exported="false" />
 
         <receiver
-            android:name=".model.NotificationsModel"
+            android:name=".model.notifications.NotificationsModel"
             android:enabled="true" /> <!-- Activity, отвечающая за выбор даты следующей тренировки -->
         <activity
             android:name=".trash.NextTrainingActivity"

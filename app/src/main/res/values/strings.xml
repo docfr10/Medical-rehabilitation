@@ -55,4 +55,5 @@
     <string name="warning2">The appearance of pain during exercise is a signal to reduce the amplitude of exercise, their intensity, or to completely stop their performance.</string>
     <string name="fill_email">Fill out the email</string>
     <string name="on_menu">On the menu</string>
+    <string name="exercise_history">Exercise History</string>
 </resources>

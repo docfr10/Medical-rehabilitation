@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_blankFragmentHome_to_blankFragmentTraining"
             app:destination="@id/blankFragmentTraining" />
+        <action
+            android:id="@+id/action_blankFragmentHome_to_blankFragmentExerciseHistoryList"
+            app:destination="@id/blankFragmentExerciseHistoryList" />
     </fragment>
     <fragment
         android:id="@+id/blankFragmentNextTraining"
@@ -38,6 +41,14 @@
         tools:layout="@layout/fragment_blank_fragment_send_mail" >
         <action
             android:id="@+id/action_blankFragmentSendMail_to_blankFragmentHome"
+            app:destination="@id/blankFragmentHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/blankFragmentExerciseHistoryList"
+        android:name="com.example.medicalrehabilitation.view.BlankFragmentExerciseHistoryList"
+        android:label="BlankFragmentExerciseHistoryList" >
+        <action
+            android:id="@+id/action_blankFragmentExerciseHistoryList_to_blankFragmentHome"
             app:destination="@id/blankFragmentHome" />
     </fragment>
 </navigation>

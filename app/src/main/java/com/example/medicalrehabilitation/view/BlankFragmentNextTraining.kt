@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.medicalrehabilitation.viewmodel.BlankFragmentNextTrainingViewModel
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentNextTrainingBinding
-import com.example.medicalrehabilitation.model.NotificationsModel
+import com.example.medicalrehabilitation.model.notifications.NotificationsModel
 import java.util.*
 
 class BlankFragmentNextTraining : Fragment() {

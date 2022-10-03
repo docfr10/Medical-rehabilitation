@@ -1,4 +1,4 @@
-package com.example.medicalrehabilitation.model
+package com.example.medicalrehabilitation.model.notifications
 
 import android.app.NotificationManager
 import android.app.PendingIntent

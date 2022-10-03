@@ -1,5 +1,6 @@
 package com.example.medicalrehabilitation.view
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -33,6 +34,19 @@ class BlankFragmentHome : Fragment() {
         binding.beginButton.setOnClickListener {
             it.findNavController().navigate(R.id.action_blankFragmentHome_to_blankFragmentTraining)
         } //Кнопка с изображением "Начало тренировки"
-        binding.aboutButton.setOnClickListener { viewModel.aboutButtonClicked() } //Кнопка "О приложении"
+
+        binding.exerciseHistory.setOnClickListener {
+            it.findNavController()
+                .navigate(R.id.action_blankFragmentHome_to_blankFragmentExerciseHistoryList)
+        }
+
+        binding.aboutButton.setOnClickListener {
+            AlertDialog.Builder(context)
+                .setMessage(R.string.about_app)
+                .setTitle((R.string.about))
+                .setPositiveButton((R.string.clear)) { dialog, _ -> dialog.cancel() }
+                .create()
+                .show()
+        } //Кнопка "О приложении"
     }
 }
