@@ -3,11 +3,15 @@ package com.example.medicalrehabilitation.view
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.medicalrehabilitation.viewmodel.BlankFragmentSendMailViewModel
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentExerciseHistoryBinding
@@ -39,7 +43,6 @@ class BlankFragmentSendMail : Fragment() {
         binding.sendButton.setOnClickListener {
             sendEmail(binding)
         }
-
         binding.onMenuButton.setOnClickListener {
             it.findNavController().navigate(R.id.action_blankFragmentSendMail_to_blankFragmentHome)
         }
@@ -47,6 +50,22 @@ class BlankFragmentSendMail : Fragment() {
         viewModel.mutableLiveDataIntent.observe(viewLifecycleOwner) {
             insertDataToDatabase(binding)
         }
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (viewModel.touchCounter.value == 1)
+                    findNavController().navigate(R.id.action_blankFragmentSendMail_to_blankFragmentHome)
+                else {
+                    val toast =
+                        Toast.makeText(context, R.string.return_to_main_menu, Toast.LENGTH_SHORT)
+                    toast.setGravity(Gravity.BOTTOM, 0, 0)
+                    toast.show()
+                    viewModel.timerForTouch()
+                    viewModel.touchCounter.value = 1
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
 
         return binding.root
     }

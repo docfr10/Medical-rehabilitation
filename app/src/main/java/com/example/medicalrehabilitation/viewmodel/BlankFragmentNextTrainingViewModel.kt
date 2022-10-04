@@ -4,6 +4,7 @@ import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.CountDownTimer
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.medicalrehabilitation.*
@@ -12,7 +13,11 @@ import java.text.DateFormat
 import java.util.*
 
 class BlankFragmentNextTrainingViewModel(application: Application) : AndroidViewModel(application) {
+    private var timer: CountDownTimer? = null //Таймер
+
     var showAlert = MutableLiveData<Boolean>()
+    var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
+
 
     //Метод, отвечающий за создание уведомлений на панели действий
     fun createNotifications(
@@ -99,5 +104,16 @@ class BlankFragmentNextTrainingViewModel(application: Application) : AndroidView
         }
         channel.description = desc
         notificationManager.createNotificationChannel(channel)
+    }
+
+    fun timerForTouch() {
+        timer = object : CountDownTimer(2000, 1) {
+            override fun onTick(p0: Long) {}
+
+            override fun onFinish() {
+                touchCounter.value = 0
+            }
+        }
+        (timer as CountDownTimer).start()
     }
 }

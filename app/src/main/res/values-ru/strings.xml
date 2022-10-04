@@ -59,4 +59,6 @@
     <string name="date_of_exercise_text">Дата упражнения</string>
     <string name="was_painful_text">Было ли больно?</string>
     <string name="how_was_training_text">Как прошло занятие?</string>
+    <string name="return_to_main_menu">Для возврата в главное меню нажмите кнопку \"Назад\" еще раз</string>
+    <string name="exit_app">Чтобы выйти из приложения, снова нажмите кнопку \"Назад\".</string>
 </resources>

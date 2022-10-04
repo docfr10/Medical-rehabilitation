@@ -3,6 +3,7 @@ package com.example.medicalrehabilitation.viewmodel
 import android.app.Application
 import android.content.Intent
 import android.net.Uri
+import android.os.CountDownTimer
 import android.view.Gravity
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
@@ -15,11 +16,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class BlankFragmentSendMailViewModel(application: Application) : AndroidViewModel(application) {
+    private var timer: CountDownTimer? = null //Таймер
+
     private var currentDate: Date = Calendar.getInstance().time
     private var dateFormat: DateFormat =
         SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault())
     private var dateString: String = dateFormat.format(currentDate)
     var mutableLiveDataIntent = MutableLiveData<Intent>()
+    var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
 
     fun sendEmail(
         binding: FragmentBlankFragmentSendMailBinding,
@@ -78,5 +82,16 @@ class BlankFragmentSendMailViewModel(application: Application) : AndroidViewMode
             howWasPainful,
             failedExercises
         )
+    }
+
+    fun timerForTouch() {
+        timer = object : CountDownTimer(2000, 1) {
+            override fun onTick(p0: Long) {}
+
+            override fun onFinish() {
+                touchCounter.value = 0
+            }
+        }
+        (timer as CountDownTimer).start()
     }
 }

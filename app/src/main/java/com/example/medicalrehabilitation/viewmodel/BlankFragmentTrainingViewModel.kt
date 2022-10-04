@@ -30,6 +30,7 @@ class BlankFragmentTrainingViewModel : ViewModel() {
         Uri.parse("android.resource://com.example.medicalrehabilitation/" + R.raw.video1)
 
     var counterNumberOfTraining = MutableLiveData<Int>().apply { postValue(1) }
+    var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
 
     //Воспроизведение видео
     fun videoPlay(binding: FragmentBlankFragmentTrainingBinding) {
@@ -69,9 +70,6 @@ class BlankFragmentTrainingViewModel : ViewModel() {
                         "android.resource://com.example.medicalrehabilitation/" + R.raw.video4
                     )
                 counterNumberOfTraining.value = 4
-            }
-            4 -> {
-                counterNumberOfTraining.value = 0
             }
         }
         videoPlay(binding)
@@ -185,5 +183,16 @@ class BlankFragmentTrainingViewModel : ViewModel() {
         val randomIndex = Random().nextInt(recommendations.size)
         println("RANDOM: $randomIndex")
         return recommendations[randomIndex]
+    }
+
+    fun timerForTouch() {
+        timer = object : CountDownTimer(2000, 1) {
+            override fun onTick(p0: Long) {}
+
+            override fun onFinish() {
+                touchCounter.value = 0
+            }
+        }
+        (timer as CountDownTimer).start()
     }
 }

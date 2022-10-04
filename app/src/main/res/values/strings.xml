@@ -59,4 +59,6 @@
     <string name="date_of_exercise_text">Date of exercise</string>
     <string name="was_painful_text">Did it painful?</string>
     <string name="how_was_training_text">How did the exercise go?</string>
+    <string name="return_to_main_menu">To return to the main menu, press the \"Back\" button again</string>
+    <string name="exit_app">To exit the app, press the \"Back\" button again.</string>
 </resources>

@@ -8,47 +8,85 @@
         android:id="@+id/blankFragmentTraining"
         android:name="com.example.medicalrehabilitation.view.BlankFragmentTraining"
         android:label="fragment_blank_fragment_training"
-        tools:layout="@layout/fragment_blank_fragment_training" >
+        tools:layout="@layout/fragment_blank_fragment_training">
         <action
             android:id="@+id/action_blankFragmentTraining_to_blankFragmentNextTraining"
-            app:destination="@id/blankFragmentNextTraining" />
+            app:destination="@id/blankFragmentNextTraining"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_blankFragmentTraining_to_blankFragmentHome"
+            app:destination="@id/blankFragmentHome"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/blankFragmentHome"
         android:name="com.example.medicalrehabilitation.view.BlankFragmentHome"
         android:label="fragment_blank_fragment_home"
-        tools:layout="@layout/fragment_blank_fragment_home" >
+        tools:layout="@layout/fragment_blank_fragment_home">
         <action
             android:id="@+id/action_blankFragmentHome_to_blankFragmentTraining"
-            app:destination="@id/blankFragmentTraining" />
+            app:destination="@id/blankFragmentTraining"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_blankFragmentHome_to_blankFragmentExerciseHistoryList"
-            app:destination="@id/blankFragmentExerciseHistoryList" />
+            app:destination="@id/blankFragmentExerciseHistoryList"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/blankFragmentNextTraining"
         android:name="com.example.medicalrehabilitation.view.BlankFragmentNextTraining"
         android:label="fragment_blank_fragment_next_training"
-        tools:layout="@layout/fragment_blank_fragment_next_training" >
+        tools:layout="@layout/fragment_blank_fragment_next_training">
         <action
             android:id="@+id/action_blankFragmentNextTraining_to_blankFragmentSendMail"
-            app:destination="@id/blankFragmentSendMail" />
+            app:destination="@id/blankFragmentSendMail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_blankFragmentNextTraining_to_blankFragmentHome"
+            app:destination="@id/blankFragmentHome"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/blankFragmentSendMail"
         android:name="com.example.medicalrehabilitation.view.BlankFragmentSendMail"
         android:label="fragment_blank_fragment_send_mail"
-        tools:layout="@layout/fragment_blank_fragment_send_mail" >
+        tools:layout="@layout/fragment_blank_fragment_send_mail">
         <action
             android:id="@+id/action_blankFragmentSendMail_to_blankFragmentHome"
-            app:destination="@id/blankFragmentHome" />
+            app:destination="@id/blankFragmentHome"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/blankFragmentExerciseHistoryList"
         android:name="com.example.medicalrehabilitation.view.BlankFragmentExerciseHistoryList"
-        android:label="BlankFragmentExerciseHistoryList" >
+        android:label="BlankFragmentExerciseHistoryList">
         <action
             android:id="@+id/action_blankFragmentExerciseHistoryList_to_blankFragmentHome"
-            app:destination="@id/blankFragmentHome" />
+            app:destination="@id/blankFragmentHome"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 </navigation>

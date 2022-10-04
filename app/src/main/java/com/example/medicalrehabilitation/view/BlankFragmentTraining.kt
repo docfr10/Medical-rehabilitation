@@ -4,17 +4,19 @@ import android.app.AlertDialog
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.animation.AnimationUtils
 import android.widget.MediaController
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.medicalrehabilitation.viewmodel.BlankFragmentTrainingViewModel
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentTrainingBinding
+import com.example.medicalrehabilitation.viewmodel.BlankFragmentTrainingViewModel
+
 
 class BlankFragmentTraining : Fragment() {
     private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании упражнения
@@ -25,6 +27,7 @@ class BlankFragmentTraining : Fragment() {
     private lateinit var viewModel: BlankFragmentTrainingViewModel
     private lateinit var binding: FragmentBlankFragmentTrainingBinding
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,33 +37,44 @@ class BlankFragmentTraining : Fragment() {
         val provider = ViewModelProvider(this)
         viewModel = provider[BlankFragmentTrainingViewModel::class.java]
 
+        val recommendations: Array<String> = resources.getStringArray(R.array.recommendations)
+        binding.recommendationsTextView.text = viewModel.getRecommendations(recommendations)
         binding.exerciseTextView.text =
             getText(R.string.description1) //Текстовое поле, отображающее информацию об упражнении
         soundOfStop = MediaPlayer.create(context, R.raw.sound_stop)
         mediaController = MediaController(context)
         binding.trainingVideoView.setBackgroundColor(Color.TRANSPARENT) //Отображение видеофайла, который выбран в Uri
 
-        val recommendations: Array<String> = resources.getStringArray(R.array.recommendations)
-        binding.recommendationsTextView.text = viewModel.getRecommendations(recommendations)
-
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (viewModel.touchCounter.value == 1)
+                    findNavController().navigate(R.id.action_blankFragmentTraining_to_blankFragmentHome)
+                else {
+                    val toast =
+                        Toast.makeText(context, R.string.return_to_main_menu, Toast.LENGTH_SHORT)
+                    toast.setGravity(Gravity.BOTTOM, 0, 0)
+                    toast.show()
+                    viewModel.timerForTouch()
+                    viewModel.touchCounter.value = 1
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
         return binding.root
     }
-
 
     override fun onResume() {
         super.onResume()
         binding.pauseButton.setOnClickListener { pauseButtonClicked() } //Кнопка "Пауза" ставит таймер и проигрываемое видео на паузу
         binding.nextButton.setOnClickListener { nextButtonClicked() } //Кнопка "Следующее упражнение" переключает упражнение
         binding.abouttrainImageButton.setOnClickListener { aboutTrainImageButtonClicked() } //Кнопка с изображением "Об упражнении"
-
         binding.plus30secButton.setOnClickListener { plus30Sec() }
         binding.nextButton2.setOnClickListener {
-            if (viewModel.counterNumberOfTraining.value == 0)
+            if (viewModel.counterNumberOfTraining.value == 4)
                 nextTraining()
             else
                 nextButtonClickedOnRest()
         }
-
         timerResume(false, binding, soundOfStop)
         videoPlay(binding)
     }
@@ -89,7 +103,6 @@ class BlankFragmentTraining : Fragment() {
     private fun nextButtonClicked() {
         onPause()
         rest()
-        videoChange()
     }
 
     private fun aboutTrainImageButtonClicked() {
@@ -135,10 +148,16 @@ class BlankFragmentTraining : Fragment() {
         viewModel.aboutExercise(builder)
     }
 
-    //Вызов activity отдыха
+    //Вызов fragment отдыха
     private fun rest() {
+        val animation = AnimationUtils.loadAnimation(context, R.anim.push_down_in)
+        binding.linerLayoutBlankRest.animation = animation
+        binding.linerLayoutBlankRest.animate()
+        animation.start()
+
         binding.linerLayoutBlankRest.isVisible = true
         binding.nextButton.isVisible = false
+        binding.pauseButton.isVisible = false
         timerResume(true, binding, soundOfStop)
     }
 
@@ -149,6 +168,12 @@ class BlankFragmentTraining : Fragment() {
     private fun nextButtonClickedOnRest() {
         binding.linerLayoutBlankRest.isVisible = false
         binding.nextButton.isVisible = true
+        videoChange()
+
+        val animation = AnimationUtils.loadAnimation(context, R.anim.push_up_out)
+        binding.linerLayoutBlankRest.animation = animation
+        binding.linerLayoutBlankRest.animate()
+        animation.start()
     }
 
     //Вызов activity выбора следующей тренировки
