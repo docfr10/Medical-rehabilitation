@@ -56,4 +56,7 @@
     <string name="fill_email">Заполните электронную почту</string>
     <string name="on_menu">В меню</string>
     <string name="exercise_history">История тренировок</string>
+    <string name="date_of_exercise_text">Дата упражнения</string>
+    <string name="was_painful_text">Было ли больно?</string>
+    <string name="how_was_training_text">Как прошло занятие?</string>
 </resources>

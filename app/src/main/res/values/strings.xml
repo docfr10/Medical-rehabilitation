@@ -56,4 +56,7 @@
     <string name="fill_email">Fill out the email</string>
     <string name="on_menu">On the menu</string>
     <string name="exercise_history">Exercise History</string>
+    <string name="date_of_exercise_text">Date of exercise</string>
+    <string name="was_painful_text">Did it painful?</string>
+    <string name="how_was_training_text">How did the exercise go?</string>
 </resources>

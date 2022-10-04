@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.medicalrehabilitation.R
-import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentExerciseHistoryBinding
 import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentSendMailBinding
 import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryModel
 import java.text.DateFormat
@@ -17,7 +16,8 @@ import java.util.*
 
 class BlankFragmentSendMailViewModel(application: Application) : AndroidViewModel(application) {
     private var currentDate: Date = Calendar.getInstance().time
-    private var dateFormat: DateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+    private var dateFormat: DateFormat =
+        SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault())
     private var dateString: String = dateFormat.format(currentDate)
     var mutableLiveDataIntent = MutableLiveData<Intent>()
 

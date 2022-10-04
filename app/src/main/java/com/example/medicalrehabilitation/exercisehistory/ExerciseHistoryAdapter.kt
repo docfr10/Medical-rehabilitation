@@ -26,8 +26,9 @@ class ExerciseHistoryAdapter : RecyclerView.Adapter<ExerciseHistoryAdapter.MyVie
         holder.binding.idTxt.text = currentItem.id.toString()
         holder.binding.dateOfExercise.text = currentItem.dateOfExercise
         holder.binding.howWasExercise.text = currentItem.howWasExercise
-        holder.binding.howWasPainful.text = currentItem.howWasPainful
-        holder.binding.failedExercises.text = currentItem.failedExercises
+        //todo Реализовать отображение списка невыполненых упражнений и того на сколько было больно
+        //holder.binding.howWasPainful.text = currentItem.howWasPainful
+        //holder.binding.failedExercises.text = currentItem.failedExercises
     }
 
     override fun getItemCount(): Int {
