@@ -50,8 +50,7 @@ class BlankFragmentTrainingViewModel : ViewModel() {
             1 -> {
                 this.myVideoUri =
                     Uri.parse(
-                        "android.resource://com.example.medicalrehabilitation/"
-                                + R.raw.video2
+                        "android.resource://com.example.medicalrehabilitation/" + R.raw.video2
                     )
                 counterNumberOfTraining.value = 2
                 binding.timerTextView.visibility = View.GONE
@@ -60,16 +59,14 @@ class BlankFragmentTrainingViewModel : ViewModel() {
             2 -> {
                 this.myVideoUri =
                     Uri.parse(
-                        "android.resource://com.example.medicalrehabilitation/"
-                                + R.raw.video3
+                        "android.resource://com.example.medicalrehabilitation/" + R.raw.video3
                     )
                 counterNumberOfTraining.value = 3
             }
             3 -> {
                 this.myVideoUri =
                     Uri.parse(
-                        "android.resource://com.example.medicalrehabilitation/"
-                                + R.raw.video4
+                        "android.resource://com.example.medicalrehabilitation/" + R.raw.video4
                     )
                 counterNumberOfTraining.value = 4
             }
@@ -128,16 +125,17 @@ class BlankFragmentTrainingViewModel : ViewModel() {
         timer?.cancel()
         timer = object : CountDownTimer(millisInFuture, 1) {
             override fun onTick(p0: Long) {
-                if (isRestTimer)
+                if (isRestTimer) {
                     millisLeftOnRest = p0
-                else
-                    millisLeft = p0
-                val minutes = (p0 / (1000 * 60))
-                val seconds = ((p0 / 1000) - minutes * 60)
-                if (isRestTimer)
+                    val minutes = (p0 / (1000 * 60))
+                    val seconds = ((p0 / 1000) - minutes * 60)
                     binding.timerTextViewRest.text = "$minutes:$seconds"
-                else
+                } else {
+                    millisLeft = p0
+                    val minutes = (p0 / (1000 * 60))
+                    val seconds = ((p0 / 1000) - minutes * 60)
                     binding.timerTextView.text = "$minutes:$seconds"
+                }
             }
 
             override fun onFinish() {
@@ -170,12 +168,11 @@ class BlankFragmentTrainingViewModel : ViewModel() {
     ) {
         timer?.cancel()
         if (isRestTimer)
-            timerStart(isRestTimer, millisLeft, soundOfStop, binding)
+            timerStart(isRestTimer, millisStartOnRest, soundOfStop, binding)
         else
-            timerStart(isRestTimer, millisLeftOnRest, soundOfStop, binding)
+            timerStart(isRestTimer, millisLeft, soundOfStop, binding)
     }
 
-    //////////////////////////////
     fun plus30Sec(
         binding: FragmentBlankFragmentTrainingBinding,
         soundOfStop: MediaPlayer
@@ -188,9 +185,5 @@ class BlankFragmentTrainingViewModel : ViewModel() {
         val randomIndex = Random().nextInt(recommendations.size)
         println("RANDOM: $randomIndex")
         return recommendations[randomIndex]
-    }
-
-    fun returnNumberOfTraining(): Int? {
-        return counterNumberOfTraining.value
     }
 }

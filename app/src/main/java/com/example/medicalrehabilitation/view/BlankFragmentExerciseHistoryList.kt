@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentExerciseHistoryListBinding
+import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryAdapter
 import com.example.medicalrehabilitation.viewmodel.BlankFragmentExerciseHistoryViewModel
 
 class BlankFragmentExerciseHistoryList : Fragment() {

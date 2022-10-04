@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -55,7 +54,13 @@ class BlankFragmentTraining : Fragment() {
         binding.abouttrainImageButton.setOnClickListener { aboutTrainImageButtonClicked() } //Кнопка с изображением "Об упражнении"
 
         binding.plus30secButton.setOnClickListener { plus30Sec() }
-        binding.nextButton2.setOnClickListener { nextButtonClickedOnRest() }
+        binding.nextButton2.setOnClickListener {
+            if (viewModel.counterNumberOfTraining.value == 0)
+                nextTraining()
+            else
+                nextButtonClickedOnRest()
+        }
+
         timerResume(false, binding, soundOfStop)
         videoPlay(binding)
     }
@@ -95,12 +100,7 @@ class BlankFragmentTraining : Fragment() {
     private fun videoChange() {
         viewModel.videoChange(binding)
         videoPlay(binding)
-        Handler().postDelayed({
-            changeDescription()
-        }, 100)
-        if (viewModel.returnNumberOfTraining() == 0) {
-            nextTraining()
-        }
+        changeDescription()
     }
 
     private fun changeDescription() {
@@ -138,6 +138,7 @@ class BlankFragmentTraining : Fragment() {
     //Вызов activity отдыха
     private fun rest() {
         binding.linerLayoutBlankRest.isVisible = true
+        binding.nextButton.isVisible = false
         timerResume(true, binding, soundOfStop)
     }
 
@@ -147,6 +148,7 @@ class BlankFragmentTraining : Fragment() {
 
     private fun nextButtonClickedOnRest() {
         binding.linerLayoutBlankRest.isVisible = false
+        binding.nextButton.isVisible = true
     }
 
     //Вызов activity выбора следующей тренировки

@@ -1,11 +1,10 @@
-package com.example.medicalrehabilitation.view
+package com.example.medicalrehabilitation.exercisehistory
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentExerciseHistoryBinding
-import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryModel
 
 class ExerciseHistoryAdapter : RecyclerView.Adapter<ExerciseHistoryAdapter.MyViewHolder>() {
 
