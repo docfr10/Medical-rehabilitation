@@ -20,7 +20,7 @@ class BlankFragmentSendMailViewModel(application: Application) : AndroidViewMode
 
     private var currentDate: Date = Calendar.getInstance().time
     private var dateFormat: DateFormat =
-        SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault())
+        SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
     private var dateString: String = dateFormat.format(currentDate)
     var mutableLiveDataIntent = MutableLiveData<Intent>()
     var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
