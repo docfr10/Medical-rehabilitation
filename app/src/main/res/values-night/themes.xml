@@ -26,4 +26,10 @@
     <style name="MyStyleDialog" parent="@style/Base.Theme.AppCompat.Dialog">
         <item name="android:windowCloseOnTouchOutside">false</item>
     </style>
+
+    <!-- Анимация для диалогового окна -->
+    <style name="MyDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_right</item>
+    </style>
 </resources>

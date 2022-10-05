@@ -108,9 +108,12 @@ class BlankFragmentTrainingViewModel : ViewModel() {
             2, 3, 4 -> builder.setMessage(R.string.exercise2_3_4)
         }
         builder.setTitle((R.string.equipment))
-            .setPositiveButton((R.string.clear)) { dialog, _ -> dialog.cancel() }
-            .create()
-            .show()
+        builder.setPositiveButton((R.string.clear)) { dialog, _ ->
+            dialog.cancel()
+        }
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.MyDialogAnimation
+        dialog.show()
     }
 
     //Запуск и проверка таймера на окончание

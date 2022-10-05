@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
@@ -58,13 +59,17 @@ class BlankFragmentHome : Fragment() {
                 .navigate(R.id.action_blankFragmentHome_to_blankFragmentExerciseHistoryList)
         }
 
-        binding.aboutButton.setOnClickListener {
-            AlertDialog.Builder(context)
-                .setMessage(R.string.about_app)
-                .setTitle((R.string.about))
-                .setPositiveButton((R.string.clear)) { dialog, _ -> dialog.cancel() }
-                .create()
-                .show()
-        } //Кнопка "О приложении"
+        binding.aboutButton.setOnClickListener { aboutButtonClicked() } //Кнопка "О приложении"
+    }
+
+    private fun aboutButtonClicked() {
+        val builder = AlertDialog.Builder(context)
+            .setMessage(R.string.about_app)
+            .setTitle((R.string.about))
+            .setPositiveButton((R.string.clear)) { dialog, _ -> dialog.cancel() }
+
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.MyDialogAnimation
+        dialog.show()
     }
 }
