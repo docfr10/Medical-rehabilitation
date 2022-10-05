@@ -45,6 +45,7 @@ class BlankFragmentTraining : Fragment() {
         mediaController = MediaController(context)
         binding.trainingVideoView.setBackgroundColor(Color.TRANSPARENT) //Отображение видеофайла, который выбран в Uri
 
+        //Обработка Back Stack
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (viewModel.touchCounter.value == 1)
@@ -68,11 +69,14 @@ class BlankFragmentTraining : Fragment() {
         binding.pauseButton.setOnClickListener { pauseButtonClicked() } //Кнопка "Пауза" ставит таймер и проигрываемое видео на паузу
         binding.nextButton.setOnClickListener { nextButtonClicked() } //Кнопка "Следующее упражнение" переключает упражнение
         binding.abouttrainImageButton.setOnClickListener { aboutTrainImageButtonClicked() } //Кнопка с изображением "Об упражнении"
-        binding.plus30secButton.setOnClickListener { plus30Sec() }
+        binding.plus30secButton.setOnClickListener { plus30Sec() } //Кнопка "+ 30 сек"
         binding.nextButton2.setOnClickListener {
+            //При нажатии кнопки "Далее" на экране отдыха проверяем:
             if (viewModel.counterNumberOfTraining.value == 4)
+            //Если это последнее упражнение запускаем NextTrainingFragment
                 nextTraining()
             else
+            //Иначе запускаем экран отдыха
                 nextButtonClickedOnRest()
         }
         timerResume(false, binding, soundOfStop)
@@ -148,7 +152,7 @@ class BlankFragmentTraining : Fragment() {
         viewModel.aboutExercise(builder)
     }
 
-    //Вызов fragment отдыха
+    //Вызов экрана отдыха
     private fun rest() {
         val animation = AnimationUtils.loadAnimation(context, R.anim.push_down_in)
         binding.linerLayoutBlankRest.animation = animation
@@ -176,7 +180,7 @@ class BlankFragmentTraining : Fragment() {
         animation.start()
     }
 
-    //Вызов activity выбора следующей тренировки
+    //Вызов NextTrainingFragment
     private fun nextTraining() {
         findNavController().navigate(R.id.action_blankFragmentTraining_to_blankFragmentNextTraining)
     }

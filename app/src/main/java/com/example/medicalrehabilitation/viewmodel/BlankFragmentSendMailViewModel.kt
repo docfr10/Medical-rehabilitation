@@ -71,6 +71,7 @@ class BlankFragmentSendMailViewModel(application: Application) : AndroidViewMode
         toast.show()
     }
 
+    //Записываем каждое значение элемента из Fragment и передаем его в БД
     fun insertDataToDatabase(binding: FragmentBlankFragmentSendMailBinding): ExerciseHistoryModel {
         val howWasPainful = binding.painfulSpinner.selectedItem.toString()
         val howWasExercise = binding.trainingSpinner.selectedItem.toString()

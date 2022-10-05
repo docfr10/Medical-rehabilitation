@@ -5,12 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.medicalrehabilitation.viewmodel.BlankFragmentExerciseHistoryViewModel
 import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentExerciseHistoryBinding
 
 class BlankFragmentExerciseHistory : Fragment() {
 
-    private lateinit var viewModel: BlankFragmentExerciseHistoryViewModel
     private lateinit var binding: FragmentBlankFragmentExerciseHistoryBinding
 
     override fun onCreateView(

@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
@@ -30,6 +29,7 @@ class BlankFragmentHome : Fragment() {
         val provider = ViewModelProvider(this)
         viewModel = provider[BlankFragmentHomeViewModel::class.java]
 
+        //Обработка Back Stack
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (viewModel.touchCounter.value == 1)
@@ -51,10 +51,12 @@ class BlankFragmentHome : Fragment() {
     override fun onResume() {
         super.onResume()
         binding.beginButton.setOnClickListener {
+            //Переход на TrainingFragment
             it.findNavController().navigate(R.id.action_blankFragmentHome_to_blankFragmentTraining)
         } //Кнопка с изображением "Начало тренировки"
 
         binding.exerciseHistory.setOnClickListener {
+            //Переход на ExerciseHistoryListFragment
             it.findNavController()
                 .navigate(R.id.action_blankFragmentHome_to_blankFragmentExerciseHistoryList)
         }
@@ -63,11 +65,13 @@ class BlankFragmentHome : Fragment() {
     }
 
     private fun aboutButtonClicked() {
+        //Создание диалогового окна с информацией о приложении
         val builder = AlertDialog.Builder(context)
             .setMessage(R.string.about_app)
             .setTitle((R.string.about))
             .setPositiveButton((R.string.clear)) { dialog, _ -> dialog.cancel() }
 
+        //Анимация окна
         val dialog = builder.create()
         dialog.window?.attributes?.windowAnimations = R.style.MyDialogAnimation
         dialog.show()

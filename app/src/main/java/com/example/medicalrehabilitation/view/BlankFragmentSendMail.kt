@@ -47,10 +47,12 @@ class BlankFragmentSendMail : Fragment() {
             it.findNavController().navigate(R.id.action_blankFragmentSendMail_to_blankFragmentHome)
         }
 
+        //После того как открылся выбор почты происходит запись данных в БД
         viewModel.mutableLiveDataIntent.observe(viewLifecycleOwner) {
             insertDataToDatabase(binding)
         }
 
+        //Обработка Back Stack
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (viewModel.touchCounter.value == 1)

@@ -39,6 +39,7 @@ class BlankFragmentNextTraining : Fragment() {
         binding.button.setOnClickListener { createNotifications() }
         binding.timePicker.setIs24HourView(true)
 
+        //Обработка Back Stack
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (viewModel.touchCounter.value == 1)
@@ -54,7 +55,6 @@ class BlankFragmentNextTraining : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(callback)
-
         return binding.root
     }
 
@@ -90,7 +90,9 @@ class BlankFragmentNextTraining : Fragment() {
         val builder = AlertDialog.Builder(context)
         viewModel.showAlert(date, dateFormat, timeFormat, builder)
         viewModel.showAlert.observe(viewLifecycleOwner) {
+            //Проверка на то просмотрел ли пользователь уведомление
             if (it == true)
+            //Если да, то запускаем FragmentSendMail
                 sendMail()
         }
     }

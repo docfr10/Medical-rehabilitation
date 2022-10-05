@@ -11,10 +11,10 @@ abstract class ExerciseHistoryDatabaseModel : RoomDatabase() {
 
     companion object {
         @Volatile
-        private var INSTANS: ExerciseHistoryDatabaseModel? = null
+        private var INSTANCE: ExerciseHistoryDatabaseModel? = null
 
         fun getDatabase(context: Context): ExerciseHistoryDatabaseModel {
-            val tempInstance = INSTANS
+            val tempInstance = INSTANCE
             if (tempInstance != null)
                 return tempInstance
             synchronized(this) {
@@ -23,7 +23,7 @@ abstract class ExerciseHistoryDatabaseModel : RoomDatabase() {
                     ExerciseHistoryDatabaseModel::class.java,
                     "exercise_history_database"
                 ).build()
-                INSTANS = instance
+                INSTANCE = instance
                 return instance
             }
         }
