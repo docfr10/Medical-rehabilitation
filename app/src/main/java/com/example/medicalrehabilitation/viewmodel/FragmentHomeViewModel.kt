@@ -5,7 +5,7 @@ import android.os.CountDownTimer
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 
-class BlankFragmentHomeViewModel(application: Application) : AndroidViewModel(application) {
+class FragmentHomeViewModel(application: Application) : AndroidViewModel(application) {
     var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
     private var timer: CountDownTimer? = null //Таймер
 

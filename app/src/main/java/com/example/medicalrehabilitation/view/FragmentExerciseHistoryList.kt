@@ -10,19 +10,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medicalrehabilitation.R
-import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentExerciseHistoryListBinding
+import com.example.medicalrehabilitation.databinding.FragmentExerciseHistoryListBinding
 import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryAdapter
-import com.example.medicalrehabilitation.viewmodel.BlankFragmentExerciseHistoryViewModel
+import com.example.medicalrehabilitation.viewmodel.FragmentExerciseHistoryViewModel
 
-class BlankFragmentExerciseHistoryList : Fragment() {
-    private lateinit var viewModel: BlankFragmentExerciseHistoryViewModel
-    private lateinit var binding: FragmentBlankFragmentExerciseHistoryListBinding
+class FragmentExerciseHistoryList : Fragment() {
+    private lateinit var viewModel: FragmentExerciseHistoryViewModel
+    private lateinit var binding: FragmentExerciseHistoryListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding =
-            FragmentBlankFragmentExerciseHistoryListBinding.inflate(inflater, container, false)
+            FragmentExerciseHistoryListBinding.inflate(inflater, container, false)
 
         val adapter = ExerciseHistoryAdapter()
         val recyclerView = binding.recyclerView
@@ -30,7 +30,7 @@ class BlankFragmentExerciseHistoryList : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val provider = ViewModelProvider(this)
-        viewModel = provider[BlankFragmentExerciseHistoryViewModel::class.java]
+        viewModel = provider[FragmentExerciseHistoryViewModel::class.java]
         //Обновление отображения данных на экране из БД
         viewModel.readAllData.observe(viewLifecycleOwner) { exercise ->
             adapter.setData(exercise)

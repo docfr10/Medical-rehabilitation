@@ -4,18 +4,18 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentExerciseHistoryBinding
+import com.example.medicalrehabilitation.databinding.FragmentExerciseHistoryBinding
 
 class ExerciseHistoryAdapter : RecyclerView.Adapter<ExerciseHistoryAdapter.MyViewHolder>() {
 
     private var dateList = emptyList<ExerciseHistoryModel>()
 
-    class MyViewHolder(val binding: FragmentBlankFragmentExerciseHistoryBinding) :
+    class MyViewHolder(val binding: FragmentExerciseHistoryBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
-            binding = FragmentBlankFragmentExerciseHistoryBinding.inflate(
+            binding = FragmentExerciseHistoryBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )

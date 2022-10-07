@@ -9,10 +9,10 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.medicalrehabilitation.R
-import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentTrainingBinding
+import com.example.medicalrehabilitation.databinding.FragmentTrainingBinding
 import java.util.*
 
-class BlankFragmentTrainingViewModel : ViewModel() {
+class FragmentTrainingViewModel : ViewModel() {
     //Ссылка на видео, которое будет проигрываться
     private var timer: CountDownTimer? = null //Таймер
 
@@ -33,20 +33,20 @@ class BlankFragmentTrainingViewModel : ViewModel() {
     var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
 
     //Воспроизведение видео
-    fun videoPlay(binding: FragmentBlankFragmentTrainingBinding) {
+    fun videoPlay(binding: FragmentTrainingBinding) {
         binding.trainingVideoView.setVideoURI(myVideoUri)
         binding.trainingVideoView.start()
         binding.trainingVideoView.setOnPreparedListener { it.isLooping = true }
     }
 
     //Остановка видео
-    fun videoPause(binding: FragmentBlankFragmentTrainingBinding) {
+    fun videoPause(binding: FragmentTrainingBinding) {
         binding.trainingVideoView.setVideoURI(myVideoUri)
         binding.trainingVideoView.pause()
     }
 
     //Смена видео
-    fun videoChange(binding: FragmentBlankFragmentTrainingBinding) {
+    fun videoChange(binding: FragmentTrainingBinding) {
         when (counterNumberOfTraining.value) {
             1 -> {
                 this.myVideoUri =
@@ -76,7 +76,7 @@ class BlankFragmentTrainingViewModel : ViewModel() {
     }
 
 
-    fun changeDescription(binding: FragmentBlankFragmentTrainingBinding) {
+    fun changeDescription(binding: FragmentTrainingBinding) {
         when (counterNumberOfTraining.value) {
             2 -> {
                 binding.exerciseTextView.setText(R.string.description2)
@@ -121,7 +121,7 @@ class BlankFragmentTrainingViewModel : ViewModel() {
         isRestTimer: Boolean,
         millisInFuture: Long,
         soundOfStop: MediaPlayer,
-        binding: FragmentBlankFragmentTrainingBinding
+        binding: FragmentTrainingBinding
     ) {
         timer?.cancel()
         timer = object : CountDownTimer(millisInFuture, 1) {
@@ -164,7 +164,7 @@ class BlankFragmentTrainingViewModel : ViewModel() {
     //Воспроизведение таймера с того момента когда он остановился
     fun timerResume(
         isRestTimer: Boolean,
-        binding: FragmentBlankFragmentTrainingBinding,
+        binding: FragmentTrainingBinding,
         soundOfStop: MediaPlayer
     ) {
         timer?.cancel()
@@ -175,7 +175,7 @@ class BlankFragmentTrainingViewModel : ViewModel() {
     }
 
     fun plus30Sec(
-        binding: FragmentBlankFragmentTrainingBinding,
+        binding: FragmentTrainingBinding,
         soundOfStop: MediaPlayer
     ) {
         timer?.cancel()

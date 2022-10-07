@@ -9,24 +9,25 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.medicalrehabilitation.R
-import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentSendMailBinding
+import com.example.medicalrehabilitation.databinding.FragmentSendMailBinding
 import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryModel
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class BlankFragmentSendMailViewModel(application: Application) : AndroidViewModel(application) {
+class FragmentSendMailViewModel(application: Application) : AndroidViewModel(application) {
     private var timer: CountDownTimer? = null //Таймер
 
     private var currentDate: Date = Calendar.getInstance().time
     private var dateFormat: DateFormat =
         SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
     private var dateString: String = dateFormat.format(currentDate)
+
     var mutableLiveDataIntent = MutableLiveData<Intent>()
     var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
 
     fun sendEmail(
-        binding: FragmentBlankFragmentSendMailBinding,
+        binding: FragmentSendMailBinding,
         theme: String
     ) {
         var failedExercisesString: String = binding.failedEditTextTextMultiLine.text.toString()
@@ -72,7 +73,7 @@ class BlankFragmentSendMailViewModel(application: Application) : AndroidViewMode
     }
 
     //Записываем каждое значение элемента из Fragment и передаем его в БД
-    fun insertDataToDatabase(binding: FragmentBlankFragmentSendMailBinding): ExerciseHistoryModel {
+    fun insertDataToDatabase(binding: FragmentSendMailBinding): ExerciseHistoryModel {
         val howWasPainful = binding.painfulSpinner.selectedItem.toString()
         val howWasExercise = binding.trainingSpinner.selectedItem.toString()
         val failedExercises = binding.failedEditTextTextMultiLine.text.toString()

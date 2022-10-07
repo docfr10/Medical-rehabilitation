@@ -12,33 +12,33 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.medicalrehabilitation.viewmodel.BlankFragmentSendMailViewModel
+import com.example.medicalrehabilitation.viewmodel.FragmentSendMailViewModel
 import com.example.medicalrehabilitation.R
-import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentExerciseHistoryBinding
-import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentSendMailBinding
-import com.example.medicalrehabilitation.viewmodel.BlankFragmentExerciseHistoryViewModel
+import com.example.medicalrehabilitation.databinding.FragmentExerciseHistoryBinding
+import com.example.medicalrehabilitation.databinding.FragmentSendMailBinding
+import com.example.medicalrehabilitation.viewmodel.FragmentExerciseHistoryViewModel
 
-class BlankFragmentSendMail : Fragment() {
-    private lateinit var viewModel: BlankFragmentSendMailViewModel
-    private lateinit var viewModelBlankFragmentExerciseHistoryListViewModel: BlankFragmentExerciseHistoryViewModel
+class FragmentSendMail : Fragment() {
+    private lateinit var viewModel: FragmentSendMailViewModel
+    private lateinit var viewModelBlankFragmentExerciseHistoryListViewModel: FragmentExerciseHistoryViewModel
 
-    private lateinit var binding: FragmentBlankFragmentSendMailBinding
-    private lateinit var bindingExerciseHistory: FragmentBlankFragmentExerciseHistoryBinding
+    private lateinit var binding: FragmentSendMailBinding
+    private lateinit var bindingExerciseHistory: FragmentExerciseHistoryBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentBlankFragmentSendMailBinding.inflate(inflater, container, false)
+        binding = FragmentSendMailBinding.inflate(inflater, container, false)
         bindingExerciseHistory =
-            FragmentBlankFragmentExerciseHistoryBinding.inflate(inflater, container, false)
+            FragmentExerciseHistoryBinding.inflate(inflater, container, false)
 
         val provider = ViewModelProvider(this)
-        viewModel = provider[BlankFragmentSendMailViewModel::class.java]
+        viewModel = provider[FragmentSendMailViewModel::class.java]
 
         val providerExerciseHistory = ViewModelProvider(this)
         viewModelBlankFragmentExerciseHistoryListViewModel =
-            providerExerciseHistory[BlankFragmentExerciseHistoryViewModel::class.java]
+            providerExerciseHistory[FragmentExerciseHistoryViewModel::class.java]
 
         binding.sendButton.setOnClickListener {
             sendEmail(binding)
@@ -78,12 +78,12 @@ class BlankFragmentSendMail : Fragment() {
         }
     }
 
-    private fun sendEmail(binding: FragmentBlankFragmentSendMailBinding) {
+    private fun sendEmail(binding: FragmentSendMailBinding) {
         viewModel.sendEmail(binding, getText(R.string.app_name) as String)
         chooseEmail()
     }
 
-    private fun insertDataToDatabase(binding: FragmentBlankFragmentSendMailBinding) {
+    private fun insertDataToDatabase(binding: FragmentSendMailBinding) {
         viewModelBlankFragmentExerciseHistoryListViewModel.addDate(
             viewModel.insertDataToDatabase(
                 binding

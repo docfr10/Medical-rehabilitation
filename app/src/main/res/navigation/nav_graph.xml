@@ -6,9 +6,9 @@
     app:startDestination="@id/blankFragmentHome">
     <fragment
         android:id="@+id/blankFragmentTraining"
-        android:name="com.example.medicalrehabilitation.view.BlankFragmentTraining"
+        android:name="com.example.medicalrehabilitation.view.FragmentTraining"
         android:label="fragment_blank_fragment_training"
-        tools:layout="@layout/fragment_blank_fragment_training">
+        tools:layout="@layout/fragment_training">
         <action
             android:id="@+id/action_blankFragmentTraining_to_blankFragmentNextTraining"
             app:destination="@id/blankFragmentNextTraining"
@@ -26,9 +26,9 @@
     </fragment>
     <fragment
         android:id="@+id/blankFragmentHome"
-        android:name="com.example.medicalrehabilitation.view.BlankFragmentHome"
+        android:name="com.example.medicalrehabilitation.view.FragmentHome"
         android:label="fragment_blank_fragment_home"
-        tools:layout="@layout/fragment_blank_fragment_home">
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_blankFragmentHome_to_blankFragmentTraining"
             app:destination="@id/blankFragmentTraining"
@@ -46,9 +46,9 @@
     </fragment>
     <fragment
         android:id="@+id/blankFragmentNextTraining"
-        android:name="com.example.medicalrehabilitation.view.BlankFragmentNextTraining"
+        android:name="com.example.medicalrehabilitation.view.FragmentNextTraining"
         android:label="fragment_blank_fragment_next_training"
-        tools:layout="@layout/fragment_blank_fragment_next_training">
+        tools:layout="@layout/fragment_next_training">
         <action
             android:id="@+id/action_blankFragmentNextTraining_to_blankFragmentSendMail"
             app:destination="@id/blankFragmentSendMail"
@@ -66,9 +66,9 @@
     </fragment>
     <fragment
         android:id="@+id/blankFragmentSendMail"
-        android:name="com.example.medicalrehabilitation.view.BlankFragmentSendMail"
+        android:name="com.example.medicalrehabilitation.view.FragmentSendMail"
         android:label="fragment_blank_fragment_send_mail"
-        tools:layout="@layout/fragment_blank_fragment_send_mail">
+        tools:layout="@layout/fragment_send_mail">
         <action
             android:id="@+id/action_blankFragmentSendMail_to_blankFragmentHome"
             app:destination="@id/blankFragmentHome"
@@ -79,7 +79,7 @@
     </fragment>
     <fragment
         android:id="@+id/blankFragmentExerciseHistoryList"
-        android:name="com.example.medicalrehabilitation.view.BlankFragmentExerciseHistoryList"
+        android:name="com.example.medicalrehabilitation.view.FragmentExerciseHistoryList"
         android:label="BlankFragmentExerciseHistoryList">
         <action
             android:id="@+id/action_blankFragmentExerciseHistoryList_to_blankFragmentHome"

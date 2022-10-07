@@ -10,7 +10,7 @@ import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryReposito
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class BlankFragmentExerciseHistoryViewModel(application: Application) :
+class FragmentExerciseHistoryViewModel(application: Application) :
     AndroidViewModel(application) {
 
     val readAllData: LiveData<List<ExerciseHistoryModel>>

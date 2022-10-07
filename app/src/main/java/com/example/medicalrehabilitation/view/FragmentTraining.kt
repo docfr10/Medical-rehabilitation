@@ -14,28 +14,28 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.medicalrehabilitation.R
-import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentTrainingBinding
-import com.example.medicalrehabilitation.viewmodel.BlankFragmentTrainingViewModel
+import com.example.medicalrehabilitation.databinding.FragmentTrainingBinding
+import com.example.medicalrehabilitation.viewmodel.FragmentTrainingViewModel
 
 
-class BlankFragmentTraining : Fragment() {
+class FragmentTraining : Fragment() {
     private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании упражнения
     private lateinit var mediaController: MediaController //Элементы управления видео(пауза, перемотка)
 
     private var isPause = false
 
-    private lateinit var viewModel: BlankFragmentTrainingViewModel
-    private lateinit var binding: FragmentBlankFragmentTrainingBinding
+    private lateinit var viewModel: FragmentTrainingViewModel
+    private lateinit var binding: FragmentTrainingBinding
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentBlankFragmentTrainingBinding.inflate(inflater, container, false)
+        binding = FragmentTrainingBinding.inflate(inflater, container, false)
 
         val provider = ViewModelProvider(this)
-        viewModel = provider[BlankFragmentTrainingViewModel::class.java]
+        viewModel = provider[FragmentTrainingViewModel::class.java]
 
         val recommendations: Array<String> = resources.getStringArray(R.array.recommendations)
         binding.recommendationsTextView.text = viewModel.getRecommendations(recommendations)
@@ -124,17 +124,17 @@ class BlankFragmentTraining : Fragment() {
         viewModel.changeDescription(binding)
     }
 
-    private fun videoPlay(binding: FragmentBlankFragmentTrainingBinding) {
+    private fun videoPlay(binding: FragmentTrainingBinding) {
         viewModel.videoPlay(binding)
     }
 
-    private fun videoPause(binding: FragmentBlankFragmentTrainingBinding) {
+    private fun videoPause(binding: FragmentTrainingBinding) {
         viewModel.videoPause(binding)
     }
 
     private fun timerResume(
         isRestTimer: Boolean,
-        binding: FragmentBlankFragmentTrainingBinding,
+        binding: FragmentTrainingBinding,
         soundOfStop: MediaPlayer
     ) {
         viewModel.timerResume(isRestTimer, binding, soundOfStop)

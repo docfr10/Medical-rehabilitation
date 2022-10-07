@@ -8,11 +8,11 @@ import android.os.CountDownTimer
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.medicalrehabilitation.*
-import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentNextTrainingBinding
+import com.example.medicalrehabilitation.databinding.FragmentNextTrainingBinding
 import java.text.DateFormat
 import java.util.*
 
-class BlankFragmentNextTrainingViewModel(application: Application) : AndroidViewModel(application) {
+class FragmentNextTrainingViewModel(application: Application) : AndroidViewModel(application) {
     private var timer: CountDownTimer? = null //Таймер
 
     var showAlert = MutableLiveData<Boolean>()
@@ -53,7 +53,7 @@ class BlankFragmentNextTrainingViewModel(application: Application) : AndroidView
     }
 
     //Метод, переводящий выбранные значения даты и времени в миллисекунды
-    fun getTime(binding: FragmentBlankFragmentNextTrainingBinding): Long {
+    fun getTime(binding: FragmentNextTrainingBinding): Long {
         val minute = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             binding.timePicker.minute
         } else {

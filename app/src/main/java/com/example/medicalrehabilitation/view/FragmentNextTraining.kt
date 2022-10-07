@@ -15,24 +15,24 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
-import com.example.medicalrehabilitation.viewmodel.BlankFragmentNextTrainingViewModel
+import com.example.medicalrehabilitation.viewmodel.FragmentNextTrainingViewModel
 import com.example.medicalrehabilitation.R
-import com.example.medicalrehabilitation.databinding.FragmentBlankFragmentNextTrainingBinding
+import com.example.medicalrehabilitation.databinding.FragmentNextTrainingBinding
 import com.example.medicalrehabilitation.model.notifications.NotificationsModel
 import java.util.*
 
-class BlankFragmentNextTraining : Fragment() {
-    private lateinit var viewModel: BlankFragmentNextTrainingViewModel
-    private lateinit var binding: FragmentBlankFragmentNextTrainingBinding
+class FragmentNextTraining : Fragment() {
+    private lateinit var viewModel: FragmentNextTrainingViewModel
+    private lateinit var binding: FragmentNextTrainingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentBlankFragmentNextTrainingBinding.inflate(inflater, container, false)
+        binding = FragmentNextTrainingBinding.inflate(inflater, container, false)
 
         val provider = ViewModelProvider(this)
-        viewModel = provider[BlankFragmentNextTrainingViewModel::class.java]
+        viewModel = provider[FragmentNextTrainingViewModel::class.java]
 
         createNotificationChannel()
         //С помощью binding обрабатываем нажатия на кнопку
