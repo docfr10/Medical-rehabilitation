@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentExerciseHistoryListBinding
 import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryAdapter
-import com.example.medicalrehabilitation.viewmodel.FragmentExerciseHistoryViewModel
+import com.example.medicalrehabilitation.viewmodel.ExerciseHistoryViewModelFragment
 
-class FragmentExerciseHistoryList : Fragment() {
-    private lateinit var viewModel: FragmentExerciseHistoryViewModel
+class ExerciseHistoryListFragment : Fragment() {
+    private lateinit var viewModel: ExerciseHistoryViewModelFragment
     private lateinit var binding: FragmentExerciseHistoryListBinding
 
     override fun onCreateView(
@@ -30,10 +30,10 @@ class FragmentExerciseHistoryList : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val provider = ViewModelProvider(this)
-        viewModel = provider[FragmentExerciseHistoryViewModel::class.java]
+        viewModel = provider[ExerciseHistoryViewModelFragment::class.java]
         //Обновление отображения данных на экране из БД
         viewModel.getReadAllData().observe(viewLifecycleOwner) { exercise ->
-            adapter.setData(exercise)
+            adapter.submitList(exercise)
         }
 
         //Обработка Back Stack

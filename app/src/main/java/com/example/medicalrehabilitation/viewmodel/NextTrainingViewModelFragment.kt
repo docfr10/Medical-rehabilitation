@@ -12,7 +12,7 @@ import com.example.medicalrehabilitation.databinding.FragmentNextTrainingBinding
 import java.text.DateFormat
 import java.util.*
 
-class FragmentNextTrainingViewModel(application: Application) : AndroidViewModel(application) {
+class NextTrainingViewModelFragment(application: Application) : AndroidViewModel(application) {
     private var timer: CountDownTimer? = null //Таймер
 
     private val showAlert = MutableLiveData<Boolean>()
@@ -27,10 +27,7 @@ class FragmentNextTrainingViewModel(application: Application) : AndroidViewModel
     }
 
     fun changeTouchCounter(state: Int) {
-        if (state == 1)
-            touchCounter.value = state
-        else
-            touchCounter.value = state
+        touchCounter.value = state
     }
 
     //Метод, отвечающий за создание уведомлений на панели действий

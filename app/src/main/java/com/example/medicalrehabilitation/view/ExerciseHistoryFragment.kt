@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.medicalrehabilitation.databinding.FragmentExerciseHistoryBinding
 
-class FragmentExerciseHistory : Fragment() {
+class ExerciseHistoryFragment : Fragment() {
 
     private lateinit var binding: FragmentExerciseHistoryBinding
 

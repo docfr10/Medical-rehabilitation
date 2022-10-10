@@ -11,13 +11,13 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.example.medicalrehabilitation.viewmodel.FragmentHomeViewModel
+import com.example.medicalrehabilitation.viewmodel.HomeViewModelFragment
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentHomeBinding
 
-class FragmentHome : Fragment() {
+class HomeFragment : Fragment() {
 
-    private lateinit var viewModel: FragmentHomeViewModel
+    private lateinit var viewModel: HomeViewModelFragment
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
@@ -27,7 +27,7 @@ class FragmentHome : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         val provider = ViewModelProvider(this)
-        viewModel = provider[FragmentHomeViewModel::class.java]
+        viewModel = provider[HomeViewModelFragment::class.java]
 
         //Обработка Back Stack
         val callback = object : OnBackPressedCallback(true) {

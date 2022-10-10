@@ -15,7 +15,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FragmentSendMailViewModel(application: Application) : AndroidViewModel(application) {
+class SendMailViewModelFragment(application: Application) : AndroidViewModel(application) {
     private var timer: CountDownTimer? = null //Таймер
 
     private val currentDate: Date = Calendar.getInstance().time
@@ -35,10 +35,7 @@ class FragmentSendMailViewModel(application: Application) : AndroidViewModel(app
     }
 
     fun changeTouchCounter(state: Int) {
-        if (state == 1)
-            touchCounter.value = state
-        else
-            touchCounter.value = state
+        touchCounter.value = state
     }
 
     fun timerForTouch() {

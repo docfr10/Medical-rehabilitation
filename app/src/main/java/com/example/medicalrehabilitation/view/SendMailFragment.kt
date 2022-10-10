@@ -12,15 +12,15 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.medicalrehabilitation.viewmodel.FragmentSendMailViewModel
+import com.example.medicalrehabilitation.viewmodel.SendMailViewModelFragment
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentExerciseHistoryBinding
 import com.example.medicalrehabilitation.databinding.FragmentSendMailBinding
-import com.example.medicalrehabilitation.viewmodel.FragmentExerciseHistoryViewModel
+import com.example.medicalrehabilitation.viewmodel.ExerciseHistoryViewModelFragment
 
-class FragmentSendMail : Fragment() {
-    private lateinit var viewModel: FragmentSendMailViewModel
-    private lateinit var viewModelBlankFragmentExerciseHistoryListViewModel: FragmentExerciseHistoryViewModel
+class SendMailFragment : Fragment() {
+    private lateinit var viewModel: SendMailViewModelFragment
+    private lateinit var viewModelBlankFragmentExerciseHistoryListViewModel: ExerciseHistoryViewModelFragment
 
     private lateinit var binding: FragmentSendMailBinding
     private lateinit var bindingExerciseHistory: FragmentExerciseHistoryBinding
@@ -34,11 +34,11 @@ class FragmentSendMail : Fragment() {
             FragmentExerciseHistoryBinding.inflate(inflater, container, false)
 
         val provider = ViewModelProvider(this)
-        viewModel = provider[FragmentSendMailViewModel::class.java]
+        viewModel = provider[SendMailViewModelFragment::class.java]
 
         val providerExerciseHistory = ViewModelProvider(this)
         viewModelBlankFragmentExerciseHistoryListViewModel =
-            providerExerciseHistory[FragmentExerciseHistoryViewModel::class.java]
+            providerExerciseHistory[ExerciseHistoryViewModelFragment::class.java]
 
         binding.sendButton.setOnClickListener {
             sendEmail(binding)

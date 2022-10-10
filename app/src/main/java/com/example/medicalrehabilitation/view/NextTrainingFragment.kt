@@ -15,14 +15,14 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
-import com.example.medicalrehabilitation.viewmodel.FragmentNextTrainingViewModel
+import com.example.medicalrehabilitation.viewmodel.NextTrainingViewModelFragment
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentNextTrainingBinding
 import com.example.medicalrehabilitation.model.notifications.NotificationsModel
 import java.util.*
 
-class FragmentNextTraining : Fragment() {
-    private lateinit var viewModel: FragmentNextTrainingViewModel
+class NextTrainingFragment : Fragment() {
+    private lateinit var viewModel: NextTrainingViewModelFragment
     private lateinit var binding: FragmentNextTrainingBinding
 
     override fun onCreateView(
@@ -32,7 +32,7 @@ class FragmentNextTraining : Fragment() {
         binding = FragmentNextTrainingBinding.inflate(inflater, container, false)
 
         val provider = ViewModelProvider(this)
-        viewModel = provider[FragmentNextTrainingViewModel::class.java]
+        viewModel = provider[NextTrainingViewModelFragment::class.java]
 
         createNotificationChannel()
         //С помощью binding обрабатываем нажатия на кнопку

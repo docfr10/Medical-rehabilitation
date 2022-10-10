@@ -12,7 +12,7 @@ import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentTrainingBinding
 import java.util.*
 
-class FragmentTrainingViewModel : ViewModel() {
+class TrainingViewModelFragment : ViewModel() {
     //Ссылка на видео, которое будет проигрываться
     private var timer: CountDownTimer? = null //Таймер
 
@@ -41,10 +41,7 @@ class FragmentTrainingViewModel : ViewModel() {
     }
 
     fun changeTouchCounter(state: Int) {
-        if (state == 1)
-            touchCounter.value = state
-        else
-            touchCounter.value = state
+        touchCounter.value = state
     }
 
     fun timerForTouch() {

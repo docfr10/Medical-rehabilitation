@@ -15,14 +15,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentTrainingBinding
-import com.example.medicalrehabilitation.viewmodel.FragmentTrainingViewModel
+import com.example.medicalrehabilitation.viewmodel.TrainingViewModelFragment
 
 
-class FragmentTraining : Fragment() {
+class TrainingFragment : Fragment() {
     private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании упражнения
     private lateinit var mediaController: MediaController //Элементы управления видео(пауза, перемотка)
 
-    private lateinit var viewModel: FragmentTrainingViewModel
+    private lateinit var viewModel: TrainingViewModelFragment
     private lateinit var binding: FragmentTrainingBinding
 
     private var isPause = false
@@ -34,7 +34,7 @@ class FragmentTraining : Fragment() {
         binding = FragmentTrainingBinding.inflate(inflater, container, false)
 
         val provider = ViewModelProvider(this)
-        viewModel = provider[FragmentTrainingViewModel::class.java]
+        viewModel = provider[TrainingViewModelFragment::class.java]
 
         val recommendations: Array<String> = resources.getStringArray(R.array.recommendations)
         binding.recommendationsTextView.text = viewModel.getRecommendations(recommendations)

@@ -10,7 +10,7 @@ import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryReposito
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FragmentExerciseHistoryViewModel(application: Application) :
+class ExerciseHistoryViewModelFragment(application: Application) :
     AndroidViewModel(application) {
 
     private val exerciseHistoryDaoModel =

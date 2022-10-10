@@ -6,7 +6,7 @@
     app:startDestination="@id/blankFragmentHome">
     <fragment
         android:id="@+id/blankFragmentTraining"
-        android:name="com.example.medicalrehabilitation.view.FragmentTraining"
+        android:name="com.example.medicalrehabilitation.view.TrainingFragment"
         android:label="fragment_blank_fragment_training"
         tools:layout="@layout/fragment_training">
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/blankFragmentHome"
-        android:name="com.example.medicalrehabilitation.view.FragmentHome"
+        android:name="com.example.medicalrehabilitation.view.HomeFragment"
         android:label="fragment_blank_fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/blankFragmentNextTraining"
-        android:name="com.example.medicalrehabilitation.view.FragmentNextTraining"
+        android:name="com.example.medicalrehabilitation.view.NextTrainingFragment"
         android:label="fragment_blank_fragment_next_training"
         tools:layout="@layout/fragment_next_training">
         <action
@@ -66,7 +66,7 @@
     </fragment>
     <fragment
         android:id="@+id/blankFragmentSendMail"
-        android:name="com.example.medicalrehabilitation.view.FragmentSendMail"
+        android:name="com.example.medicalrehabilitation.view.SendMailFragment"
         android:label="fragment_blank_fragment_send_mail"
         tools:layout="@layout/fragment_send_mail">
         <action
@@ -79,7 +79,7 @@
     </fragment>
     <fragment
         android:id="@+id/blankFragmentExerciseHistoryList"
-        android:name="com.example.medicalrehabilitation.view.FragmentExerciseHistoryList"
+        android:name="com.example.medicalrehabilitation.view.ExerciseHistoryListFragment"
         android:label="BlankFragmentExerciseHistoryList">
         <action
             android:id="@+id/action_blankFragmentExerciseHistoryList_to_blankFragmentHome"

@@ -1,12 +1,14 @@
 package com.example.medicalrehabilitation.exercisehistory
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalrehabilitation.databinding.FragmentExerciseHistoryBinding
 
-class ExerciseHistoryAdapter : RecyclerView.Adapter<ExerciseHistoryAdapter.MyViewHolder>() {
+class ExerciseHistoryAdapter :
+    ListAdapter<ExerciseHistoryModel, ExerciseHistoryAdapter.MyViewHolder>(ExerciseDiffCallBack()) {
 
     private var dateList = emptyList<ExerciseHistoryModel>()
 
@@ -34,10 +36,24 @@ class ExerciseHistoryAdapter : RecyclerView.Adapter<ExerciseHistoryAdapter.MyVie
     override fun getItemCount(): Int {
         return dateList.size
     }
+}
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setData(exercise: List<ExerciseHistoryModel>) {
-        this.dateList = exercise
-        notifyDataSetChanged()
+class ExerciseDiffCallBack : DiffUtil.ItemCallback<ExerciseHistoryModel>() {
+    override fun areItemsTheSame(
+        oldItem: ExerciseHistoryModel,
+        newItem: ExerciseHistoryModel
+    ): Boolean {
+        return ((oldItem.id == newItem.id)
+                && (oldItem.dateOfExercise == newItem.dateOfExercise)
+                && (oldItem.howWasExercise == newItem.howWasExercise)
+                && (oldItem.howWasPainful == newItem.howWasPainful)
+                && (oldItem.failedExercises == newItem.failedExercises))
+    }
+
+    override fun areContentsTheSame(
+        oldItem: ExerciseHistoryModel,
+        newItem: ExerciseHistoryModel
+    ): Boolean {
+        return areItemsTheSame(oldItem, newItem)
     }
 }
