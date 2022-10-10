@@ -18,13 +18,13 @@ import java.util.*
 class FragmentSendMailViewModel(application: Application) : AndroidViewModel(application) {
     private var timer: CountDownTimer? = null //Таймер
 
-    private var currentDate: Date = Calendar.getInstance().time
-    private var dateFormat: DateFormat =
+    private val currentDate: Date = Calendar.getInstance().time
+    private val dateFormat: DateFormat =
         SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
-    private var dateString: String = dateFormat.format(currentDate)
+    private val dateString: String = dateFormat.format(currentDate)
 
-    private var mutableLiveDataIntent = MutableLiveData<Intent>()
-    private var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
+    private val mutableLiveDataIntent = MutableLiveData<Intent>()
+    private val touchCounter = MutableLiveData<Int>().apply { postValue(0) }
 
     fun getMutableLiveDataIntent(): MutableLiveData<Intent> {
         return mutableLiveDataIntent

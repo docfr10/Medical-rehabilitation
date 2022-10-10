@@ -13,15 +13,11 @@ import kotlinx.coroutines.launch
 class FragmentExerciseHistoryViewModel(application: Application) :
     AndroidViewModel(application) {
 
-    private val readAllData: LiveData<List<ExerciseHistoryModel>>
-    private val repository: ExerciseHistoryRepositoryModel
-
-    init {
-        val exerciseHistoryDaoModel =
-            ExerciseHistoryDatabaseModel.getDatabase(application).exerciseHistoryDaoModel()
-        repository = ExerciseHistoryRepositoryModel(exerciseHistoryDaoModel)
-        readAllData = repository.readAllData
-    }
+    private val exerciseHistoryDaoModel =
+        ExerciseHistoryDatabaseModel.getDatabase(application).exerciseHistoryDaoModel()
+    private val repository: ExerciseHistoryRepositoryModel =
+        ExerciseHistoryRepositoryModel(exerciseHistoryDaoModel)
+    private val readAllData: LiveData<List<ExerciseHistoryModel>> = repository.getExercises()
 
     fun getReadAllData(): LiveData<List<ExerciseHistoryModel>> {
         return readAllData

@@ -22,11 +22,10 @@ class FragmentTraining : Fragment() {
     private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании упражнения
     private lateinit var mediaController: MediaController //Элементы управления видео(пауза, перемотка)
 
-    private var isPause = false
-
     private lateinit var viewModel: FragmentTrainingViewModel
     private lateinit var binding: FragmentTrainingBinding
 
+    private var isPause = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

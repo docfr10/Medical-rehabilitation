@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 
 class FragmentHomeViewModel(application: Application) : AndroidViewModel(application) {
-    private var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
+    private val touchCounter = MutableLiveData<Int>().apply { postValue(0) }
     private var timer: CountDownTimer? = null //Таймер
 
     fun getTouchCounter(): MutableLiveData<Int> {

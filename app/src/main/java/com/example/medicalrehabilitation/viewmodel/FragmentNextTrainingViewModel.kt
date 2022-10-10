@@ -15,8 +15,8 @@ import java.util.*
 class FragmentNextTrainingViewModel(application: Application) : AndroidViewModel(application) {
     private var timer: CountDownTimer? = null //Таймер
 
-    private var showAlert = MutableLiveData<Boolean>()
-    private var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
+    private val showAlert = MutableLiveData<Boolean>()
+    private val touchCounter = MutableLiveData<Int>().apply { postValue(0) }
 
     fun getShowAlert(): MutableLiveData<Boolean> {
         return showAlert

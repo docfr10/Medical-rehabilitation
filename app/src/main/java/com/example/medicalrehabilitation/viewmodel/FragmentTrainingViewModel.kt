@@ -16,12 +16,12 @@ class FragmentTrainingViewModel : ViewModel() {
     //Ссылка на видео, которое будет проигрываться
     private var timer: CountDownTimer? = null //Таймер
 
-    private var millisStart: Long = 300000 //Время выполнения упражнения
+    private val millisStart: Long = 300000 //Время выполнения упражнения
     private var millisLeft: Long = millisStart //Время, оставщееся до конца упражнения
 
-    private var millisStartOnRest: Long = 120000 //Время отдыха
+    private val millisStartOnRest: Long = 120000 //Время отдыха
     private var millisLeftOnRest: Long = millisStartOnRest //Время, оставщееся до конца отдыха
-    private var plus30SecOnRest: Int = 30000
+    private val plus30SecOnRest: Int = 30000
 
     private var end: Boolean =
         false //Параметр, определяюший завершился ли таймер, необходим для повторного невоспроизведения звука завершения упражнения
@@ -29,8 +29,8 @@ class FragmentTrainingViewModel : ViewModel() {
     private var myVideoUri =
         Uri.parse("android.resource://com.example.medicalrehabilitation/" + R.raw.video1)
 
-    private var counterNumberOfTraining = MutableLiveData<Int>().apply { postValue(1) }
-    private var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
+    private val counterNumberOfTraining = MutableLiveData<Int>().apply { postValue(1) }
+    private val touchCounter = MutableLiveData<Int>().apply { postValue(0) }
 
     fun getCounterNumberOfTraining(): MutableLiveData<Int> {
         return counterNumberOfTraining
