@@ -23,8 +23,34 @@ class FragmentSendMailViewModel(application: Application) : AndroidViewModel(app
         SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
     private var dateString: String = dateFormat.format(currentDate)
 
-    var mutableLiveDataIntent = MutableLiveData<Intent>()
-    var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
+    private var mutableLiveDataIntent = MutableLiveData<Intent>()
+    private var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
+
+    fun getMutableLiveDataIntent(): MutableLiveData<Intent> {
+        return mutableLiveDataIntent
+    }
+
+    fun getTouchCounter(): MutableLiveData<Int> {
+        return touchCounter
+    }
+
+    fun changeTouchCounter(state: Int) {
+        if (state == 1)
+            touchCounter.value = state
+        else
+            touchCounter.value = state
+    }
+
+    fun timerForTouch() {
+        timer = object : CountDownTimer(2000, 1) {
+            override fun onTick(p0: Long) {}
+
+            override fun onFinish() {
+                changeTouchCounter(0)
+            }
+        }
+        (timer as CountDownTimer).start()
+    }
 
     fun sendEmail(
         binding: FragmentSendMailBinding,
@@ -84,16 +110,5 @@ class FragmentSendMailViewModel(application: Application) : AndroidViewModel(app
             howWasPainful,
             failedExercises
         )
-    }
-
-    fun timerForTouch() {
-        timer = object : CountDownTimer(2000, 1) {
-            override fun onTick(p0: Long) {}
-
-            override fun onFinish() {
-                touchCounter.value = 0
-            }
-        }
-        (timer as CountDownTimer).start()
     }
 }

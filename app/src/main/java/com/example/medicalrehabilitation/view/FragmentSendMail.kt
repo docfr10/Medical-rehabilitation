@@ -47,15 +47,10 @@ class FragmentSendMail : Fragment() {
             it.findNavController().navigate(R.id.action_blankFragmentSendMail_to_blankFragmentHome)
         }
 
-        //После того как открылся выбор почты происходит запись данных в БД
-        viewModel.mutableLiveDataIntent.observe(viewLifecycleOwner) {
-            insertDataToDatabase(binding)
-        }
-
         //Обработка Back Stack
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (viewModel.touchCounter.value == 1)
+                if (viewModel.getTouchCounter().value == 1)
                     findNavController().navigate(R.id.action_blankFragmentSendMail_to_blankFragmentHome)
                 else {
                     val toast =
@@ -63,7 +58,7 @@ class FragmentSendMail : Fragment() {
                     toast.setGravity(Gravity.BOTTOM, 0, 0)
                     toast.show()
                     viewModel.timerForTouch()
-                    viewModel.touchCounter.value = 1
+                    viewModel.changeTouchCounter(1)
                 }
             }
         }
@@ -73,8 +68,9 @@ class FragmentSendMail : Fragment() {
     }
 
     private fun chooseEmail() {
-        viewModel.mutableLiveDataIntent.observe(viewLifecycleOwner) {
+        viewModel.getMutableLiveDataIntent().observe(viewLifecycleOwner) {
             startActivity(Intent.createChooser(it, getText(R.string.send_mail)))
+            insertDataToDatabase(binding)
         }
     }
 

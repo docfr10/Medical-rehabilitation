@@ -32,7 +32,7 @@ class FragmentExerciseHistoryList : Fragment() {
         val provider = ViewModelProvider(this)
         viewModel = provider[FragmentExerciseHistoryViewModel::class.java]
         //Обновление отображения данных на экране из БД
-        viewModel.readAllData.observe(viewLifecycleOwner) { exercise ->
+        viewModel.getReadAllData().observe(viewLifecycleOwner) { exercise ->
             adapter.setData(exercise)
         }
 

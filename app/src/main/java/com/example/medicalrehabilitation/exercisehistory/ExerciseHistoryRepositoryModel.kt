@@ -8,4 +8,6 @@ class ExerciseHistoryRepositoryModel(private val exerciseHistoryDaoModel: Exerci
     fun addDate(exerciseHistoryModel: ExerciseHistoryModel) {
         exerciseHistoryDaoModel.addDate(exerciseHistoryModel)
     }
+
+    //fun getExercises() = exerciseHistoryDaoModel.readAllData()
 }

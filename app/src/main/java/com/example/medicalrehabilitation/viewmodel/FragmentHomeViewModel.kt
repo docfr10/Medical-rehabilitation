@@ -6,15 +6,26 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 
 class FragmentHomeViewModel(application: Application) : AndroidViewModel(application) {
-    var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
+    private var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
     private var timer: CountDownTimer? = null //Таймер
+
+    fun getTouchCounter(): MutableLiveData<Int> {
+        return touchCounter
+    }
+
+    fun changeTouchCounter(state: Int) {
+        if (state == 1)
+            touchCounter.value = state
+        else
+            touchCounter.value = state
+    }
 
     fun timerForTouch() {
         timer = object : CountDownTimer(2000, 1) {
             override fun onTick(p0: Long) {}
 
             override fun onFinish() {
-                touchCounter.value = 0
+                changeTouchCounter(0)
             }
         }
         (timer as CountDownTimer).start()

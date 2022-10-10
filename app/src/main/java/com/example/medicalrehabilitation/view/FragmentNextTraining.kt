@@ -42,7 +42,7 @@ class FragmentNextTraining : Fragment() {
         //Обработка Back Stack
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (viewModel.touchCounter.value == 1)
+                if (viewModel.getTouchCounter().value == 1)
                     findNavController().navigate(R.id.action_blankFragmentNextTraining_to_blankFragmentHome)
                 else {
                     val toast =
@@ -50,7 +50,7 @@ class FragmentNextTraining : Fragment() {
                     toast.setGravity(Gravity.BOTTOM, 0, 0)
                     toast.show()
                     viewModel.timerForTouch()
-                    viewModel.touchCounter.value = 1
+                    viewModel.changeTouchCounter(1)
                 }
             }
         }
@@ -89,7 +89,7 @@ class FragmentNextTraining : Fragment() {
         val timeFormat = android.text.format.DateFormat.getTimeFormat(context)
         val builder = AlertDialog.Builder(context)
         viewModel.showAlert(date, dateFormat, timeFormat, builder)
-        viewModel.showAlert.observe(viewLifecycleOwner) {
+        viewModel.getShowAlert().observe(viewLifecycleOwner) {
             //Проверка на то просмотрел ли пользователь уведомление
             if (it == true)
             //Если да, то запускаем FragmentSendMail

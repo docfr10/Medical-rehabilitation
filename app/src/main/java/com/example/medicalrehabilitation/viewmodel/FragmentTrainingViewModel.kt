@@ -29,8 +29,34 @@ class FragmentTrainingViewModel : ViewModel() {
     private var myVideoUri =
         Uri.parse("android.resource://com.example.medicalrehabilitation/" + R.raw.video1)
 
-    var counterNumberOfTraining = MutableLiveData<Int>().apply { postValue(1) }
-    var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
+    private var counterNumberOfTraining = MutableLiveData<Int>().apply { postValue(1) }
+    private var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
+
+    fun getCounterNumberOfTraining(): MutableLiveData<Int> {
+        return counterNumberOfTraining
+    }
+
+    fun getTouchCounter(): MutableLiveData<Int> {
+        return touchCounter
+    }
+
+    fun changeTouchCounter(state: Int) {
+        if (state == 1)
+            touchCounter.value = state
+        else
+            touchCounter.value = state
+    }
+
+    fun timerForTouch() {
+        timer = object : CountDownTimer(2000, 1) {
+            override fun onTick(p0: Long) {}
+
+            override fun onFinish() {
+                changeTouchCounter(0)
+            }
+        }
+        (timer as CountDownTimer).start()
+    }
 
     //Воспроизведение видео
     fun videoPlay(binding: FragmentTrainingBinding) {
@@ -186,16 +212,5 @@ class FragmentTrainingViewModel : ViewModel() {
         val randomIndex = Random().nextInt(recommendations.size)
         println("RANDOM: $randomIndex")
         return recommendations[randomIndex]
-    }
-
-    fun timerForTouch() {
-        timer = object : CountDownTimer(2000, 1) {
-            override fun onTick(p0: Long) {}
-
-            override fun onFinish() {
-                touchCounter.value = 0
-            }
-        }
-        (timer as CountDownTimer).start()
     }
 }

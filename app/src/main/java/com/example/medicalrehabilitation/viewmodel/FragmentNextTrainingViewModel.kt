@@ -15,9 +15,23 @@ import java.util.*
 class FragmentNextTrainingViewModel(application: Application) : AndroidViewModel(application) {
     private var timer: CountDownTimer? = null //Таймер
 
-    var showAlert = MutableLiveData<Boolean>()
-    var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
+    private var showAlert = MutableLiveData<Boolean>()
+    private var touchCounter = MutableLiveData<Int>().apply { postValue(0) }
 
+    fun getShowAlert(): MutableLiveData<Boolean> {
+        return showAlert
+    }
+
+    fun getTouchCounter(): MutableLiveData<Int> {
+        return touchCounter
+    }
+
+    fun changeTouchCounter(state: Int) {
+        if (state == 1)
+            touchCounter.value = state
+        else
+            touchCounter.value = state
+    }
 
     //Метод, отвечающий за создание уведомлений на панели действий
     fun createNotifications(
@@ -34,16 +48,13 @@ class FragmentNextTrainingViewModel(application: Application) : AndroidViewModel
         val context: Context = getApplication()
 
         //Создаем широковещательный сигнал для отправки уведомления
-        val pendingIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        val pendingIntent =
             PendingIntent.getBroadcast(
                 context,
                 notificationID,
                 intent,
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
             )
-        } else {
-            TODO("VERSION.SDK_INT < M")
-        }
 
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
@@ -54,11 +65,8 @@ class FragmentNextTrainingViewModel(application: Application) : AndroidViewModel
 
     //Метод, переводящий выбранные значения даты и времени в миллисекунды
     fun getTime(binding: FragmentNextTrainingBinding): Long {
-        val minute = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        val minute =
             binding.timePicker.minute
-        } else {
-            TODO("VERSION.SDK_INT < M")
-        }
         val hour = binding.timePicker.hour
         val day = binding.datePicker.dayOfMonth
         val month = binding.datePicker.month
@@ -111,7 +119,7 @@ class FragmentNextTrainingViewModel(application: Application) : AndroidViewModel
             override fun onTick(p0: Long) {}
 
             override fun onFinish() {
-                touchCounter.value = 0
+                changeTouchCounter(0)
             }
         }
         (timer as CountDownTimer).start()

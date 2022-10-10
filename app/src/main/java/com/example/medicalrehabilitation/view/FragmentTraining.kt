@@ -48,7 +48,7 @@ class FragmentTraining : Fragment() {
         //Обработка Back Stack
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (viewModel.touchCounter.value == 1)
+                if (viewModel.getTouchCounter().value == 1)
                     findNavController().navigate(R.id.action_blankFragmentTraining_to_blankFragmentHome)
                 else {
                     val toast =
@@ -56,7 +56,7 @@ class FragmentTraining : Fragment() {
                     toast.setGravity(Gravity.BOTTOM, 0, 0)
                     toast.show()
                     viewModel.timerForTouch()
-                    viewModel.touchCounter.value = 1
+                    viewModel.changeTouchCounter(1)
                 }
             }
         }
@@ -72,7 +72,7 @@ class FragmentTraining : Fragment() {
         binding.plus30secButton.setOnClickListener { plus30Sec() } //Кнопка "+ 30 сек"
         binding.nextButton2.setOnClickListener {
             //При нажатии кнопки "Далее" на экране отдыха проверяем:
-            if (viewModel.counterNumberOfTraining.value == 4)
+            if (viewModel.getCounterNumberOfTraining().value == 4)
             //Если это последнее упражнение запускаем NextTrainingFragment
                 nextTraining()
             else

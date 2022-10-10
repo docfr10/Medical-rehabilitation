@@ -32,7 +32,7 @@ class FragmentHome : Fragment() {
         //Обработка Back Stack
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (viewModel.touchCounter.value == 1)
+                if (viewModel.getTouchCounter().value == 1)
                     activity?.finish()
                 else {
                     val toast =
@@ -40,7 +40,7 @@ class FragmentHome : Fragment() {
                     toast.setGravity(Gravity.BOTTOM, 0, 0)
                     toast.show()
                     viewModel.timerForTouch()
-                    viewModel.touchCounter.value = 1
+                    viewModel.changeTouchCounter(1)
                 }
             }
         }

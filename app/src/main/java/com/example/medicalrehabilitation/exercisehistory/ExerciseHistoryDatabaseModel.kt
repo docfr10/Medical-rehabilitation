@@ -14,10 +14,7 @@ abstract class ExerciseHistoryDatabaseModel : RoomDatabase() {
         private var INSTANCE: ExerciseHistoryDatabaseModel? = null
 
         fun getDatabase(context: Context): ExerciseHistoryDatabaseModel {
-            val tempInstance = INSTANCE
-            if (tempInstance != null)
-                return tempInstance
-            synchronized(this) {
+            return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     ExerciseHistoryDatabaseModel::class.java,

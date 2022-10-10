@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 class FragmentExerciseHistoryViewModel(application: Application) :
     AndroidViewModel(application) {
 
-    val readAllData: LiveData<List<ExerciseHistoryModel>>
+    private val readAllData: LiveData<List<ExerciseHistoryModel>>
     private val repository: ExerciseHistoryRepositoryModel
 
     init {
@@ -21,6 +21,10 @@ class FragmentExerciseHistoryViewModel(application: Application) :
             ExerciseHistoryDatabaseModel.getDatabase(application).exerciseHistoryDaoModel()
         repository = ExerciseHistoryRepositoryModel(exerciseHistoryDaoModel)
         readAllData = repository.readAllData
+    }
+
+    fun getReadAllData(): LiveData<List<ExerciseHistoryModel>> {
+        return readAllData
     }
 
     fun addDate(exerciseHistoryModel: ExerciseHistoryModel) {
