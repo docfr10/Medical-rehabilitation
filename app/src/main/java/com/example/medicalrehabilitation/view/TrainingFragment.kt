@@ -17,7 +17,7 @@ import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentTrainingBinding
 import com.example.medicalrehabilitation.viewmodel.TrainingViewModelFragment
 
-
+//Класс, отвечающий за работу экрана "Тренировка"
 class TrainingFragment : Fragment() {
     private lateinit var soundOfStop: MediaPlayer //Звук, оповещающий об окончании упражнения
     private lateinit var mediaController: MediaController //Элементы управления видео(пауза, перемотка)

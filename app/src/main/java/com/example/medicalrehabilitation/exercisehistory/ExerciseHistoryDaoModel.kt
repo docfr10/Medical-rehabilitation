@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
+//Интерфейс, описывающий методы работы с БД
 @Dao
 interface ExerciseHistoryDaoModel {
     @Insert(onConflict = OnConflictStrategy.IGNORE)

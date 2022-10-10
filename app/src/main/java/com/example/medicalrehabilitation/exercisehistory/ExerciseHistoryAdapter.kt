@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalrehabilitation.databinding.FragmentExerciseHistoryBinding
 
+//Класс, обноваляющий RecyclerView
 class ExerciseHistoryAdapter :
     ListAdapter<ExerciseHistoryModel, ExerciseHistoryAdapter.MyViewHolder>(ExerciseDiffCallBack()) {
 
@@ -38,6 +39,7 @@ class ExerciseHistoryAdapter :
     }
 }
 
+//Класс, проверяющий изменения в позициях
 class ExerciseDiffCallBack : DiffUtil.ItemCallback<ExerciseHistoryModel>() {
     override fun areItemsTheSame(
         oldItem: ExerciseHistoryModel,
@@ -45,15 +47,13 @@ class ExerciseDiffCallBack : DiffUtil.ItemCallback<ExerciseHistoryModel>() {
     ): Boolean {
         return ((oldItem.id == newItem.id)
                 && (oldItem.dateOfExercise == newItem.dateOfExercise)
-                && (oldItem.howWasExercise == newItem.howWasExercise)
-                && (oldItem.howWasPainful == newItem.howWasPainful)
-                && (oldItem.failedExercises == newItem.failedExercises))
+                && (oldItem.howWasExercise == newItem.howWasExercise))
     }
 
     override fun areContentsTheSame(
         oldItem: ExerciseHistoryModel,
         newItem: ExerciseHistoryModel
     ): Boolean {
-        return areItemsTheSame(oldItem, newItem)
+        return oldItem == newItem
     }
 }

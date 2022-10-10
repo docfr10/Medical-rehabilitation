@@ -9,7 +9,6 @@ const val channelID = "channel1"
 const val titleExtra = "titleExtra"
 const val messageExtra = "messageExtra"
 
-//Класс, отвечающий за работу главного экрана
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 

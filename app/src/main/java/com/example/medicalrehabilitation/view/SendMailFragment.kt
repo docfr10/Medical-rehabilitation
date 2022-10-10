@@ -18,6 +18,7 @@ import com.example.medicalrehabilitation.databinding.FragmentExerciseHistoryBind
 import com.example.medicalrehabilitation.databinding.FragmentSendMailBinding
 import com.example.medicalrehabilitation.viewmodel.ExerciseHistoryViewModelFragment
 
+//Класс, отвечающий за работу экрана "Отправка письма"
 class SendMailFragment : Fragment() {
     private lateinit var viewModel: SendMailViewModelFragment
     private lateinit var viewModelBlankFragmentExerciseHistoryListViewModel: ExerciseHistoryViewModelFragment

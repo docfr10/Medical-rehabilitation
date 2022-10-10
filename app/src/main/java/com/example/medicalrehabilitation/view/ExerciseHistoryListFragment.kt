@@ -1,6 +1,7 @@
 package com.example.medicalrehabilitation.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.example.medicalrehabilitation.databinding.FragmentExerciseHistoryList
 import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryAdapter
 import com.example.medicalrehabilitation.viewmodel.ExerciseHistoryViewModelFragment
 
+//Класс, отвечающий за работу экрана "История тренировок"
 class ExerciseHistoryListFragment : Fragment() {
     private lateinit var viewModel: ExerciseHistoryViewModelFragment
     private lateinit var binding: FragmentExerciseHistoryListBinding

@@ -15,6 +15,7 @@ import com.example.medicalrehabilitation.viewmodel.HomeViewModelFragment
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentHomeBinding
 
+//Класс, отвечающий за работу главного экрана
 class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModelFragment

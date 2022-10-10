@@ -21,6 +21,7 @@ import com.example.medicalrehabilitation.databinding.FragmentNextTrainingBinding
 import com.example.medicalrehabilitation.model.notifications.NotificationsModel
 import java.util.*
 
+//Класс, отвечающий за работу экрана "Следующая тренировка"
 class NextTrainingFragment : Fragment() {
     private lateinit var viewModel: NextTrainingViewModelFragment
     private lateinit var binding: FragmentNextTrainingBinding
