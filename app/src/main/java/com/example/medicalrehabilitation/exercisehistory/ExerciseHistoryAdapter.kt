@@ -1,15 +1,12 @@
 package com.example.medicalrehabilitation.exercisehistory
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.medicalrehabilitation.databinding.FragmentExerciseHistoryBinding
 
-//Класс, обноваляющий RecyclerView
-class ExerciseHistoryAdapter :
-    ListAdapter<ExerciseHistoryModel, ExerciseHistoryAdapter.MyViewHolder>(ExerciseDiffCallBack()) {
+class ExerciseHistoryAdapter : RecyclerView.Adapter<ExerciseHistoryAdapter.MyViewHolder>() {
 
     private var dateList = emptyList<ExerciseHistoryModel>()
 
@@ -37,23 +34,10 @@ class ExerciseHistoryAdapter :
     override fun getItemCount(): Int {
         return dateList.size
     }
-}
 
-//Класс, проверяющий изменения в позициях
-class ExerciseDiffCallBack : DiffUtil.ItemCallback<ExerciseHistoryModel>() {
-    override fun areItemsTheSame(
-        oldItem: ExerciseHistoryModel,
-        newItem: ExerciseHistoryModel
-    ): Boolean {
-        return ((oldItem.id == newItem.id)
-                && (oldItem.dateOfExercise == newItem.dateOfExercise)
-                && (oldItem.howWasExercise == newItem.howWasExercise))
-    }
-
-    override fun areContentsTheSame(
-        oldItem: ExerciseHistoryModel,
-        newItem: ExerciseHistoryModel
-    ): Boolean {
-        return oldItem == newItem
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(exercise: List<ExerciseHistoryModel>) {
+        this.dateList = exercise
+        notifyDataSetChanged()
     }
 }
