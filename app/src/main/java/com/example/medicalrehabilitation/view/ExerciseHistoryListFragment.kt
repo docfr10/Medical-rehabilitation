@@ -1,7 +1,6 @@
 package com.example.medicalrehabilitation.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentExerciseHistoryListBinding
-import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryAdapter
+import com.example.medicalrehabilitation.model.exercisehistory.ExerciseHistoryAdapter
 import com.example.medicalrehabilitation.viewmodel.ExerciseHistoryViewModelFragment
 
 //Класс, отвечающий за работу экрана "История тренировок"
@@ -35,7 +34,7 @@ class ExerciseHistoryListFragment : Fragment() {
         viewModel = provider[ExerciseHistoryViewModelFragment::class.java]
         //Обновление отображения данных на экране из БД
         viewModel.getReadAllData().observe(viewLifecycleOwner) { exercise ->
-            adapter.submitList(exercise)
+            adapter.setData(exercise)
         }
 
         //Обработка Back Stack

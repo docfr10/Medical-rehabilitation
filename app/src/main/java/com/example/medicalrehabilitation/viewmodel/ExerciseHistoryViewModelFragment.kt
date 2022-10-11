@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryDatabaseModel
-import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryModel
-import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryRepositoryModel
+import com.example.medicalrehabilitation.model.exercisehistory.ExerciseHistoryDatabaseModel
+import com.example.medicalrehabilitation.model.exercisehistory.ExerciseHistoryModel
+import com.example.medicalrehabilitation.model.exercisehistory.ExerciseHistoryRepositoryModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

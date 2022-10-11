@@ -1,4 +1,4 @@
-package com.example.medicalrehabilitation.exercisehistory
+package com.example.medicalrehabilitation.model.exercisehistory
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

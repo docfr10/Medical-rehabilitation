@@ -10,7 +10,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentSendMailBinding
-import com.example.medicalrehabilitation.exercisehistory.ExerciseHistoryModel
+import com.example.medicalrehabilitation.model.exercisehistory.ExerciseHistoryModel
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
