@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import com.example.medicalrehabilitation.viewmodel.HomeViewModelFragment
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentHomeBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 //Класс, отвечающий за работу главного экрана
 class HomeFragment : Fragment() {
@@ -67,14 +68,16 @@ class HomeFragment : Fragment() {
 
     private fun aboutButtonClicked() {
         //Создание диалогового окна с информацией о приложении
-        val builder = AlertDialog.Builder(context)
-            .setMessage(R.string.about_app)
-            .setTitle((R.string.about))
-            .setPositiveButton((R.string.clear)) { dialog, _ -> dialog.cancel() }
+        val builder = context?.let {
+            MaterialAlertDialogBuilder(it)
+                .setMessage(R.string.about_app)
+                .setTitle((R.string.about))
+                .setPositiveButton((R.string.clear)) { dialog, _ -> dialog.cancel() }
+        }
 
         //Анимация окна
-        val dialog = builder.create()
-        dialog.window?.attributes?.windowAnimations = R.style.MyDialogAnimation
-        dialog.show()
+        val dialog = builder?.create()
+        dialog?.window?.attributes?.windowAnimations = R.style.MyDialogAnimation
+        dialog?.show()
     }
 }
