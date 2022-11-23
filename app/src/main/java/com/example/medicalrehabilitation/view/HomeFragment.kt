@@ -1,6 +1,5 @@
 package com.example.medicalrehabilitation.view
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.Gravity
 import androidx.fragment.app.Fragment

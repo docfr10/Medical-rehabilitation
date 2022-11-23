@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentTrainingBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.*
 
 class TrainingViewModelFragment : ViewModel() {
@@ -125,18 +126,18 @@ class TrainingViewModelFragment : ViewModel() {
     }
 
     //Смена информации об упражнении, реализована в виде диалогового окна
-    fun aboutExercise(builder: AlertDialog.Builder) {
+    fun aboutExercise(builder: MaterialAlertDialogBuilder?) {
         when (counterNumberOfTraining.value) {
-            1 -> builder.setMessage(R.string.exercise1)
-            2, 3, 4 -> builder.setMessage(R.string.exercise2_3_4)
+            1 -> builder?.setMessage(R.string.exercise1)
+            2, 3, 4 -> builder?.setMessage(R.string.exercise2_3_4)
         }
-        builder.setTitle((R.string.equipment))
-        builder.setPositiveButton((R.string.clear)) { dialog, _ ->
+        builder?.setTitle((R.string.equipment))
+        builder?.setPositiveButton((R.string.clear)) { dialog, _ ->
             dialog.cancel()
         }
-        val dialog = builder.create()
-        dialog.window?.attributes?.windowAnimations = R.style.MyDialogAnimation
-        dialog.show()
+        val dialog = builder?.create()
+        dialog?.window?.attributes?.windowAnimations = R.style.MyDialogAnimation
+        dialog?.show()
     }
 
     //Запуск и проверка таймера на окончание

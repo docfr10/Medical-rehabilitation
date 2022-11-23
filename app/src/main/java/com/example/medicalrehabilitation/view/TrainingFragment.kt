@@ -1,6 +1,5 @@
 package com.example.medicalrehabilitation.view
 
-import android.app.AlertDialog
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -16,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.medicalrehabilitation.R
 import com.example.medicalrehabilitation.databinding.FragmentTrainingBinding
 import com.example.medicalrehabilitation.viewmodel.TrainingViewModelFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 //Класс, отвечающий за работу экрана "Тренировка"
 class TrainingFragment : Fragment() {
@@ -109,7 +109,7 @@ class TrainingFragment : Fragment() {
     }
 
     private fun aboutTrainImageButtonClicked() {
-        val builder = AlertDialog.Builder(context)
+        val builder = context?.let { MaterialAlertDialogBuilder(it) }
         aboutExercise(builder)
     }
 
@@ -147,7 +147,7 @@ class TrainingFragment : Fragment() {
         viewModel.soundPause(soundOfStop)
     }
 
-    private fun aboutExercise(builder: AlertDialog.Builder) {
+    private fun aboutExercise(builder: MaterialAlertDialogBuilder?) {
         viewModel.aboutExercise(builder)
     }
 
